@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public abstract class Element{
+	public abstract class Element : StringParsable{
 		private dynamic data;
 		
 		public dynamic Data {
@@ -32,6 +36,8 @@ namespace RadDB3.structure {
 			return output;
 		}
 
+		public abstract void ChangeData();
+
 		public static bool operator ==(Element a, Element b) {
 			return a.Data == b.Data;
 		}
@@ -39,5 +45,16 @@ namespace RadDB3.structure {
 		public static bool operator !=(Element a, Element b) {
 			return a.Data != b.Data;
 		}
+
+		public static Element ConvertToElement(Type type, object o) {
+			ConstructorInfo constructorInfo = type.GetTypeInfo().DeclaredConstructors.ElementAt(0);
+			return (Element) constructorInfo.Invoke(new[] {o});
+		}
+
+		public static Element ConvertToElement(object o) {
+			ConstructorInfo constructorInfo = typeof(CallConvThiscall).GetTypeInfo().DeclaredConstructors.ElementAt(0);
+			return (Element) constructorInfo.Invoke(new[] {o});
+		}
+	
 	}
 }

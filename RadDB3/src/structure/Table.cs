@@ -136,7 +136,7 @@ namespace RadDB3.structure {
 				bool found = true;
 				int index = 0;
 				foreach (Element radTupleElement in radTuple.elements) {
-					if (radTupleElement != search[index]) {
+					if (radTupleElement != search[index++]) {
 						found = false;
 						break;
 					}
@@ -157,6 +157,26 @@ namespace RadDB3.structure {
 		public bool Find(out RADTuple output, params (string, Element)[] elements) {
 			output = Find(elements);
 			return output != null;
+		}
+
+		
+		public bool Find(out RADTuple output, params (string, object)[] elements) {
+			output = Find(elements);
+			return output != null;
+		}
+
+		public RADTuple Find(params (string, object)[] elements) {
+			if (elements.Length != relation.Arity) return null;
+			(string, Element)[] fixedTuples = new (string, Element)[elements.Length];
+			int index = 0;
+			foreach ((string, object) valueTuple in elements) {
+				(string columnName, object data) = valueTuple;
+				int key = relation.Names.ToList().IndexOf(columnName);
+				Element e = Element.ConvertToElement(relation.Types[key], data);
+				fixedTuples[index++] = (columnName, e);
+			}
+
+			return Find(fixedTuples);
 		}
 		
 		/// <summary>
