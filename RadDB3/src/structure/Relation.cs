@@ -1,12 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
 	public class Relation {
-		private Type[] types;
-		private Type[] subTypes;
-		private string[] names;
-		private int[] keys; // TODO: Implement properly
+		private readonly Type[] types;
+		private readonly Type[] subTypes;
+		private readonly string[] names;
+		
+		/*
+		 * Key 0 -> Primary Key
+		 * Keys 1 - infinity -> Secondary Keys
+		 */
+		private readonly int[] keys; // TODO: Implement properly
 
 		public int Arity => names.Length;
 
@@ -29,9 +36,19 @@ namespace RadDB3.structure {
 			types = new Type[pairs.Length];
 			subTypes = new Type[pairs.Length];
 			names = new string[pairs.Length];
-			keys = new [] {0};
+			LinkedList<int> newKeys = new LinkedList<int>();
+
+
 			foreach ((string, Type) valueTuple in pairs) {
-				names[index] = valueTuple.Item1;
+				string name = valueTuple.Item1;
+				if (name.Contains("*")) {
+					newKeys.AddFirst(index);
+					name = name.Substring(1);
+				}else if (name.Contains("&")) {
+					newKeys.AddLast(index);
+					name = name.Substring(1);
+				}
+				names[index] = name;
 				Type t = valueTuple.Item2;
 				if (valueTuple.Item2.IsSubclassOf(typeof(Element))) {
 					types[index] = valueTuple.Item2;
@@ -48,6 +65,8 @@ namespace RadDB3.structure {
 
 				index++;
 			}
+
+			keys = newKeys.ToArray();
 		}
 
 		public Type[] Types => types;
@@ -55,6 +74,8 @@ namespace RadDB3.structure {
 		public Type[] SubTypes => subTypes;
 
 		public string[] Names => names;
+
+		public int[] Keys => keys;
 
 		public override string ToString() {
 			string output = "";

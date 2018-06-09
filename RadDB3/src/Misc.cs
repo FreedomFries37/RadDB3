@@ -13,15 +13,15 @@ namespace RadDB3 {
 			else output += "F";
 
 			if (percent >= .60) {
-				bool approx0 = ApproximateEqual(percent%.1, 0, .00001d) || ApproximateEqual(percent%.1, .1, .00001d);
-				if ((percent+.001) % .1 >= .07 && !approx0) output += "+";
+				bool approx0 =  ApproximateEqual(percent%.1, 0, .00001d) || ApproximateEqual(percent%.1, .1, .00001d);
+				if ((percent+.001) % .1 >= .07 && !approx0 || ApproximateEqual(percent, 1, .00001d)) output += "+";
 				else if ((percent+.001) % .1 < .03 || approx0) output += "-";
 			}
 
 			return output;
 		}
 
-		// from 0 to 100
+		// from 0 to 100l
 		public static string percentToLetterGrade(int percent) {
 			return percentToLetterGrade(percent / 100d);
 		}
@@ -29,5 +29,6 @@ namespace RadDB3 {
 		public static bool ApproximateEqual(double a, double b, double leniency) {
 			return Math.Abs(a - b) <= leniency;
 		}
+		
 	}
 }

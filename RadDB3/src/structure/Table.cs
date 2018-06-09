@@ -6,6 +6,8 @@ namespace RadDB3.structure {
 	public class Table {
 		private const int DEFUALT_SIZE = 1;
 		private const int DEFUALT_COLUMN_WIDTH = 15;
+
+		private const bool MAX_DEBUG = true;
 		
 		private readonly string name;
 		private readonly Relation relation;
@@ -38,6 +40,29 @@ namespace RadDB3.structure {
 
 		public RADTuple this[int w, int y] => tuples[w].ElementAt(y);
 		public LinkedList<RADTuple> this[int w] => tuples[w];
+
+		/// <summary>
+		/// Finds based on keys alone
+		/// </summary>
+		/// <param name="elements">Keys to check</param>
+		public RADTuple this[params Element[] elements] {
+			get {
+				if (elements.Length != relation.Keys.Length) return null;
+
+				int hash = elements[0].GetHashCode() % Size;
+				foreach (RADTuple radTuple in tuples[hash]) {
+					bool found = true;
+					for (int i = 0; i < relation.Keys.Length; i++) {
+						Element radItem = radTuple[relation.Keys[i]];
+						if (radItem != elements[i]) found = false;
+					}
+
+					if (found) return radTuple;
+				}
+
+				return null;
+			}
+		}
 		
 		public override int GetHashCode() {
 			return name.GetHashCode();
@@ -52,11 +77,30 @@ namespace RadDB3.structure {
 		public bool Add(RADTuple tuple) {
 			if (tuple.relation != relation) return false;
 
-			int hash = tuple.elements[0].GetHashCode() % Size;
+			int hash = Math.Abs(tuple.GetHashCode() % Size);
 			tuples[hash].AddLast(tuple);
-			if(Count == Size) Expand();
-
+			if(MAX_DEBUG) DumpData();
+			if (Count == Size) {
+				Expand();
+				if(MAX_DEBUG) DumpData();
+			}
+			
 			return true;
+		}
+
+		public bool Add(params object[] objects) {
+			if (objects.Length != relation.Arity) return false;
+			
+			RADTuple t = RADTuple.CreateFromObjects(relation, objects);
+
+			return Add(t);
+		}
+
+		public bool Add(params Element[] elements) {
+			if (elements.Length != relation.Arity) return false;
+			
+			RADTuple t = new RADTuple(relation, elements);
+			return Add(t);
 		}
 
 		/// <summary>
@@ -67,9 +111,52 @@ namespace RadDB3.structure {
 		public bool Remove(RADTuple tuple) {
 			if (tuple.relation != relation) return false;
 			
-			int hash = tuple.elements[0].GetHashCode() % Size;
+			int hash = Math.Abs(tuple.GetHashCode() % Size);
 			var list = tuples[hash];
 			return list.Remove(tuple);
+		}
+
+		/// <summary>
+		/// If all the elements match
+		/// </summary>
+		/// <param name="elements">(string, Element) tuple representing column name and data</param>
+		/// <returns></returns>
+		public RADTuple Find(params (string, Element)[] elements) {
+			Element[] search = new Element[relation.Arity];
+			
+			foreach ((string, Element) valueTuple in elements) {
+				(string columnName, Element data) = valueTuple;
+				int key = relation.Names.ToList().IndexOf(columnName);
+				search[key] = data;
+			}
+
+			int keyIndex = relation.Keys[0];
+			int hash = Math.Abs(search[keyIndex].GetHashCode() % Size);
+			foreach (RADTuple radTuple in tuples[hash]) {
+				bool found = true;
+				int index = 0;
+				foreach (Element radTupleElement in radTuple.elements) {
+					if (radTupleElement != search[index]) {
+						found = false;
+						break;
+					}
+				}
+
+				if (found) return radTuple;
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Same as Find, but returns true or false if RADTuple was found
+		/// </summary>
+		/// <param name="output">RADTuple reference to be set</param>
+		/// <param name="elements">(string, Element) tuple representing column name and data</param>
+		/// <returns></returns>
+		public bool Find(out RADTuple output, params (string, Element)[] elements) {
+			output = Find(elements);
+			return output != null;
 		}
 		
 		/// <summary>
@@ -97,16 +184,29 @@ namespace RadDB3.structure {
 				if (linkedList.Count > 0) ++numOfListsWithData;
 			}
 
-			return numOfListsWithData / Count;
+			return 1 - (Count-numOfListsWithData) / Size;
+		}
+
+		public int GetNumOfLinesWithData() {
+			int output = 0;
+			foreach (LinkedList<RADTuple> linkedList in tuples) {
+
+				if (linkedList.Count > 0) {
+					++output;
+				}
+			}
+
+			return output;
 		}
 
 		/// <summary>
 		/// Dumps relavent data and a graph representing the distribution of data in the table
 		/// </summary>
 		public void DumpData() {
-			Console.WriteLine("Distribution Ratio: {0:P}", GetDistributionRatio());
+			Console.WriteLine("Distribution Ratio: {0:P} ({1})", GetDistributionRatio(), Misc.percentToLetterGrade(GetDistributionRatio()));
 			Console.WriteLine("Size: {0}", Size);
 			Console.WriteLine("Count: {0}", Count);
+			Console.WriteLine("Lines with data: {0}", GetNumOfLinesWithData());
 			foreach (LinkedList<RADTuple> linkedList in tuples) {
 				string singleLine = "|";
 
