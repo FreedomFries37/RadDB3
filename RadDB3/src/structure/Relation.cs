@@ -41,7 +41,6 @@ namespace RadDB3.structure {
 						subTypes[index] = null;
 					}
 
-					index++;
 				} else {
 					types[index] = new RADGeneric(valueTuple.Item2).GetType();
 					subTypes[index] = valueTuple.Item2;

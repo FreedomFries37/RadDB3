@@ -100,6 +100,24 @@ namespace RadDB3.structure {
 			return numOfListsWithData / Count;
 		}
 
+		/// <summary>
+		/// Dumps relavent data and a graph representing the distribution of data in the table
+		/// </summary>
+		public void DumpData() {
+			Console.WriteLine("Distribution Ratio: {0:P}", GetDistributionRatio());
+			Console.WriteLine("Size: {0}", Size);
+			Console.WriteLine("Count: {0}", Count);
+			foreach (LinkedList<RADTuple> linkedList in tuples) {
+				string singleLine = "|";
+
+				for (int i = 0; i < linkedList.Count; i++) {
+					singleLine += "#";
+				}
+				
+				Console.WriteLine(singleLine);
+			}
+		}
+
 		public void PrintTable(int width = DEFUALT_COLUMN_WIDTH) {
 			
 			Console.WriteLine(centerPad(name, width*relation.Arity));
