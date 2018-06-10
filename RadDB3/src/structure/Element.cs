@@ -10,7 +10,10 @@ namespace RadDB3.structure {
 		
 		public dynamic Data {
 			get => data;
-			protected set => data = value;
+			protected set {
+				data = value;
+				if(Data is string) ChangeData();
+			}
 		}
 
 		public override int GetHashCode() {
@@ -20,6 +23,11 @@ namespace RadDB3.structure {
 		public override string ToString() {
 			return data.ToString();
 		}
+
+		protected Element(dynamic data) {
+			Data = data;
+		}
+
 
 		/// <summary>
 		/// Let n be length of string representing data stored
@@ -49,6 +57,11 @@ namespace RadDB3.structure {
 		public static Element ConvertToElement(Type type, object o) {
 			ConstructorInfo constructorInfo = type.GetTypeInfo().DeclaredConstructors.ElementAt(0);
 			return (Element) constructorInfo.Invoke(new[] {o});
+		}
+
+		public static Element ConvertToElement(Type type, string s) {
+			ConstructorInfo constructorInfo = type.GetTypeInfo().DeclaredConstructors.ElementAt(1);
+			return (Element) constructorInfo.Invoke(new[] {(object) s});
 		}
 
 		public static Element ConvertToElement(object o) {

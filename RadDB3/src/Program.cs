@@ -33,7 +33,7 @@ namespace RadDB3 {
 			tb.DumpData();
 			Console.WriteLine(tb.Find(("Name", new RADString("Dan")),
 				("Age", new RADInteger(14)), ("Alive", new RADBool(true))).DetailedDump());
-			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", 14), ("Alive", true)).DetailedDump());
+			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", true)).DetailedDump());
 			/*
 			for (int i = 55; i <= 100; i++) {
 				Console.WriteLine("{0:P}: {1}", i/100d, Misc.percentToLetterGrade(i));

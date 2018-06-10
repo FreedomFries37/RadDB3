@@ -1,12 +1,10 @@
 ﻿namespace RadDB3.structure.Types {
 	public class RADBool : Element{
 		
-		public RADBool(bool b) {
-			Data = b;
-		}
+		public RADBool(bool b) : base(b) { }
+		public RADBool(string b) : base(b) { }
 
 		public override void ChangeData() {
-			if (Data.GetType() != typeof(string)) return;
 			Data = bool.Parse(Data);
 		}
 

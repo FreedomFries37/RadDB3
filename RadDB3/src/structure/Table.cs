@@ -172,7 +172,9 @@ namespace RadDB3.structure {
 			foreach ((string, object) valueTuple in elements) {
 				(string columnName, object data) = valueTuple;
 				int key = relation.Names.ToList().IndexOf(columnName);
-				Element e = Element.ConvertToElement(relation.Types[key], data);
+				Element e;
+				if(data is string) e =  Element.ConvertToElement(relation.Types[key], (string) data);
+				else e = Element.ConvertToElement(relation.Types[key], data);
 				fixedTuples[index++] = (columnName, e);
 			}
 
