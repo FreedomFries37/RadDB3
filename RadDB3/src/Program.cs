@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using RadDB3.scripting;
+using RadDB3.scripting.parsers;
 using RadDB3.structure;
 using RadDB3.structure.Types;
 
 namespace RadDB3 {
+
+	public delegate bool ParserFunction(out ParseNode node);
+	
 	class Program {
 		static void Main(string[] args) {
 			Database db = new Database("Your Mom");
@@ -33,12 +39,11 @@ namespace RadDB3 {
 			tb.DumpData();
 			Console.WriteLine(tb.Find(("Name", new RADString("Dan")),
 				("Age", new RADInteger(14)), ("Alive", new RADBool(true))).DetailedDump());
-			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", true)).DetailedDump());
-			/*
-			for (int i = 55; i <= 100; i++) {
-				Console.WriteLine("{0:P}: {1}", i/100d, Misc.percentToLetterGrade(i));
-			}
-			*/
+			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", "true")).DetailedDump());
+			
+			
+			Parser p = new Parser("yolo", Parser.ReadOptions.STRING);
+			ParseTree p1 = new ParseTree(p.ParseTable);
 		}
 	}
 }

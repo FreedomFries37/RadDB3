@@ -60,7 +60,7 @@ namespace RadDB3.structure {
 		}
 
 		public static Element ConvertToElement(Type type, string s) {
-			ConstructorInfo constructorInfo = type.GetTypeInfo().DeclaredConstructors.ElementAt(1);
+			ConstructorInfo constructorInfo = type.GetTypeInfo().GetConstructor(new []{typeof(string)});
 			return (Element) constructorInfo.Invoke(new[] {(object) s});
 		}
 
