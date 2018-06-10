@@ -1,7 +1,9 @@
 ﻿
+using System;
 using System.Collections;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RadDB3.scripting.parsers {
 	public partial class Parser {
@@ -114,6 +116,48 @@ namespace RadDB3.scripting.parsers {
 
 			return true;
 		}
+		
+		/// <summary>
+		/// Attempt to match a regex patter
+		///	WARNING: high overhead
+		/// </summary>
+		/// <param name="pattern">Regex pattern</param>
+		/// <returns>If it matches</returns>
+		private bool MatchPattern(string @pattern) {
+			Regex regex = new Regex(pattern);
+			int tempIndex = 1;
+			string check = parsableString.Substring(index);
+			while (tempIndex < check.Length) {
+				string tempSentence = check.Substring(0, tempIndex);
+				if (regex.IsMatch(tempSentence)) {
+					return true;
+				}
+
+				tempIndex++;
+			}
+
+			return false;
+		}
+
+		private bool ConsumePattern(string @pattern) {
+			Regex regex = new Regex(pattern);
+			int tempIndex = 1;
+			string check = parsableString.Substring(index);
+			while (tempIndex < check.Length) {
+				string tempSentence = check.Substring(0, tempIndex);
+				if (regex.IsMatch(tempSentence)) {
+					for (int i = 0; i < tempIndex; i++) {
+						AdvancePointer();
+					}
+					return true;
+				}
+
+				tempIndex++;
+			}
+
+			return false;
+		}
+		
 
 		/// <summary>
 		/// Same as MatchString, but also moves the pointer forward
@@ -123,6 +167,103 @@ namespace RadDB3.scripting.parsers {
 		private bool ConsumeString(string str) {
 			if (!MatchString(str)) return false;
 			index += str.Length;
+			return true;
+		}
+		
+		/**
+		 * <sentence>:
+		 *
+		 * 		"<string>"
+		 *
+		 * <sentence'>:
+		 * 		<sentence_char><sentence_tail>
+		 *
+		 * <sentence_char>:
+		 * 		[*"]
+		 *
+		 * <sentence_tail>: optional
+		 * 		<sentence'>
+		 * 
+		 * <string>:
+		 * 		<char><string_tail>
+		 *
+		 * <char>:
+		 * 		[a-zA-Z0-9_]
+		 *
+		 * <string_tail>: optional
+		 * 		<string>
+		 */
+
+		public bool ParseSentence(out ParseNode output) {
+			output = new ParseNode("<sentence>");
+
+			if (!ConsumeChar('"')) return false;
+			if (!ParseSentencePrime(output)) return false;
+			if (!ConsumeChar('"')) return false;
+			
+			return true;
+		}
+		
+		private bool ParseSentence(ParseNode parent) {
+			ParseNode next = new ParseNode("<sentence>");
+
+			if (!ConsumeChar('"')) return false;
+			if (!ParseSentencePrime(next)) return false;
+			if (!ConsumeChar('"')) return false;
+			
+			parent.AddChild(next);
+			return true;
+		}
+		
+		private bool ParseSentencePrime(ParseNode parent) {
+			ParseNode next = new ParseNode("<sentence'>");
+
+			if (!ParseSentenceChar(next)) return false;
+			if (!ParseSentenceTail(next)) return false;
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseSentenceChar(ParseNode parent) {
+			ParseNode next = new ParseNode("<sentence_char>");
+
+			if (!MatchPattern(@"[\w]")) return false;
+			
+			ParseNode nextNext = new ParseNode("" + CurrentCharacter);
+			
+			next.AddChild(nextNext);
+			AdvancePointer();
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseSentenceTail(ParseNode parent) {
+			ParseNode next = new ParseNode("<sentence_tail>");
+
+			if (!MatchChar('"') && !ParseSentencePrime(next)) return false;
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseString(ParseNode parent) {
+			ParseNode next = new ParseNode("<string>");
+
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseChar(ParseNode parent) {
+			ParseNode next = new ParseNode("<char>");
+
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseStringTail(ParseNode parent) {
+			ParseNode next = new ParseNode("<string_tail>");
+
+			
+			parent.AddChild(next);
 			return true;
 		}
 

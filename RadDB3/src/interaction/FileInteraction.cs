@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using RadDB3.scripting;
 using RadDB3.scripting.parsers;
 using RadDB3.structure;
 
@@ -35,7 +36,7 @@ namespace RadDB3.interaction {
 
 		public static Table ConvertStringToTable(string str) {
 			Parser p = new Parser(str, Parser.ReadOptions.STRING);
-
+			ParseTree tree = new ParseTree(p.ParseTable);
 
 			return null;
 		}

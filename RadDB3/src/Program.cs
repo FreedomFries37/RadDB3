@@ -42,8 +42,8 @@ namespace RadDB3 {
 			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", "true")).DetailedDump());
 			
 			
-			Parser p = new Parser("yolo", Parser.ReadOptions.STRING);
-			ParseTree p1 = new ParseTree(p.ParseTable);
+			Parser p = new Parser("\"yolo\"", Parser.ReadOptions.STRING);
+			ParseTree pt = new ParseTree(p.ParseSentence);
 		}
 	}
 }
