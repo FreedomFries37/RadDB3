@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace RadDB3.structure {
 	public class Table {
@@ -14,7 +15,8 @@ namespace RadDB3.structure {
 		private LinkedList<RADTuple>[] tuples;
 
 		public int Size => tuples.Length;
-
+		public string Name => name;
+		public Relation Relation => relation;
 		public int Count {
 			get {
 				int total = 0;
@@ -24,6 +26,19 @@ namespace RadDB3.structure {
 				}
 
 				return total;
+			}
+		}
+
+		public RADTuple[] All {
+			get {
+				List<RADTuple> output = new List<RADTuple>();
+				foreach (LinkedList<RADTuple> linkedList in tuples) {
+					foreach (RADTuple radTuple in linkedList) {
+						output.Add(radTuple);
+					}
+				}
+
+				return output.ToArray();
 			}
 		}
 
@@ -40,6 +55,8 @@ namespace RadDB3.structure {
 
 		public RADTuple this[int w, int y] => tuples[w].ElementAt(y);
 		public LinkedList<RADTuple> this[int w] => tuples[w];
+		
+	
 
 		/// <summary>
 		/// Finds based on keys alone
@@ -68,6 +85,14 @@ namespace RadDB3.structure {
 			return name.GetHashCode();
 		}
 
+		private bool HashAlreadyExists(LinkedList<RADTuple> list, RADTuple check) {
+			foreach (RADTuple radTuple in list) {
+				if (radTuple[check.relation.Keys[0]] == check[check.relation.Keys[0]]) return true;
+			}
+
+			return false;
+		}
+		
 		/// <summary>
 		/// Add a tuple to the table. Fails if the relation of the tuple
 		/// and the table do not match
@@ -78,6 +103,7 @@ namespace RadDB3.structure {
 			if (tuple.relation != relation) return false;
 
 			int hash = Math.Abs(tuple.GetHashCode() % Size);
+			if (HashAlreadyExists(tuples[hash], tuple)) return false;
 			tuples[hash].AddLast(tuple);
 			if(MAX_DEBUG) DumpData();
 			if (Count == Size) {

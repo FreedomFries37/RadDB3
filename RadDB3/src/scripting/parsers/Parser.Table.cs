@@ -68,7 +68,7 @@ namespace RadDB3.scripting.parsers{
 		 * 		<string_full>=<string_full>
 		 *
 		 * <constraits_tail>: optional
-		 * 		,
+		 * 		,<constraints>
 		 *
 		 * <tuple_list>: optional
 		 * 		[TUPLE_STRING]\n<tuple_list_tail>
@@ -158,24 +158,50 @@ namespace RadDB3.scripting.parsers{
 		}
 		private bool ParseSingleContraint(ParseNode parent) {
 			ParseNode next = new ParseNode("<single_constraint>");
+
+			if (!ParseSentence(next)) return false;
+			if (!ConsumeChar('=')) return false;
+			if (!ParseSentence(next)) return false;
 			
 			parent.AddChild(next);
 			return true;
 		}
 		private bool ParseContraintsTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<contraints_tail>");
+
+			if (ConsumeChar(',')) {
+				if (!ParseContraints(next)) return false;
+			}
 			
 			parent.AddChild(next);
 			return true;
 		}
 		private bool ParseTupleList(ParseNode parent) {
 			ParseNode next = new ParseNode("<tuple_list>");
+
+			if (!ParseTupleString(next)) return false;
+			if (!ConsumeChar('\n')) return false;
+			if (!ParseTupleListTail(next)) return false;
 			
 			parent.AddChild(next);
 			return true;
 		}
 		private bool ParseTupleListTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<tuple_list_tail>");
+
+			if (!MatchChar('}')) {
+				if (!ParseTupleList(next)) return false;
+			}
+			
+			parent.AddChild(next);
+			return true;
+		}
+
+		private bool ParseTupleString(ParseNode parent) {
+			ParseNode next = new ParseNode("<tuple>");
+
+			if (!ConsumePattern(@"{.*(,.*)*}", out string singleTuple)) return false;
+			next.AddChild(new ParseNode(singleTuple));
 			
 			parent.AddChild(next);
 			return true;

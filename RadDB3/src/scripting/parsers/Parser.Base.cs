@@ -18,7 +18,8 @@ namespace RadDB3.scripting.parsers {
 		public enum ParseOptions {
 			REMOVE_ALL_WHITESPACE,
 			REMOVE_ALL_NONSPACE_WHITESPACE,
-			ALL_WHITESPACE_TO_SPACE
+			ALL_WHITESPACE_TO_SPACE,
+			REMOVE_ONLY_TABS
 		}
 
 		/// <summary>
@@ -48,6 +49,12 @@ namespace RadDB3.scripting.parsers {
 			head = null;
 		}
 
+		public Parser(string s, ReadOptions option, params string[] replacements) :this(s, option) {
+			foreach (string replacement in replacements) {
+				parsableString = parsableString.Replace(replacement, "");
+			}
+		}
+
 		public Parser(string s, ReadOptions readOptions, ParseOptions parseOption) : this(s, readOptions) {
 			parsableString = ApplyRule(parsableString, parseOption);
 		}
@@ -66,6 +73,9 @@ namespace RadDB3.scripting.parsers {
 						break;
 					
 					case ParseOptions.REMOVE_ALL_NONSPACE_WHITESPACE:
+						break;
+					case ParseOptions.REMOVE_ONLY_TABS:
+						s = s.Replace("\t", "");
 						break;
 			}
 
@@ -124,7 +134,7 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <param name="pattern">Regex pattern</param>
 		/// <returns>If it matches</returns>
-		private bool MatchPattern(string @pattern) {
+		private bool MatchPattern(string pattern) {
 			Regex regex = new Regex(pattern);
 			int tempIndex = 1;
 			string check = parsableString.Substring(index);
@@ -140,7 +150,7 @@ namespace RadDB3.scripting.parsers {
 			return false;
 		}
 
-		private bool ConsumePattern(string @pattern) {
+		private bool ConsumePattern(string pattern) {
 			Regex regex = new Regex(pattern);
 			int tempIndex = 1;
 			string check = parsableString.Substring(index);
@@ -156,6 +166,28 @@ namespace RadDB3.scripting.parsers {
 				tempIndex++;
 			}
 
+			return false;
+		}
+
+		private bool ConsumePattern(string pattern, out string matchedString) {
+			Regex regex = new Regex(pattern);
+			int tempIndex = 1;
+			string check = parsableString.Substring(index);
+			while (tempIndex < check.Length) {
+				string tempSentence = check.Substring(0, tempIndex);
+				if (regex.IsMatch(tempSentence)) {
+					for (int i = 0; i < tempIndex; i++) {
+						AdvancePointer();
+					}
+
+					matchedString = tempSentence;
+					return true;
+				}
+
+				tempIndex++;
+			}
+
+			matchedString = null;
 			return false;
 		}
 		

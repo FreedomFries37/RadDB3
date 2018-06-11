@@ -21,6 +21,21 @@ namespace RadDB3.structure {
 
 		public Element this[int i] => elements[i];
 
+		public Element this[string str] {
+			set {
+				int index = relation.Names.ToList().IndexOf(str);
+				if (index < 0 ||
+					index >= elements.Length) return;
+				elements[index] = value;
+			}
+			get {
+				int index = relation.Names.ToList().IndexOf(str);
+				if (index < 0 ||
+					index >= elements.Length) return null;
+				return this[index];
+			}
+		}
+
 		/// <summary>
 		/// Returns data of an element
 		/// </summary>
@@ -67,7 +82,7 @@ namespace RadDB3.structure {
 			string output = "{";
 
 			for (int i = 0; i < relation.Arity-1; i++) {
-				output += relation.Names[i] + ":" + elements[i] + ", ";
+				output += relation.Names[i] + ":" + elements[i] + ",";
 			}
 
 			output += relation.Names[relation.Arity - 1] + ":" + elements[relation.Arity - 1];

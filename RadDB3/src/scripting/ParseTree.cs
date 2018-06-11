@@ -5,7 +5,7 @@ namespace RadDB3.scripting {
 		private ParseNode head;
 		public readonly bool successfulParse;
 
-		public int Count => head.Count();
+		public int Count => head != null ? head.Count() : 0;
 
 		public ParseTree(ParserFunction func) {
 			successfulParse = func(out head);

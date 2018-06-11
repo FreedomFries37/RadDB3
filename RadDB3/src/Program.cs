@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using RadDB3.interaction;
 using RadDB3.scripting;
 using RadDB3.scripting.parsers;
 using RadDB3.structure;
@@ -39,12 +40,14 @@ namespace RadDB3 {
 			tb.DumpData();
 			Console.WriteLine(tb.Find(("Name", new RADString("Dan")),
 				("Age", new RADInteger(14)), ("Alive", new RADBool(true))).DetailedDump());
-			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", "true")).DetailedDump());
+			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", "true")));
 			
 			
 			Parser p = new Parser("\"yolo\"", Parser.ReadOptions.STRING);
 			ParseTree pt = new ParseTree(p.ParseSentence);
-			Console.WriteLine(pt.successfulParse);
+			
+			FileInteraction.ConvertTableToFile(tb);
+			FileInteraction.ConvertFileToTable("Name-Age-Alive.rdt");
 		}
 	}
 }
