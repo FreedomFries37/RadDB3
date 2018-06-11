@@ -42,6 +42,8 @@ namespace RadDB3.structure {
 			}
 		}
 
+		public LinkedList<RADTuple>[] AllLists => tuples;
+
 		public Table(Relation r, int size = DEFUALT_SIZE) :this(r.ToString(), r, size) { }
 		
 		public Table(string name, Relation r, int size = DEFUALT_SIZE) {

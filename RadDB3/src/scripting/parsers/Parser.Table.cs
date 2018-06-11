@@ -16,7 +16,7 @@ namespace RadDB3.scripting.parsers{
 		 * 		.
 		 * 	}
 		 * 	TUPLES{
-		 *		<tupleString>
+		 *		[<int>]<tupleString>,<tupleString>,..
 		 * 		.
 		 * 		.
 		 * 		.
@@ -65,14 +65,17 @@ namespace RadDB3.scripting.parsers{
 		 * 		<single_constraint><constraints_tail>
 		 *
 		 * <single_constraint>:
-		 * 		<string_full>=<string_full>
+		 * 		<string_full>(<contraints>)
 		 *
 		 * <constraits_tail>: optional
 		 * 		,<constraints>
 		 *
 		 * <tuple_list>: optional
-		 * 		[TUPLE_STRING]\n<tuple_list_tail>
+		 * 		[<int>]<TUPLE_STRING><tuple_list_more>\n<tuple_list_tail>
 		 *
+		 * <tuple_list_more>: optional
+		 * 		,<TUPLE_STRING><tuple_list_more>
+		 * 
 		 * <tuple_list_tail>: optional
 		 * 		<tuple_list>
 		 */
@@ -82,9 +85,9 @@ namespace RadDB3.scripting.parsers{
 			
 			if (!ConsumeString("NAME:")) return false;
 			if (!ParseSentence(output)) return false;
-			if (!ConsumeString(";\nRELATION{")) return false;
+			if (!ConsumeString(";\nRELATION{\n")) return false;
 			if (!ParseRelationList(output)) return false;
-			if (!ConsumeString("}\nTUPLES{")) return false;
+			if (!ConsumeString("}\nTUPLES{\n")) return false;
 			if (!ParseTupleList(output)) return false;
 			if (!ConsumeChar('}')) return false;
 			
@@ -139,8 +142,6 @@ namespace RadDB3.scripting.parsers{
 				nextNext = new ParseNode("-");
 			} else return false;
 
-			AdvancePointer();
-			
 			next.AddChild(nextNext);
 			parent.AddChild(next);
 			return true;
@@ -176,10 +177,15 @@ namespace RadDB3.scripting.parsers{
 			parent.AddChild(next);
 			return true;
 		}
+		//[<int>]<TUPLE_STRING><tuple_list_more>\n<tuple_list_tail>
 		private bool ParseTupleList(ParseNode parent) {
 			ParseNode next = new ParseNode("<tuple_list>");
 
+			if (!ConsumeChar('[')) return false;
+			if (!ParseInt(next)) return false;
+			if (!ConsumeChar(']')) return false;
 			if (!ParseTupleString(next)) return false;
+			if (!ParseTupleListMore(next)) return false;
 			if (!ConsumeChar('\n')) return false;
 			if (!ParseTupleListTail(next)) return false;
 			
@@ -200,8 +206,19 @@ namespace RadDB3.scripting.parsers{
 		private bool ParseTupleString(ParseNode parent) {
 			ParseNode next = new ParseNode("<tuple>");
 
-			if (!ConsumePattern(@"{.*(,.*)*}", out string singleTuple)) return false;
+			if (!ConsumePattern(@"{[a-zA-Z_0-9]*:.*(,[a-zA-Z_0-9]*:.*)*}", out string singleTuple)) return false;
 			next.AddChild(new ParseNode(singleTuple));
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseTupleListMore(ParseNode parent) {
+			ParseNode next = new ParseNode("<tuple_more>");
+
+			if (ConsumeChar(',')) {
+				if (!ParseTupleString(next)) return false;
+				if (!ParseTupleListMore(next)) return false;
+			}
 			
 			parent.AddChild(next);
 			return true;

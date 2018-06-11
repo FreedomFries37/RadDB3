@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using RadDB3.scripting;
@@ -38,6 +39,7 @@ namespace RadDB3.interaction {
 		public static Table ConvertStringToTable(string str) {
 			Parser p = new Parser(str, Parser.ReadOptions.STRING, Parser.ParseOptions.REMOVE_ONLY_TABS);
 			ParseTree tree = new ParseTree(p.ParseTable);
+			tree.PrintTree();
 
 			return null;
 		}
@@ -53,16 +55,24 @@ namespace RadDB3.interaction {
 		public static void ConvertTableToFile(string filePath, Table t) {
 			StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + filePath + @"\" + t.Name + ".rdt");
 			
-			writer.Write("NAME:{0};\n",t.Name);
+			writer.Write("NAME:{0};\n", Parser.StringToSentence(t.Name));
 			writer.Write("RELATION{\n");
 			for (int i = 0; i < t.Relation.Arity; i++) {
 				char keyInfo = t.Relation.Keys.ElementAt(0) == i ? '*' :
 					t.Relation.Keys.Contains(i) ? '&' : '-';
-				writer.Write("\t[{0}]{1} {2} ({3});\n",keyInfo,t.Relation.Types[i].Name,t.Relation.Names[i],"");
+				writer.Write("\t[{0}]{1} {2} ({3});\n",keyInfo,t.Relation.Types[i].Name,Parser.StringToSentence(t.Relation.Names[i]),"");
 			}
 			writer.Write("}\nTUPLES{\n");
-			foreach (RADTuple radTuple in t.All) {
-				writer.Write("\t{0}\n",radTuple);
+			int index = 0;
+			foreach (LinkedList<RADTuple> linkedList in t.AllLists) {
+				if (linkedList.Count > 0) {
+					writer.Write("\t[{0}]",index);
+					for (int i = 0; i < linkedList.Count-1; i++) {
+						writer.Write(linkedList.ElementAt(i) + ",");
+					}
+					writer.Write(linkedList.ElementAt(linkedList.Count-1) + "\n");
+				}
+				index++;
 			}
 			writer.Write("}");
 			

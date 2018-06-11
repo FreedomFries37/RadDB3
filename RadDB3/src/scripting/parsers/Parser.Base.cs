@@ -140,6 +140,11 @@ namespace RadDB3.scripting.parsers {
 			string check = parsableString.Substring(index);
 			while (tempIndex < check.Length) {
 				string tempSentence = check.Substring(0, tempIndex);
+				Match m = regex.Match(tempSentence);
+				if (m.Length != tempSentence.Length) {
+					return false;
+				}
+
 				if (regex.IsMatch(tempSentence)) {
 					return true;
 				}
@@ -156,6 +161,9 @@ namespace RadDB3.scripting.parsers {
 			string check = parsableString.Substring(index);
 			while (tempIndex < check.Length) {
 				string tempSentence = check.Substring(0, tempIndex);
+				if (regex.Match(tempSentence).Length > tempSentence.Length) {
+					return false;
+				}
 				if (regex.IsMatch(tempSentence)) {
 					for (int i = 0; i < tempIndex; i++) {
 						AdvancePointer();
@@ -176,6 +184,10 @@ namespace RadDB3.scripting.parsers {
 			while (tempIndex < check.Length) {
 				string tempSentence = check.Substring(0, tempIndex);
 				if (regex.IsMatch(tempSentence)) {
+					if (regex.Match(tempSentence).Length > tempSentence.Length) {
+						matchedString = null;
+						return false;
+					}
 					for (int i = 0; i < tempIndex; i++) {
 						AdvancePointer();
 					}
@@ -202,6 +214,8 @@ namespace RadDB3.scripting.parsers {
 			index += str.Length;
 			return true;
 		}
+
+		public static string StringToSentence(string input) => "\"" + input + "\"";
 		
 		/**
 		 * <sentence>:
@@ -247,6 +261,33 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
+
+		public static string ConvertSentence(ParseNode parent) {
+			if (parent.Data != "<sentence>") return null;
+			string output = "";
+			ParseNode ptr = parent["<sentence'>"];
+			do {
+				output += ptr["<sentence_char>"].Children[0].Data;
+				ptr = ptr["<sentence_tail>"]["<sentence'>"];
+			} while (ptr != null);
+			
+
+			return output;
+		}
+
+		public static string ConvertString(ParseNode parent) {
+			if (parent.Data != "<string>") return null;
+			string output = "";
+
+			ParseNode ptr = parent;
+			do {
+				output += ptr["<char>"].Children[0].Data;
+				ptr = ptr["<string_tail>"]["<string>"];
+			} while (ptr != null);
+			
+			return output;
+		}
+
 		
 		private bool ParseSentencePrime(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence'>");
@@ -290,7 +331,7 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseChar(ParseNode parent) {
 			ParseNode next = new ParseNode("<char>");
 
-			if (!MatchPattern(@"\w")) return false;
+			if (!MatchPattern(@"[a-zA-Z_0-9]")) return false;
 			ParseNode nextNext = new ParseNode("" + CurrentCharacter);
 			
 			next.AddChild(nextNext);
@@ -302,8 +343,39 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseStringTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<string_tail>");
 
-			if (MatchPattern(@"\w")) {
+			if (MatchPattern(@"[a-zA-Z_0-9]")) {
 				if (!ParseString(next)) return false;
+			}
+			
+			parent.AddChild(next);
+			return true;
+		}
+
+		private bool ParseInt(ParseNode parent) {
+			ParseNode next = new ParseNode("<int>");
+
+			if (!ParseDigit(next)) return false;
+			if (!ParseIntTail(next)) return false;
+			
+			parent.AddChild(next);
+			return true;
+		}
+
+		private bool ParseDigit(ParseNode parent) {
+			ParseNode next = new ParseNode("<digit>");
+
+			if (!MatchPattern(@"\d")) return false;
+			
+			next.AddChild(new ParseNode("" + CurrentCharacter));
+			AdvancePointer();
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseIntTail(ParseNode parent) {
+			ParseNode next = new ParseNode("<int_tail>");
+
+			if (MatchPattern(@"\d")) {
+				if (!ParseInt(next)) return false;
 			}
 			
 			parent.AddChild(next);

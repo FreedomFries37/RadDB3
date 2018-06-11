@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using RadDB3.scripting.parsers;
 
 namespace RadDB3.scripting {
 	public class ParseNode {
 
 		private string data;
 		private List<ParseNode> children;
+		
+		public delegate dynamic ParseNodeConverter(ParseNode input);
+
+		private dynamic convertedValue;
+		public dynamic ConvertedValue => convertedValue;
 
 		public string Data {
 			private set => data = value;
@@ -40,7 +46,24 @@ namespace RadDB3.scripting {
 			for (int i = children.Count - 1; i >= 0; i--) {
 				if(String.IsNullOrEmpty(children[i].Data)) children.RemoveAt(i);
 				else if(grammarRule.IsMatch(children[i].data) && children[i].children.Count == 0) children.RemoveAt(i);
-				else children[i].CleanUp();
+				else if(grammarRule.IsMatch(children[i].data)){
+					switch (children[i].data) {
+						case "<sentence>": {
+							ParseNode next = new ParseNode(Parser.ConvertSentence(children[i]));
+							children[i].children = new List<ParseNode> {next};
+						}
+							break;
+						case "<string>": {
+							ParseNode next = new ParseNode(Parser.ConvertString(children[i]));
+							children[i].children = new List<ParseNode> {next};
+						}
+							break;
+					}
+					
+					children[i].CleanUp();
+				}else{
+					children[i].CleanUp();
+				}
 			}
 		}
 
@@ -51,6 +74,24 @@ namespace RadDB3.scripting {
 			}
 
 			return count;
+		}
+
+		public void Convert(ParseNodeConverter func) {
+			convertedValue = func(this);
+		}
+
+		public override string ToString() {
+			return data;
+		}
+
+		public void Print(int indent) {
+			for (int i = 0; i < indent; i++) {
+				Console.Write("   ");
+			}
+			Console.Write(this + "\n");
+			foreach (ParseNode parseNode in children) {
+				parseNode.Print(indent+1);
+			}
 		}
 	}
 }
