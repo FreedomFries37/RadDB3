@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Net;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
 
 namespace RadDB3.scripting.parsers {
@@ -227,7 +228,7 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseSentenceChar(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence_char>");
 
-			if (!MatchPattern(@"[\w]")) return false;
+			if (!MatchPattern(@".")) return false;
 			
 			ParseNode nextNext = new ParseNode("" + CurrentCharacter);
 			
@@ -248,6 +249,8 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseString(ParseNode parent) {
 			ParseNode next = new ParseNode("<string>");
 
+			if (!ParseChar(next)) return false;
+			if (!ParseStringTail(next)) return false;
 			
 			parent.AddChild(next);
 			return true;
@@ -255,6 +258,11 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseChar(ParseNode parent) {
 			ParseNode next = new ParseNode("<char>");
 
+			if (!MatchPattern(@"\w")) return false;
+			ParseNode nextNext = new ParseNode("" + CurrentCharacter);
+			
+			next.AddChild(nextNext);
+			AdvancePointer();
 			
 			parent.AddChild(next);
 			return true;
@@ -262,6 +270,9 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseStringTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<string_tail>");
 
+			if (MatchPattern(@"\w")) {
+				if (!ParseString(next)) return false;
+			}
 			
 			parent.AddChild(next);
 			return true;

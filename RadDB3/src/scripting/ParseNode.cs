@@ -43,5 +43,14 @@ namespace RadDB3.scripting {
 				else children[i].CleanUp();
 			}
 		}
+
+		public int Count() {
+			int count = 1;
+			foreach (ParseNode parseNode in children) {
+				count += parseNode.Count();
+			}
+
+			return count;
+		}
 	}
 }

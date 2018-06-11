@@ -24,7 +24,7 @@ namespace RadDB3.scripting.parsers{
 		 *
 		 * Grammar:
 		 * <table_file>:
-		 * 		NAME:<string_full>;\nRELATION{\n<relation_list>}\nTUPLES{\n<tuple_list>}
+		 * 		NAME:<sentence>;\nRELATION{\n<relation_list>}\nTUPLES{\n<tuple_list>}
 		 *
 		 * <sentence>:
 		 * 		"<string>"
@@ -54,7 +54,7 @@ namespace RadDB3.scripting.parsers{
 		 * 		<relation_list>
 		 *
 		 * <column_details>:
-		 * 		[<key_info>]<string> <string_full> (<contraints>);\n
+		 * 		[<key_info>]<string> <sentence> (<contraints>);\n
 		 *
 		 * <key_info>:
 		 * 		* //primary key (ONLY ONE)
@@ -78,8 +78,106 @@ namespace RadDB3.scripting.parsers{
 		 */
 		public bool ParseTable(out ParseNode n) {
 			n = null;
-			if (!MatchString("yolo")) return false;
-			n = new ParseNode("yolo");
+			ParseNode output = new ParseNode("<table_file>");
+			
+			if (!ConsumeString("NAME:")) return false;
+			if (!ParseSentence(output)) return false;
+			if (!ConsumeString(";\nRELATION{")) return false;
+			if (!ParseRelationList(output)) return false;
+			if (!ConsumeString("}\nTUPLES{")) return false;
+			if (!ParseTupleList(output)) return false;
+			if (!ConsumeChar('}')) return false;
+			
+			n = output;
+			return true;
+		}
+		private bool ParseRelationList(ParseNode parent) {
+			ParseNode next = new ParseNode("<relation_list>");
+
+			if (!ParseColumnDetails(next)) return false;
+			if (!ParseRelationListTail(next)) return false;
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseRelationListTail(ParseNode parent) {
+			ParseNode next = new ParseNode("<relation_list_tail>");
+
+			if (!MatchChar('}')) {
+				if (!ParseRelationList(next)) return false;
+			}
+			
+			parent.AddChild(next);
+			return true;
+		}
+		// [<key_info>]<string> <sentence> (<contraints>);\n
+		private bool ParseColumnDetails(ParseNode parent) {
+			ParseNode next = new ParseNode("<column_details>");
+
+			if (!ConsumeChar('[')) return false;
+			if (!ParseKeyInfo(next)) return false;
+			if (!ConsumeChar(']')) return false;
+			if (!ParseString(next)) return false;
+			if (!ConsumeChar(' ')) return false;
+			if (!ParseSentence(next)) return false;
+			if (!ConsumeString(" (")) return false;
+			if (!ParseContraints(next)) return false;
+			if (!ConsumeString(");\n")) return false;
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseKeyInfo(ParseNode parent) {
+			ParseNode next = new ParseNode("<key_info>");
+			
+			ParseNode nextNext;
+			if (ConsumeChar('*')) {
+				nextNext = new ParseNode("*");
+			}else if (ConsumeChar('&')) {
+				nextNext = new ParseNode("&");
+			}else if (ConsumeChar('-')) {
+				nextNext = new ParseNode("-");
+			} else return false;
+
+			AdvancePointer();
+			
+			next.AddChild(nextNext);
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseContraints(ParseNode parent) {
+			ParseNode next = new ParseNode("<contraints>");
+
+			if (!MatchChar(')')) {
+				if (!ParseSingleContraint(next)) return false;
+				if (!ParseContraintsTail(next)) return false;
+			}
+
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseSingleContraint(ParseNode parent) {
+			ParseNode next = new ParseNode("<single_constraint>");
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseContraintsTail(ParseNode parent) {
+			ParseNode next = new ParseNode("<contraints_tail>");
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseTupleList(ParseNode parent) {
+			ParseNode next = new ParseNode("<tuple_list>");
+			
+			parent.AddChild(next);
+			return true;
+		}
+		private bool ParseTupleListTail(ParseNode parent) {
+			ParseNode next = new ParseNode("<tuple_list_tail>");
+			
+			parent.AddChild(next);
 			return true;
 		}
 	}

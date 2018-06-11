@@ -44,6 +44,7 @@ namespace RadDB3 {
 			
 			Parser p = new Parser("\"yolo\"", Parser.ReadOptions.STRING);
 			ParseTree pt = new ParseTree(p.ParseSentence);
+			Console.WriteLine(pt.successfulParse);
 		}
 	}
 }
