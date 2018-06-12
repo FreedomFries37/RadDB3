@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
+using RadDB3.scripting;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
@@ -11,13 +13,13 @@ namespace RadDB3.structure {
 		public readonly Element[] elements;
 		public readonly Type[] subTypes; //in order
 
+		public const string ELEMENT_SEPERATOR = " $& ";
+
 		public RADTuple(Relation r, params Element[] objects) {
 			relation = r;
 			elements = objects;
 			
 		}
-
-		
 
 		public Element this[int i] => elements[i];
 
@@ -103,23 +105,68 @@ namespace RadDB3.structure {
 
 			return output + "}";
 		}
-		
+
+		public string LessDetailedDump() {
+			string output = "{";
+
+			for (int i = 0; i < relation.Arity-1; i++) {
+				output += elements[i] + ELEMENT_SEPERATOR;
+			}
+
+			output += elements[relation.Arity - 1];
+
+			return output + "}";
+		}
+
+		public string Dump(int level) {
+			switch (level) {
+					case 0:
+						return LessDetailedDump();
+					case 1:
+						return ToString();
+					case 2:
+						return DetailedDump();
+			}
+
+			return null;
+		}
+
+		public string Dump(DumpLevel dumpLevel) {
+			switch (dumpLevel) {
+				case DumpLevel.LOW:
+					return LessDetailedDump();
+				case DumpLevel.NORMAL:
+					return ToString();
+				case DumpLevel.HIGH:
+					return DetailedDump();
+			}
+
+			return null;
+		}
 		
 		public static RADTuple CreateFromObjects(Relation r, params object[] o) {
 			if (o.Length != r.Arity) return null;
 			
 			Element[] elements = new Element[r.Arity];
 			for (int i = 0; i < elements.Length; i++) {
-				ConstructorInfo constructorInfo = r.Types.ElementAt(i).GetTypeInfo().DeclaredConstructors.ElementAt(0);
-				if (constructorInfo.GetParameters().Length == 1) {
-					elements[i] = (Element) constructorInfo.Invoke(new[] {o[i]});
-				} else {
-					
-					elements[i] = (Element) constructorInfo.Invoke(new[] {r.SubTypes[i], o[i]});
-				}
-				elements[i] = (Element) r.Types.ElementAt(i).GetTypeInfo().DeclaredConstructors.ElementAt(0).Invoke(new[] {o[i]});
+				
+				//elements[i] = (Element) r.Types.ElementAt(i).GetTypeInfo().DeclaredConstructors.ElementAt(0).Invoke(new[] {o[i]});
+				elements[i] = Element.ConvertToElement(r.Types[i], o[i]);
 			}
 			
+			return new RADTuple(r, elements);
+		}
+		
+		public static RADTuple CreateFromParseNode(Relation r, ParseNode parseNode) {
+			if(parseNode.Data != "<tuple>") throw new IncompatableParseNodeException();
+			string data = parseNode[0].Data;
+			data = data.Substring(1, data.Length - 2);
+
+			string[] stringElements = data.Split(ELEMENT_SEPERATOR);
+			Element[] elements = new Element[r.Arity];
+			for (int i = 0; i < elements.Length; i++) {
+				elements[i] = Element.ConvertToElement(r.Types[i], stringElements[i]);
+			}
 			return new RADTuple(r, elements);
 		}
 	}

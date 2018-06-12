@@ -42,7 +42,7 @@ namespace RadDB3 {
 			ParseTree pt = new ParseTree(p.ParseSentence);
 			
 			FileInteraction.ConvertTableToFile(tb);
-			FileInteraction.ConvertFileToTable("Name-Age-Alive.rdt");
+			FileInteraction.ConvertFileToTable("Name-Age-Alive.rdt").PrintTable();
 		}
 	}
 }

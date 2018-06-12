@@ -1,5 +1,7 @@
 ﻿
 
+using RadDB3.structure;
+
 namespace RadDB3.scripting.parsers{
 	
 	/// <summary>
@@ -210,7 +212,7 @@ namespace RadDB3.scripting.parsers{
 		private bool ParseTupleString(ParseNode parent) {
 			ParseNode next = new ParseNode("<tuple>");
 
-			if (!ConsumePattern(@"{[a-zA-Z_0-9]*:.*(,[a-zA-Z_0-9]*:.*)*}", out string singleTuple)) return false;
+			if (!ConsumePattern("{.*(" + RADTuple.ELEMENT_SEPERATOR + ".*)*}", out string singleTuple)) return false;
 			next.AddChild(new ParseNode(singleTuple));
 			
 			parent.AddChild(next);

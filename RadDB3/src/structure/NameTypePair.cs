@@ -12,7 +12,7 @@ namespace RadDB3.structure {
 		}
 
 		public NameTypePair(ParseNode p){
-			if(p.Data != "<column_details>") return;
+			if(p.Data != "<column_details>") throw new IncompatableParseNodeException();
 			string keyInfo = p["<key_info>"][0].Data;
 			if (keyInfo == "-") keyInfo = "";
 			name = keyInfo + p["<sentence>"][0].Data;

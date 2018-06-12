@@ -50,7 +50,6 @@ namespace RadDB3.interaction {
 				if (relationPtr.Data == "<relation_list_tail>") relationPtr = relationPtr[0];
 				NameTypePair ntp = new NameTypePair(relationPtr[0]);
 				ntpList.Add(ntp);
-				ntpList.Add(ntp);
 								
 				relationPtr = relationPtr[1];
 
@@ -59,26 +58,19 @@ namespace RadDB3.interaction {
 			Table output = new Table(generatedRelation, size);
 
 			
-			// Creating the list of tuples
-			LinkedList<RADTuple>[] tuples = new LinkedList<RADTuple>[size];
-			for (int i = 0; i < size; i++) {
-				tuples[i] = new LinkedList<RADTuple>();
-			}
 			
-			
-			var tupleListPtr = tree["<tuple_list"];
+			var tupleListPtr = tree["<tuple_list>"];
 			
 			while (tupleListPtr != null) {
 				if (tupleListPtr.Data == "<tuple_list_tail>") tupleListPtr = tupleListPtr[0];
-				int index = int.Parse(tupleListPtr[0].Data);
+				int index = int.Parse(tupleListPtr[0][0].Data);
 
-				LinkedList<RADTuple> newList = tuples[index];
-				newList.AddFirst(new RADTuple(generatedRelation)); // TODO: Tuple ParseNode to tuple Constructor
+				output.AllLists[index].AddFirst(RADTuple.CreateFromParseNode(generatedRelation, tupleListPtr["<tuple>"])); // TODO: Tuple ParseNode to tuple Constructor
 				var tuplePtr = tupleListPtr["<tuple_more>"];
 				while (tuplePtr != null) {
-					ParseNode tuple = tuplePtr["<tuple>"];
-					// TODO: Tuple ParseNode to tuple Constructor
-					// TODO: Add tuple to {newList}
+					ParseNode tupleNode = tuplePtr["<tuple>"];
+					RADTuple tuple = RADTuple.CreateFromParseNode(generatedRelation, tupleNode);
+					output.AllLists[index].AddLast(tuple);
 					tuplePtr = tuplePtr["<tuple_more>"];
 				}
 				
@@ -87,7 +79,7 @@ namespace RadDB3.interaction {
 			}
 			
 
-			return null;
+			return output;
 		}
 
 		public static Table ConvertFileToTable(string filePath) {
@@ -115,9 +107,9 @@ namespace RadDB3.interaction {
 				if (linkedList.Count > 0) {
 					writer.Write("\t[{0}]",index);
 					for (int i = 0; i < linkedList.Count-1; i++) {
-						writer.Write(linkedList.ElementAt(i) + ",");
+						writer.Write(linkedList.ElementAt(i).Dump(DumpLevel.LOW) + ",");
 					}
-					writer.Write(linkedList.ElementAt(linkedList.Count-1) + "\n");
+					writer.Write(linkedList.ElementAt(linkedList.Count-1).Dump(DumpLevel.LOW) + "\n");
 				}
 				index++;
 			}
