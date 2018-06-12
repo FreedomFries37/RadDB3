@@ -12,7 +12,8 @@ namespace RadDB3.interaction {
 		 * JOINS:
 		 * 		left join: <=
 		 * 		right join: =>
-		 * 		middle join: =
+		 * 		inner join: =
+		 * 		full join: <>
 		 *
 		 * Selection Parameters:
 		 * 
@@ -27,9 +28,6 @@ namespace RadDB3.interaction {
 		 * 	<selection>
 		 * 		<projection_list>{
 		 */
-		
-		
-		
 		
 		public static Table SelectTable(Database db, string s) {
 			return db[s];

@@ -9,11 +9,13 @@ namespace RadDB3.structure {
 		private const int DEFUALT_SIZE = 1;
 		private const int DEFUALT_COLUMN_WIDTH = 15;
 
-		private const bool MAX_DEBUG = true;
+		private const bool MAX_DEBUG = false;
 		
 		private readonly string name;
 		private readonly Relation relation;
 		private LinkedList<RADTuple>[] tuples;
+
+		public readonly SecondaryIndexing SecondaryIndexing;
 
 		/// <summary>
 		/// Number of lists
@@ -51,11 +53,19 @@ namespace RadDB3.structure {
 		public Table(Relation r, int size = DEFUALT_SIZE) :this(r.ToString(), r, size) { }
 		
 		public Table(string name, Relation r, int size = DEFUALT_SIZE) {
+			if (r == null) return;
 			this.name = name;
 			relation = r;
 			tuples = new LinkedList<RADTuple>[size];
 			for (int i = 0; i < tuples.Length; i++) {
 				tuples[i] = new LinkedList<RADTuple>();
+			}
+			SecondaryIndexing = new SecondaryIndexing(this);
+		}
+
+		public Table(RADTuple[] tuples) : this(tuples[0]?.relation, tuples.Length) {
+			foreach (RADTuple radTuple in tuples) {
+				Add(radTuple);
 			}
 		}
 
@@ -116,7 +126,7 @@ namespace RadDB3.structure {
 				Expand();
 				if(MAX_DEBUG) DumpData();
 			}
-			
+			if(SecondaryIndexing.Exists) SecondaryIndexing.Add(tuple);
 			return true;
 		}
 
@@ -145,6 +155,7 @@ namespace RadDB3.structure {
 			
 			int hash = Math.Abs(tuple.GetHashCode() % Size);
 			var list = tuples[hash];
+			SecondaryIndexing.Remove(tuple);
 			return list.Remove(tuple);
 		}
 
@@ -256,22 +267,12 @@ namespace RadDB3.structure {
 		/// <summary>
 		/// Dumps relavent data and a graph representing the distribution of data in the table
 		/// </summary>
-		public void DumpData(int bars = 10) {
+		public void DumpData(int bars = 10, int length = 15) {
 			Console.WriteLine("Distribution Ratio: {0:P} ({1})", GetDistributionRatio(), Misc.percentToLetterGrade(GetDistributionRatio()));
 			Console.WriteLine("Size: {0}", Size);
 			Console.WriteLine("Count: {0}", Count);
 			Console.WriteLine("Lines with data: {0}", GetNumOfLinesWithData());
-			/*
-			foreach (LinkedList<RADTuple> linkedList in tuples) {
-				string singleLine = "|";
-
-				for (int i = 0; i < linkedList.Count; i++) {
-					singleLine += "#";
-				}
-				
-				Console.WriteLine(singleLine);
-			}
-			*/
+			
 			if (Count == 0) return;
 			int[] pieces = new int[bars];
 			int counted = 0;
@@ -290,7 +291,7 @@ namespace RadDB3.structure {
 			int max = pieces.Max();
 			foreach (int piece in pieces) {
 				string singleLine = "|";
-				for (int i = 0; i < (decimal) piece/max * 10; i++) {
+				for (int i = 0; i < (decimal) piece/max * length; i++) {
 					singleLine += "#";
 				}
 				

@@ -57,6 +57,14 @@ namespace RadDB3.structure {
 			return a.Data != b.Data;
 		}
 
+		public override bool Equals(object obj) {
+			if (obj is Element) {
+				return (Element) obj == this;
+			}
+
+			return false;
+		}
+
 		public static Element ConvertToElement(Type type, object o) {
 			ConstructorInfo constructorInfo = type.GetTypeInfo().DeclaredConstructors.ElementAt(0);
 			return (Element) constructorInfo.Invoke(new[] {o});

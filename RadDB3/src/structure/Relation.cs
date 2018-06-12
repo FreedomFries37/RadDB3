@@ -13,7 +13,8 @@ namespace RadDB3.structure {
 		 * Key 0 -> Primary Key
 		 * Keys 1 - infinity -> Secondary Keys
 		 */
-		private readonly int[] keys; // TODO: Implement properly
+		private readonly int[] keys;
+		public int PrimaryKey => keys[0];
 
 		public int Arity => names.Length;
 
@@ -67,7 +68,9 @@ namespace RadDB3.structure {
 				index++;
 			}
 
+			if (newKeys.Count == 0) newKeys.AddFirst(0);
 			keys = newKeys.ToArray();
+			
 		}
 
 		public Type[] Types => types;

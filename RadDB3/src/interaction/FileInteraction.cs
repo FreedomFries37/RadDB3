@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Data.Common;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.ExceptionServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using RadDB3.scripting;
 using RadDB3.scripting.parsers;
 using RadDB3.structure;
@@ -18,7 +12,7 @@ namespace RadDB3.interaction {
 	 * Base Files: <database_name>.rd3
 	 * LAYOUT:
 	 * 		NAME:<sentence>;
-	 * 		TABLES:<name,URI>,<name,URI>,...;
+	 * 		TABLES:<name,URI>\n<name,URI>n,;
 	 * 
 	 * Table Files: <table_name>.rdt
 	 * LAYOUT:
