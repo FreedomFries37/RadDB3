@@ -7,6 +7,9 @@ using RadDB3.structure.Types;
 namespace RadDB3.structure {
 	public abstract class Element : StringParsable{
 		private dynamic data;
+		private string constraints;
+
+		public string Contraints { protected set; get; }
 		
 		public dynamic Data {
 			get => data;

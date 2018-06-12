@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 
 namespace RadDB3.scripting.parsers {
 	public partial class Parser {
-
 		private string parsableString;
 		private int index;
 		private ParseNode head;
@@ -262,32 +261,7 @@ namespace RadDB3.scripting.parsers {
 			return true;
 		}
 
-		public static string ConvertSentence(ParseNode parent) {
-			if (parent.Data != "<sentence>") return null;
-			string output = "";
-			ParseNode ptr = parent["<sentence'>"];
-			do {
-				output += ptr["<sentence_char>"].Children[0].Data;
-				ptr = ptr["<sentence_tail>"]["<sentence'>"];
-			} while (ptr != null);
-			
-
-			return output;
-		}
-
-		public static string ConvertString(ParseNode parent) {
-			if (parent.Data != "<string>") return null;
-			string output = "";
-
-			ParseNode ptr = parent;
-			do {
-				output += ptr["<char>"].Children[0].Data;
-				ptr = ptr["<string_tail>"]["<string>"];
-			} while (ptr != null);
-			
-			return output;
-		}
-
+		
 		
 		private bool ParseSentencePrime(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence'>");
@@ -331,7 +305,7 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseChar(ParseNode parent) {
 			ParseNode next = new ParseNode("<char>");
 
-			if (!MatchPattern(@"[a-zA-Z_0-9]")) return false;
+			if (!MatchPattern(@"[a-zA-Z_.0-9]")) return false;
 			ParseNode nextNext = new ParseNode("" + CurrentCharacter);
 			
 			next.AddChild(nextNext);
@@ -343,7 +317,7 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseStringTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<string_tail>");
 
-			if (MatchPattern(@"[a-zA-Z_0-9]")) {
+			if (MatchPattern(@"[a-zA-Z_.0-9]")) {
 				if (!ParseString(next)) return false;
 			}
 			
@@ -381,6 +355,45 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
+		
+		public static string ConvertSentence(ParseNode parent) {
+			if (parent.Data != "<sentence>") return null;
+			string output = "";
+			ParseNode ptr = parent["<sentence'>"];
+			do {
+				output += ptr["<sentence_char>"].Children[0].Data;
+				ptr = ptr["<sentence_tail>"]["<sentence'>"];
+			} while (ptr != null);
+			
 
+			return output;
+		}
+
+		public static string ConvertString(ParseNode parent) {
+			if (parent.Data != "<string>") return null;
+			string output = "";
+
+			ParseNode ptr = parent;
+			do {
+				output += ptr["<char>"].Children[0].Data;
+				ptr = ptr["<string_tail>"]["<string>"];
+			} while (ptr != null);
+			
+			return output;
+		}
+
+		public static string ConvertInt(ParseNode parent){
+			if (parent.Data != "<int>") return null;
+			
+			string output = "";
+
+			ParseNode ptr = parent;
+			do {
+				output += ptr["<digit>"].Children[0].Data;
+				ptr = ptr["<int_tail>"]["<int>"];
+			} while (ptr != null);
+			
+			return output;
+		}
 	}
 }

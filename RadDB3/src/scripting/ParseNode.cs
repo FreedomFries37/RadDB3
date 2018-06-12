@@ -41,6 +41,15 @@ namespace RadDB3.scripting {
 			}
 		}
 
+		public ParseNode this[int n] {
+			get {
+				if (n < 0 ||
+					n >= children.Count) return null;
+				return children[n];
+			}
+			set => children[n] = value;
+		}
+
 		public void CleanUp() {
 			Regex grammarRule = new Regex("<\\w*>");
 			for (int i = children.Count - 1; i >= 0; i--) {
@@ -55,6 +64,11 @@ namespace RadDB3.scripting {
 							break;
 						case "<string>": {
 							ParseNode next = new ParseNode(Parser.ConvertString(children[i]));
+							children[i].children = new List<ParseNode> {next};
+						}
+							break;
+						case "<int>": {
+							ParseNode next = new ParseNode(Parser.ConvertInt(children[i]));
 							children[i].children = new List<ParseNode> {next};
 						}
 							break;
@@ -80,6 +94,10 @@ namespace RadDB3.scripting {
 			convertedValue = func(this);
 		}
 
+		/// <summary>
+		/// To String method
+		/// </summary>
+		/// <returns>the data</returns>
 		public override string ToString() {
 			return data;
 		}

@@ -17,19 +17,20 @@ namespace RadDB3.structure {
 
 		public int Arity => names.Length;
 
-		/*
-		public Relation(params NameTypePair[] pairs) {
+		
+		public Relation(params NameTypePair[] pairs) : this(ConvertNtpToTuples(pairs)) { }
+
+		private static (string, Type)[] ConvertNtpToTuples(NameTypePair[] pairs) {
+			(string, Type)[] output = new (string, Type)[pairs.Length];
 			int index = 0;
-			types = new Type[pairs.Length];
-			names = new string[pairs.Length];
-			keys = new [] {0};
 			foreach (NameTypePair nameTypePair in pairs) {
-				types[index] = nameTypePair.Type;
-				names[index] = nameTypePair.Name;
+				output[index] = (nameTypePair.Name, nameTypePair.Type);
 				index++;
 			}
+
+			return output;
 		}
-		*/
+		
 
 		public Relation(params (string, Type)[] pairs) {
 			int index = 0;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml;
 
 namespace RadDB3.structure {
@@ -14,6 +15,9 @@ namespace RadDB3.structure {
 		private readonly Relation relation;
 		private LinkedList<RADTuple>[] tuples;
 
+		/// <summary>
+		/// Number of lists
+		/// </summary>
 		public int Size => tuples.Length;
 		public string Name => name;
 		public Relation Relation => relation;
@@ -252,11 +256,12 @@ namespace RadDB3.structure {
 		/// <summary>
 		/// Dumps relavent data and a graph representing the distribution of data in the table
 		/// </summary>
-		public void DumpData() {
+		public void DumpData(int bars = 10) {
 			Console.WriteLine("Distribution Ratio: {0:P} ({1})", GetDistributionRatio(), Misc.percentToLetterGrade(GetDistributionRatio()));
 			Console.WriteLine("Size: {0}", Size);
 			Console.WriteLine("Count: {0}", Count);
 			Console.WriteLine("Lines with data: {0}", GetNumOfLinesWithData());
+			/*
 			foreach (LinkedList<RADTuple> linkedList in tuples) {
 				string singleLine = "|";
 
@@ -265,6 +270,46 @@ namespace RadDB3.structure {
 				}
 				
 				Console.WriteLine(singleLine);
+			}
+			*/
+			if (Count == 0) return;
+			int[] pieces = new int[bars];
+			int counted = 0;
+			int piecesIndex = 0;
+			foreach (LinkedList<RADTuple> linkedList in tuples) {
+				counted++;
+				pieces[piecesIndex] += linkedList.Count;
+
+				if (counted >= Size / bars &&
+					piecesIndex < bars - 1) {
+					piecesIndex++;
+					counted = 0;
+				}
+			}
+
+			int max = pieces.Max();
+			foreach (int piece in pieces) {
+				string singleLine = "|";
+				for (int i = 0; i < (decimal) piece/max * 10; i++) {
+					singleLine += "#";
+				}
+				
+				Console.WriteLine(singleLine);
+			}
+		}
+
+		public void PrintTableNoPadding() {
+			Console.WriteLine(name);
+			relation.PrintRelation(1);
+			foreach (var linkedList in tuples) {
+				foreach (var radTuple in linkedList) {
+					foreach (var element in radTuple.elements) {
+						Console.Write(element + "|");
+					}
+					
+					Console.WriteLine();
+					
+				}
 			}
 		}
 

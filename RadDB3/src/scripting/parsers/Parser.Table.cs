@@ -85,6 +85,8 @@ namespace RadDB3.scripting.parsers{
 			
 			if (!ConsumeString("NAME:")) return false;
 			if (!ParseSentence(output)) return false;
+			if (!ConsumeString(";\nSIZE:")) return false;
+			if (!ParseInt(output)) return false;
 			if (!ConsumeString(";\nRELATION{\n")) return false;
 			if (!ParseRelationList(output)) return false;
 			if (!ConsumeString("}\nTUPLES{\n")) return false;
@@ -181,14 +183,16 @@ namespace RadDB3.scripting.parsers{
 		private bool ParseTupleList(ParseNode parent) {
 			ParseNode next = new ParseNode("<tuple_list>");
 
-			if (!ConsumeChar('[')) return false;
-			if (!ParseInt(next)) return false;
-			if (!ConsumeChar(']')) return false;
-			if (!ParseTupleString(next)) return false;
-			if (!ParseTupleListMore(next)) return false;
-			if (!ConsumeChar('\n')) return false;
-			if (!ParseTupleListTail(next)) return false;
-			
+			if (!MatchChar('}')) {
+				if (!ConsumeChar('[')) return false;
+				if (!ParseInt(next)) return false;
+				if (!ConsumeChar(']')) return false;
+				if (!ParseTupleString(next)) return false;
+				if (!ParseTupleListMore(next)) return false;
+				if (!ConsumeChar('\n')) return false;
+				if (!ParseTupleListTail(next)) return false;
+			}
+
 			parent.AddChild(next);
 			return true;
 		}

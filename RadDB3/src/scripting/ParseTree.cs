@@ -17,5 +17,7 @@ namespace RadDB3.scripting {
 			head.Print(0);
 		}
 
+		public ParseNode this[string s] => head[s];
+
 	}
 }
