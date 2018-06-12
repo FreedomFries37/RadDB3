@@ -9,7 +9,6 @@ namespace RadDB3.scripting {
 
 		public ParseTree(ParserFunction func) {
 			successfulParse = func(out head);
-			head.Print(0);
 			if(successfulParse) head.CleanUp();
 		}
 

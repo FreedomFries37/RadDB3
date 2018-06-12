@@ -13,36 +13,40 @@ namespace RadDB3 {
 	
 	class Program {
 		static void Main(string[] args) {
-			Database db = new Database("Your Mom");
-			Relation r = new Relation(("*Name", typeof(RADString)), ("Age", typeof(RADInteger)), ("Alive", typeof(RADBool)));
+			Database db = new Database("TestDatabase");
+			Relation r = new Relation(("*Name", typeof(RADString)), ("Age", typeof(RADInteger)), ("Alive", typeof(RADBool)), ("&Time", typeof(RADDateTime)));
 			//RADTuple t = new RADTuple(r, new RADString("Josh"), new RADInteger(32), new RADGeneric<bool>(false));
 			
 			Table tb = new Table(r);
 
 			
-			tb.Add("Dan", 14, true);
-			tb.Add("Radc", 67, true);
+			tb.Add("Dan", 14, true, DateTime.Now);
+			tb.Add("Radc", 67, true, DateTime.Now);
 			
-			tb.Add("Eli", 16, true);
+			tb.Add("Eli", 16, true, DateTime.Now);
 			
-			tb.Add("Jake", 252, true);
-			tb.Add("Steve", 12, true);
-			tb.Add("Max", 44, true);
-			tb.Add("David", 55, true);
+			tb.Add("Jake", 252, true, DateTime.Now);
+			tb.Add("Steve", 12, true, DateTime.Now);
+			tb.Add("Max", 44, true, DateTime.Now);
+			tb.Add("David", 55, true, DateTime.Now);
 			
 			
 			tb.PrintTable();
 			tb.DumpData();
 			Console.WriteLine(tb.Find(("Name", new RADString("Dan")),
-				("Age", new RADInteger(14)), ("Alive", new RADBool(true))));
-			Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", "true")));
+				("Age", new RADInteger(14)), 
+				("Alive", new RADBool(true)), 
+				("Time", new RADDateTime(DateTime.Now))));
+			//Console.WriteLine(tb.Find(("Name", "Dan"), ("Age", "14"), ("Alive", "true")));
 			
 			
 			Parser p = new Parser("\"yolo\"", Parser.ReadOptions.STRING);
 			ParseTree pt = new ParseTree(p.ParseSentence);
-			
-			FileInteraction.ConvertTableToFile(tb);
-			FileInteraction.ConvertFileToTable("Name-Age-Alive.rdt").PrintTable();
+
+			db.addTable(tb);
+			FileInteraction.ConvertDatabaseToFile(db);
+			Commands.SelectTable(db, tb.Name).PrintTableNoPadding();
+			FileInteraction.ConvertDirectoriesInCurrentDirectoryToDatabases()[0].PrintDataBase();
 		}
 	}
 }

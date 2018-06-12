@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.ExceptionServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using RadDB3.scripting;
 using RadDB3.scripting.parsers;
@@ -33,14 +38,14 @@ namespace RadDB3.interaction {
 	 */
 	public static class FileInteraction {
 
-		public static string FileToString(string filePath) {
+		private static string FileToString(string filePath) {
 			return File.ReadAllText(filePath);
 		}
 
-		public static Table ConvertStringToTable(string str) {
+		private static Table ConvertStringToTable(string str) {
 			Parser p = new Parser(str, Parser.ReadOptions.STRING, Parser.ParseOptions.REMOVE_ONLY_TABS);
 			ParseTree tree = new ParseTree(p.ParseTable);
-			tree.PrintTree();
+			if (!tree.successfulParse) return null;
 
 			int size = int.Parse(tree["<int>"][0].Data);
 
@@ -83,15 +88,15 @@ namespace RadDB3.interaction {
 		}
 
 		public static Table ConvertFileToTable(string filePath) {
-			return ConvertStringToTable(FileToString(Environment.CurrentDirectory + @"\" + filePath));
+			return ConvertStringToTable(FileToString(filePath));
 		}
 
-		public static void ConvertTableToFile(Table t) {
-			ConvertTableToFile("", t);
+		public static FileInfo ConvertTableToFile(Table t) {
+			return ConvertTableToFile("", t);
 		}
 
-		public static void ConvertTableToFile(string filePath, Table t) {
-			StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + filePath + @"\" + t.Name + ".rdt");
+		public static FileInfo ConvertTableToFile(string filePath, Table t) {
+			StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\" + filePath + @"\" + t.Name + ".rdt");
 			
 			writer.Write("NAME:{0};\n", Parser.StringToSentence(t.Name));
 			writer.Write("SIZE:{0};\n", t.Size);
@@ -117,6 +122,82 @@ namespace RadDB3.interaction {
 			
 			writer.Flush();
 			writer.Close();
+			return new FileInfo(Environment.CurrentDirectory + @"\" + filePath + @"\" + t.Name + ".rdt");
 		}
+
+		public static void ConvertDatabaseToFile(Database db) => ConvertDatabaseToFile("", db);
+
+		public static void ConvertDatabaseToFile(string filePath, Database db) {
+			DirectoryInfo outsideDir = Directory.CreateDirectory(db.ToString());
+			DirectoryInfo tableDir = Directory.CreateDirectory(outsideDir + "/tables");
+
+			StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\" + outsideDir + @"\" + db + ".rd3");
+			
+			writer.Write($"NAME:{db}\n");
+			writer.Write($"SIZE:{db.Size}\nTABLES:\n");
+			
+			foreach (Table table in db) {
+				FileInfo f = ConvertTableToFile(outsideDir.Name + @"\" + tableDir.Name, table);
+				writer.Write($"{f.Name}\n");
+			}
+			writer.Flush();
+			writer.Close();
+		}
+
+		// FOR .rd3 files
+		public static Database ConvertFileToDatabase(string filepath) {
+			return ConvertStringToDatabase(FileToString(filepath),  new FileInfo(filepath));
+		}
+
+		public static Database ConvertDirectoryToDatabase(string dirPath) {
+			DirectoryInfo info = new DirectoryInfo(dirPath);
+			foreach (var file in info.EnumerateFiles()) {
+				if (file.Extension == ".rd3") {
+					return ConvertFileToDatabase(file.FullName);
+				}
+			}
+
+			return null;
+		}
+
+		public static Database ConvertCurrentDirectoryToDatabase() {
+			return ConvertDirectoryToDatabase(Environment.CurrentDirectory);
+		}
+
+		public static Database[] ConvertDirectoriesInCurrentDirectoryToDatabases() {
+			DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
+			List<Database> output = new List<Database>();
+			foreach (DirectoryInfo enumerateDirectory in directoryInfo.EnumerateDirectories()) {
+				Database next = ConvertDirectoryToDatabase(enumerateDirectory.FullName);
+				if(next != null) output.Add(next);
+			}
+
+			return output.ToArray();
+		}
+
+		public static Database ConvertStringToDatabase(string str, FileInfo filepath) {
+			DirectoryInfo tableDirectoryInfo =
+				filepath.Directory?.GetDirectories().ToList().Find(dir => dir.Name == "tables");
+			if (tableDirectoryInfo == null) {
+				Console.WriteLine("MISSING TABLE FOLDER");
+				return null;
+			}
+
+			
+			
+			
+			string[] strSplit = str.Split("\n");
+			string name = strSplit[0].Remove(0, "NAME:".Length);
+			int size = int.Parse(strSplit[1].Remove(0, "SIZE:".Length));
+			
+			Database output = new Database(name, size);
+			for (int i = 3; i < strSplit.Length-1; i++) {
+				output.addTable(ConvertFileToTable(tableDirectoryInfo.FullName + @"\" + strSplit[i]));
+			}
+			
+			return output;
+		}
+		
+		
 	}
 }
