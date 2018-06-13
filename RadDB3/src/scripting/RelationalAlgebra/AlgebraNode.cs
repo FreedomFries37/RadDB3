@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RadDB3.structure;
@@ -29,7 +30,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			function = RelationalAlgebraModule.Reflect;
 		}
 
-		public AlgebraNode(RelationalAlgebraFunction func, string[] options, AlgebraNode first, params AlgebraNode[] children) {
+		public AlgebraNode(RelationalAlgebraFunction func, AlgebraNode first, params AlgebraNode[] children) {
 			_isBase = false;
 			function = func;
 			this.children = new LinkedList<AlgebraNode>(children);
@@ -40,7 +41,18 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			if (_isBase) return function(options, this);
 			return function(options, Children);
 		}
-		
-		public Table TableApply(params string[] options) => new Table(Apply(options));
+
+		public Table TableApply(params string[] options) {
+
+			RADTuple[] tuples = Apply(options);
+			if (tuples.Length == 0) return null;
+			Table output = new Table(tuples);
+
+			if (function == RelationalAlgebraModule.Reflect) {
+				output.CreateSecondaryIndexing();
+			}
+
+			return output;
+		}
 	}
 }

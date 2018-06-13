@@ -12,7 +12,7 @@ namespace RadDB3.scripting.parsers {
 		private int index;
 		private ParseNode head;
 
-		public char CurrentCharacter => parsableString[index];
+		public char CurrentCharacter => index < parsableString.Length ? parsableString[index] : (char) 420;
 		
 		public enum ParseOptions {
 			REMOVE_ALL_WHITESPACE,
@@ -48,7 +48,8 @@ namespace RadDB3.scripting.parsers {
 			head = null;
 		}
 
-		public Parser(string s, ReadOptions option, params string[] replacements) :this(s, option) {
+		public Parser(string s, ReadOptions option, string replacement1, params string[] replacements) :this(s, option) {
+			parsableString = parsableString.Replace(replacement1, "");
 			foreach (string replacement in replacements) {
 				parsableString = parsableString.Replace(replacement, "");
 			}
@@ -86,8 +87,6 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <returns>if the pointer moved forward</returns>
 		private bool AdvancePointer() {
-			if (index >= parsableString.Length - 1) return false;
-
 			index++;
 			return true;
 		}
@@ -137,7 +136,7 @@ namespace RadDB3.scripting.parsers {
 			Regex regex = new Regex(pattern);
 			int tempIndex = 1;
 			string check = parsableString.Substring(index);
-			while (tempIndex < check.Length) {
+			while (tempIndex <= check.Length) {
 				string tempSentence = check.Substring(0, tempIndex);
 				Match m = regex.Match(tempSentence);
 				if (m.Length != tempSentence.Length) {
@@ -293,6 +292,18 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
+
+
+		public bool ParseString(out ParseNode parent) {
+			ParseNode next = new ParseNode("<string>");
+			parent = null;
+			if (!ParseChar(next)) return false;
+			if (!ParseStringTail(next)) return false;
+
+			parent = next;
+			return true;
+		}
+		
 		private bool ParseString(ParseNode parent) {
 			ParseNode next = new ParseNode("<string>");
 

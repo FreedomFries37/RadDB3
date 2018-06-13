@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace RadDB3.structure {
@@ -93,15 +95,19 @@ namespace RadDB3.structure {
 		}
 
 		private Table table;
-		private readonly Dictionary<string, SecIndDict> treeDict; //column name
+		private Dictionary<string, SecIndDict> treeDict; //column name
 		public bool Exists => treeDict.Count > 0;
+		private bool operatoring;
+
+		public bool Operatoring => operatoring;
 
 		public SecondaryIndexing(Table t) {
+			operatoring = false;
 			table = t;
 			treeDict = new Dictionary<string, SecIndDict>();
 			for (int i = 1; i < t.Relation.Keys.Length; i++) {
 				var tree = new SecIndDict(t, t.Relation.Keys[0], t.Relation.Keys[i]);
-				treeDict.Add(t.Relation.Names[i], tree);
+				treeDict.Add(t.Relation.Names[table.Relation.Keys[i]], tree);
 			}
 		}
 
@@ -204,6 +210,18 @@ namespace RadDB3.structure {
 			}
 
 			return output.ToArray();
+		}
+
+		public Task ReCreateSecondaryIndex() {
+			operatoring = false;
+			treeDict = new Dictionary<string, SecIndDict>();
+			for (int i = 1; i < table.Relation.Keys.Length; i++) {
+				var tree = new SecIndDict(table, table.Relation.Keys[0], table.Relation.Keys[i]);
+				treeDict.Add(table.Relation.Names[table.Relation.Keys[i]], tree);
+			}
+			//Console.WriteLine($"Finished creating secondary index system for {table.Name}");
+			operatoring = true;
+			return Task.CompletedTask;
 		}
 	}
 }

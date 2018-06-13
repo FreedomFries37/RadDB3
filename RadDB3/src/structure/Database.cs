@@ -6,6 +6,7 @@ using System.Linq;
 namespace RadDB3.structure {
 	public partial class Database : IEnumerable<Table> {
 		private string name;
+		public string Name => name;
 
 		public Database(string name, int size = DEFAULT_SIZE) {
 			this.name = name;
@@ -43,6 +44,14 @@ namespace RadDB3.structure {
 		public void PrintDataBase() {
 			foreach (Table table in this) {
 				table.PrintTable(25);
+				Console.WriteLine();
+			}
+		}
+
+		public void DumpDataBase() {
+			foreach (Table table in this) {
+				Console.WriteLine(table.Name);
+				table.DumpData();
 				Console.WriteLine();
 			}
 		}

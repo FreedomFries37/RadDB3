@@ -15,9 +15,18 @@ namespace RadDB3.structure {
 		 */
 		private readonly int[] keys;
 		public int PrimaryKey => keys[0];
-
+		
+		public string PrimaryKeyName => names[PrimaryKey];
+		
 		public int Arity => names.Length;
 
+		public Type[] Types => types;
+
+		public Type[] SubTypes => subTypes;
+
+		public string[] Names => names;
+
+		public int[] Keys => keys;
 		
 		public Relation(params NameTypePair[] pairs) : this(ConvertNtpToTuples(pairs)) { }
 
@@ -73,13 +82,24 @@ namespace RadDB3.structure {
 			
 		}
 
-		public Type[] Types => types;
+		public string this[int i] => names[i];
+		public int this[string s] => names.ToList().IndexOf(s);
 
-		public Type[] SubTypes => subTypes;
-
-		public string[] Names => names;
-
-		public int[] Keys => keys;
+		/// <summary>
+		/// Returns -1 if not a key
+		/// 		0 if exists but not a key
+		/// 		1 if primary key
+		/// 		2 if secondary key
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public int IsKey(string name) {
+			if (this[name] == -1) return -1;
+			int index = this[name];
+			if (keys[0] == index) return 1;
+			if (keys.ToList().Contains(index)) return 2;
+			return 0;
+		}
 
 		public override string ToString() {
 			string output = "";
@@ -87,6 +107,20 @@ namespace RadDB3.structure {
 				output += names[i] + "-";
 			}
 
+			output += names[Arity - 1];
+			return output;
+		}
+
+		public string Dump() {
+			string output = "";
+			for (int i = 0; i < Arity-1; i++) {
+				if (i == Keys[0]) output += "*";
+				else if (Keys.Contains(i)) output += "&";
+				output += $"{names[i]}<{types[i].Name}>-";
+			}
+			if (Arity - 1 == Keys[0]) output += "*";
+			else if (Keys.Contains(Arity - 1)) output += "&";
+			output += $"{names[Arity - 1]}<{types[Arity - 1].Name}>-";
 			output += names[Arity - 1];
 			return output;
 		}

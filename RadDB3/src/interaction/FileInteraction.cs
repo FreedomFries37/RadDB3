@@ -42,7 +42,7 @@ namespace RadDB3.interaction {
 			if (!tree.successfulParse) return null;
 
 			int size = int.Parse(tree["<int>"][0].Data);
-
+			string name = tree["<sentence>"][0].Data;
 			ParseNode relationPtr = tree["<relation_list>"];
 			List<NameTypePair> ntpList = new List<NameTypePair>();
 			do {
@@ -54,7 +54,7 @@ namespace RadDB3.interaction {
 
 			} while (relationPtr != null);
 			Relation generatedRelation = new Relation(ntpList.ToArray());
-			Table output = new Table(generatedRelation, size);
+			Table output = new Table(name, generatedRelation, true, size);
 
 			
 			
@@ -76,8 +76,9 @@ namespace RadDB3.interaction {
 					
 				tupleListPtr = tupleListPtr["<tuple_list_tail>"];
 			}
-			
 
+			output.SecondaryIndexing.ReCreateSecondaryIndex();
+			//Console.WriteLine("Created Table From File");
 			return output;
 		}
 

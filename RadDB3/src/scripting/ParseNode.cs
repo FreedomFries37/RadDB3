@@ -79,6 +79,7 @@ namespace RadDB3.scripting {
 					children[i].CleanUp();
 				}
 			}
+			
 		}
 
 		public int Count() {

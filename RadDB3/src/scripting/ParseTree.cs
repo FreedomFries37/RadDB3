@@ -5,11 +5,13 @@ namespace RadDB3.scripting {
 		private ParseNode head;
 		public readonly bool successfulParse;
 
+		public ParseNode Head => head;
+
 		public int Count => head != null ? head.Count() : 0;
 
-		public ParseTree(ParserFunction func) {
+		public ParseTree(ParserFunction func, bool cleanup = true) {
 			successfulParse = func(out head);
-			if(successfulParse) head.CleanUp();
+			if(successfulParse && cleanup) head.CleanUp();
 		}
 
 		public void PrintTree() {
@@ -17,6 +19,8 @@ namespace RadDB3.scripting {
 		}
 
 		public ParseNode this[string s] => head[s];
+
+		public ParseNode this[int i] => head[i];
 
 	}
 }

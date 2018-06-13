@@ -50,11 +50,14 @@ namespace RadDB3.structure {
 		public abstract void ChangeData();
 
 		public static bool operator ==(Element a, Element b) {
+			if (ReferenceEquals(a, null) ||
+				ReferenceEquals(b, null) ||
+				a.data.GetType() != b.data.GetType()) return false;
 			return a.Data == b.Data;
 		}
 
 		public static bool operator !=(Element a, Element b) {
-			return a.Data != b.Data;
+			return !(a == b);
 		}
 
 		public override bool Equals(object obj) {

@@ -1,0 +1,811 @@
+NAME:"IDNTM";
+SIZE:2048;
+RELATION{
+	[*]RadDB3.structure.Types.RADuLong "ID" ();
+	[-]RadDB3.structure.Types.RADString "Name" ();
+	[&]RadDB3.structure.Types.RADDateTime "Time" ();
+	[-]RadDB3.structure.Types.RADString "Message" ();
+}
+TUPLES{
+	[0]{455846628566237215 $& FreedomFries $& 6/11/2018 12:00:00 AM $& ewoiurhnofnasdlkfnlasdkngfa;lkdnf;alksdnfal;sdnfla;sdfkn;alsdf}
+	[2]{456149344710688789 $& FreedomFries $& 6/12/2018 12:00:00 AM $& you make me the owner of the discord},{418301113901645834 $& Shvou $& 2/28/2018 12:00:00 AM $& i think you mean oreimo}
+	[3]{418311834009993226 $& giri $& 2/28/2018 12:00:00 AM $& DONT LEAVE ME}
+	[7]{278736354823634949 $& Aephilia of the Snow $& 2/8/2017 12:00:00 AM $& insult fries}
+	[19]{455819388918956063 $& FreedomFries $& 6/11/2018 12:00:00 AM $& ur mum}
+	[23]{280433968979902464 $& melone $& 2/12/2017 12:00:00 AM $& why arent you playing}
+	[26]{455597374169939977 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& im <:4Bezi:277873291165958144>},{411773130126786560 $& minnesota212 $& 2/10/2018 12:00:00 AM $& I may be laggy, not my fault},{301194558832771072 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& Yo @here},{278337490505564162 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& Masochist FeelsBadMan}
+	[28]{394320252734799872 $& Aephilia of the Snow $& 12/24/2017 12:00:00 AM $& oh}
+	[30]{372248489360359434 $& Aephilia of the Snow $& 10/24/2017 12:00:00 AM $& gg}
+	[33]{279087468014206977 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& For omar}
+	[34]{317491841706622976 $& melone $& 5/26/2017 12:00:00 AM $& http://www.hotnewhiphop.com/swae-lee-to-release-first-solo-project-swaecation-news.23442.html}
+	[37]{375766475253743616 $& FreedomFries $& 11/2/2017 12:00:00 AM $& no}
+	[39]{455558371165077524 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& <:oof:434748743871365130>}
+	[41]{307746203192262656 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& this is pretty early man}
+	[44]{279449134854045706 $& giri $& 2/10/2017 12:00:00 AM $& !skip}
+	[50]{418300962084618241 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& Oregairu S2}
+	[56]{317469346089926676 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& as the pa player here, i can confirm}
+	[57]{451218963892797460 $& ThatNinja $& 5/30/2018 12:00:00 AM $& delinquency}
+	[58]{338541823859621890 $& FreedomFries $& 7/23/2017 12:00:00 AM $& wthat the FUXK}
+	[59]{343274001919115264 $& ThatNinja $& 8/5/2017 12:00:00 AM $& http://imgur.com/gallery/wNTyIzS}
+	[60]{280464873769533441 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& FUCK YOU UR}
+	[64]{280426315478335489 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& <@163818149576310784>}
+	[65]{300844637361274880 $& Toaster443 $& 4/10/2017 12:00:00 AM $& tom come play}
+	[66]{455557278452547604 $& Dad Bot $& 6/11/2018 12:00:00 AM $& Hi back, I'm Dad!}
+	[68]{280425476550295574 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& yes}
+	[69]{315264618291396610 $& giri $& 5/19/2017 12:00:00 AM $& finally free from omars grip},{312424092013690882 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& That's me}
+	[70]{336667799709679619 $& FreedomFries $& 7/18/2017 12:00:00 AM $& https://www.youtube.com/watch?v=ieQ1rAIjzXc}
+	[71]{300111539598393345 $& Toaster443 $& 4/8/2017 12:00:00 AM $& whoops}
+	[84]{317806154585604097 $& Shvou $& 5/26/2017 12:00:00 AM $& gotta love}
+	[85]{411784276032618497 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Rip*},{291011388619489280 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Daily reminder that you're a weeb}
+	[94]{418311776111951872 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& same}
+	[96]{305187568360882178 $& bobgooeyflonder $& 4/22/2017 12:00:00 AM $& the boy^}
+	[98]{424440463836315658 $& arvindsindhwani $& 3/17/2018 12:00:00 AM $& ya}
+	[99]{304806541775732746 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& WORDS LIKE TOMORROW OR FUTURE OR FATE}
+	[100]{418313790430380043 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& i'm depressed with no way out},{284220857621020673 $& ThatNinja $& 2/23/2017 12:00:00 AM $& OG HENTAI},{278335721897721857 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& <:4Bezi:277873291165958144> Gimme slardar guys <:4Bezi:277873291165958144>}
+	[101]{317807664405020674 $& Bezi $& 5/26/2017 12:00:00 AM $& move to different discord},{295030379910397952 $& Aephilia of the Snow $& 3/25/2017 12:00:00 AM $& me_Irl}
+	[103]{426405161385197578 $& Aephilia of the Snow $& 3/22/2018 12:00:00 AM $& <@163434671814737922>},{296457107224395776 $& Aephilia of the Snow $& 3/29/2017 12:00:00 AM $& ?}
+	[104]{317806632736391179 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& why}
+	[105]{312427673710362624 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& ¯\_(ツ)_/¯}
+	[109]{418314871109582848 $& giri $& 2/28/2018 12:00:00 AM $& ❤}
+	[117]{291009389416939521 $& FreedomFries $& 3/14/2017 12:00:00 AM $& where is irene fro}
+	[119]{304808429413728257 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& https://imgur.com/H6kfgP7}
+	[122]{302417363737903105 $& Aephilia of the Snow $& 4/14/2017 12:00:00 AM $& NAZI MODS reeee}
+	[123]{282697628301524992 $& FreedomFries $& 2/19/2017 12:00:00 AM $& http://i.imgur.com/xnIbSsg.gifv}
+	[124]{455819547283423232 $& giri $& 6/11/2018 12:00:00 AM $& ur mom},{324342480772530196 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& https://www.youtube.com/watch?v=ISHPumshGgA}
+	[128]{278336008066433037 $& cybros $& 2/7/2017 12:00:00 AM $& oh}
+	[129]{283829491493502976 $& ThatNinja $& 2/22/2017 12:00:00 AM $& LMAO}
+	[130]{390711273823797249 $& Aephilia of the Snow $& 12/14/2017 12:00:00 AM $& what}
+	[132]{307761418399383563 $& minnesota212 $& 4/29/2017 12:00:00 AM $& But there's a risk I could become one},{278381605083414528 $& FreedomFries $& 2/7/2017 12:00:00 AM $& https://www.youtube.com/watch?v=lBICLteuQs8},{278336705239580672 $& cybros $& 2/7/2017 12:00:00 AM $& feels bad}
+	[133]{279838561602371585 $& giri $& 2/11/2017 12:00:00 AM $& I DID NOTHING WRONG}
+	[134]{283477056774340610 $& ThatNinja $& 2/21/2017 12:00:00 AM $& ＮＯ　ＢＴＳ　－－－＞　ＮＯ　ＳＥＸ}
+	[136]{443344666696351744 $& Shvou $& 5/8/2018 12:00:00 AM $& Hax}
+	[140]{278336270042791946 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& }
+	[143]{317806706329518083 $& FreedomFries $& 5/26/2017 12:00:00 AM $& pick cm}
+	[148]{324343271033929730 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& https://www.youtube.com/watch?v=eAprW14F-8k},{290605235833929730 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& my voice isn't working}
+	[151]{375829529895239681 $& Aephilia of the Snow $& 11/3/2017 12:00:00 AM $& just sauce}
+	[153]{312419761634017285 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Who the hell are these people in my server}
+	[155]{325068520075427840 $& Aephilia of the Snow $& 6/16/2017 12:00:00 AM $& Kreygasm}
+	[156]{455140806492422154 $& melone $& 6/9/2018 12:00:00 AM $& wow},{449765830129876993 $& Moo $& 5/26/2018 12:00:00 AM $& Benis}
+	[157]{317822802654789632 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& <@163818149576310784>},{283042611285983232 $& ThatNinja $& 2/20/2017 12:00:00 AM $& http://i.imgur.com/gaAZRGg.jpg}
+	[159]{342873200696229888 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& Can anyone play dota with me}
+	[162]{307746549843361792 $& minnesota212 $& 4/29/2017 12:00:00 AM $& can i join the voice channel or r u tryna focus},{291009397080064011 $& FreedomFries $& 3/14/2017 12:00:00 AM $& *from}
+	[163]{278335739417067521 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& I searched up Tsundere guys!}
+	[165]{279449612539133952 $& giri $& 2/10/2017 12:00:00 AM $& nicenicencie},{278339683648274433 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& <@163435910422200321> get aghs}
+	[166]{319868161157496832 $& ThatNinja $& 6/1/2017 12:00:00 AM $& https://pbs.twimg.com/media/DBOCmHIW0AEZ1IP.jpg:large}
+	[168]{320388296834285568 $& FreedomFries $& 6/3/2017 12:00:00 AM $& you lost me grant}
+	[170]{401272674200059905 $& LeNerdSkinner $& 1/12/2018 12:00:00 AM $& http://steamcommunity.com/id/athena359},{300850278872252416 $& Toaster443 $& 4/10/2017 12:00:00 AM $& rip}
+	[172]{299383557217058818 $& ThatNinja $& 4/6/2017 12:00:00 AM $& http://www.technologytell.com/entertainment/files/2014/05/toby-turtle.jpg}
+	[183]{307761624670928897 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Lol}
+	[184]{426565195049992192 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& i'm on break right now},{424084237575127042 $& Shvou $& 3/16/2018 12:00:00 AM $& FeelsBadMan}
+	[185]{299382119296139264 $& minnesota212 $& 4/6/2017 12:00:00 AM $& https://www.kayak.com/flights/JFK-SEA/2017-08-06/2017-08-13/4adults/children-17-17}
+	[190]{455818656790741002 $& FreedomFries $& 6/11/2018 12:00:00 AM $& a},{336009618646106115 $& ThatNinja $& 7/16/2017 12:00:00 AM $& oh hi},{312404469369536512 $& FreedomFries $& 5/12/2017 12:00:00 AM $& u can't say stff like thzt}
+	[191]{455578668899762178 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& true},{302621682462621697 $& Aephilia of the Snow $& 4/15/2017 12:00:00 AM $& FeelsBadMan},{302618987685085194 $& Toaster443 $& 4/15/2017 12:00:00 AM $& yes}
+	[192]{301194599311998976 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& ?},{300801164704743424 $& FreedomFries $& 4/10/2017 12:00:00 AM $& }
+	[193]{283052164308533248 $& FreedomFries $& 2/20/2017 12:00:00 AM $& si}
+	[194]{307748858773897217 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& we're being dodged}
+	[195]{279449510420283396 $& giri $& 2/10/2017 12:00:00 AM $& also why does this bot keep cutting off}
+	[198]{455558350244020224 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& true but i still watch it}
+	[205]{300844417877671937 $& Toaster443 $& 4/10/2017 12:00:00 AM $& not as bad a s yri scnider}
+	[214]{300801009771479040 $& FreedomFries $& 4/10/2017 12:00:00 AM $& Im not sure}
+	[219]{307761097891512320 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& ok I added you}
+	[220]{283476685632962562 $& Aephilia of the Snow $& 2/21/2017 12:00:00 AM $& !}
+	[222]{317805870945665025 $& Shvou $& 5/26/2017 12:00:00 AM $& more plot, better plot}
+	[223]{324572141783744523 $& FreedomFries $& 6/14/2017 12:00:00 AM $& one of these are not like the others}
+	[224]{454685836156469249 $& Dad Bot $& 6/8/2018 12:00:00 AM $& Im responses are working here again}
+	[225]{313476246719954944 $& giri $& 5/15/2017 12:00:00 AM $& come back}
+	[227]{297198080749600779 $& Aephilia of the Snow $& 3/31/2017 12:00:00 AM $& Oh}
+	[228]{299044660217643009 $& ThatNinja $& 4/5/2017 12:00:00 AM $& https://www.youtube.com/watch?v=DVkkYlQNmbc}
+	[229]{284190253743472653 $& Toaster443 $& 2/23/2017 12:00:00 AM $& tom make me a channel},{278336458614374401 $& cybros $& 2/7/2017 12:00:00 AM $& ?}
+	[236]{313887560244002817 $& melone $& 5/16/2017 12:00:00 AM $& https://www.facebook.com/ryan.mahatme?ref=br_rs}
+	[238]{278339720994619392 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& silver edge}
+	[240]{426564687509848084 $& giri $& 3/23/2018 12:00:00 AM $& pepehands},{343238014476091404 $& Aephilia of the Snow $& 8/5/2017 12:00:00 AM $& das?}
+	[247]{418302619983806467 $& giri $& 2/28/2018 12:00:00 AM $& ah shit}
+	[248]{455558111214829579 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& dota is toxic}
+	[249]{455847647878840360 $& FreedomFries $& 6/11/2018 12:00:00 AM $& What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little "clever" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.},{418311781765742592 $& giri $& 2/28/2018 12:00:00 AM $& Kappa}
+	[250]{290319976198307840 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& Si}
+	[251]{283829528583864320 $& giri $& 2/22/2017 12:00:00 AM $& rip my streaming experience}
+	[254]{312419842806513665 $& FreedomFries $& 5/12/2017 12:00:00 AM $& u dropped off the face of the earth},{278335738884653057 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& quote josh}
+	[257]{418313822562942976 $& giri $& 2/28/2018 12:00:00 AM $& why tom},{290318834626199563 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& Are you winning}
+	[264]{278335721549594635 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& quote bezi}
+	[268]{312427659873353728 $& Shvou $& 5/12/2017 12:00:00 AM $& 😉}
+	[269]{307761980645572618 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Steam is garbage on my computer so idk if this will work},{283464873151561728 $& Aephilia of the Snow $& 2/21/2017 12:00:00 AM $& :c}
+	[277]{317806080069468171 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& How about Monster loli futa TSUNDERE girls}
+	[279]{411774383112323094 $& minnesota212 $& 2/10/2018 12:00:00 AM $& I need lowest settings}
+	[282]{279450068770226176 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& !queue}
+	[283]{300849351012515851 $& Toaster443 $& 4/10/2017 12:00:00 AM $& but i cant talk},{291009704350449664 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Yuigahama Yui}
+	[285]{434892642803908608 $& Shvou $& 4/15/2018 12:00:00 AM $& can i kill myself yet, everyone is taking my farm and being dumbasses by not buying dust for bounty},{279450259623641088 $& Kaori Miyazono $& 2/10/2017 12:00:00 AM $& Now Playing: **Masamune-kun no Revenge OP / Opening [HD]** added by **Noctia of the Hyacinths** `[00:05/01:30]`}
+	[286]{455849863687700500 $& FreedomFries $& 6/11/2018 12:00:00 AM $& kk}
+	[287]{454685847170580480 $& Dad Bot $& 6/8/2018 12:00:00 AM $& Hi hungry, I'm Dad!}
+	[288]{411778823365853204 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Ooo can I play sota}
+	[289]{307761283707568129 $& minnesota212 $& 4/29/2017 12:00:00 AM $& I don't have steam on},{291009559324131330 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& ...}
+	[290]{297233610551984128 $& bobgooeyflonder $& 3/31/2017 12:00:00 AM $& h}
+	[292]{426565122878865429 $& giri $& 3/23/2018 12:00:00 AM $& why no anime pics?},{416826683744845827 $& melone $& 2/24/2018 12:00:00 AM $& https://docs.google.com/presentation/d/1CwYaeDTzpvl7CoEB5SQARorQWRVB4e1RGnwMo_sfkPU/edit?usp=sharing}
+	[296]{301194576130080770 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& 10 mins},{323624346562330624 $& ThatNinja $& 6/12/2017 12:00:00 AM $& http://i.imgur.com/gRiJCUn.png}
+	[297]{455596718512144406 $& giri $& 6/11/2018 12:00:00 AM $& what has dad done}
+	[298]{454685672469692416 $& FreedomFries $& 6/8/2018 12:00:00 AM $& man I'm hungry},{418301583361572868 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& my friend said she cried every episode}
+	[310]{279449095704412160 $& giri $& 2/10/2017 12:00:00 AM $& why are you playing ee music}
+	[313]{312420180116635650 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& <:tomasStare:277887766669426688>}
+	[314]{394311930174504971 $& giri $& 12/24/2017 12:00:00 AM $& thing}
+	[315]{418315210575577088 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& if i can't see a future},{418300988374646784 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& As you can see from my pic},{280895981246087170 $& giri $& 2/14/2017 12:00:00 AM $& Im HEre}
+	[317]{325487717544755202 $& giri $& 6/17/2017 12:00:00 AM $& mitsuha.xcf}
+	[318]{297198102803382292 $& Aephilia of the Snow $& 3/31/2017 12:00:00 AM $& my boy}
+	[319]{279450259002753026 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& !queue}
+	[322]{337398630665289731 $& giri $& 7/20/2017 12:00:00 AM $& what the fuck},{278336042807984139 $& cybros $& 2/7/2017 12:00:00 AM $& thats like all my fotos}
+	[323]{307760657317625859 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& took 54 mins}
+	[325]{291009361277353985 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Your waifu.},{279447285153267712 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& FeelsBadMan}
+	[326]{425851651576823818 $& giri $& 3/21/2018 12:00:00 AM $& brb}
+	[327]{346242819272474624 $& Aephilia of the Snow $& 8/13/2017 12:00:00 AM $& FeelsLiquidMan}
+	[328]{278335569619320834 $& cybros $& 2/7/2017 12:00:00 AM $& insult fries}
+	[329]{278339592980135947 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& !disconnect}
+	[332]{418301724063694849 $& Shvou $& 2/28/2018 12:00:00 AM $& i assure you that you wont cry every episode}
+	[338]{455867760354918420 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere}
+	[340]{418301641696215060 $& Shvou $& 2/28/2018 12:00:00 AM $& you should watch bible black},{278335915334828035 $& FreedomFries $& 2/7/2017 12:00:00 AM $& <:babyRyan:278329979131920385>}
+	[343]{281988153550569472 $& Aephilia of the Snow $& 2/17/2017 12:00:00 AM $& it's me}
+	[345]{279449180638806018 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& TRIGGERED}
+	[348]{446880769420558345 $& Aephilia of the Snow $& 5/18/2018 12:00:00 AM $& ?}
+	[351]{418311887432974346 $& giri $& 2/28/2018 12:00:00 AM $& DONT DO IT}
+	[352]{317806020380459008 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Don't tell me},{294322304345964546 $& FreedomFries $& 3/23/2017 12:00:00 AM $& https://i.redd.it/mqhn6ldzx0ny.jpg}
+	[353]{307760742206275584 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Gl}
+	[354]{336637927004045322 $& ThatNinja $& 7/17/2017 12:00:00 AM $& HELLO MELON's HOUSE!! SLURP}
+	[355]{418302474458365973 $& giri $& 2/28/2018 12:00:00 AM $& just watch it},{400894967737745418 $& melone $& 1/11/2018 12:00:00 AM $& https://www.youtube.com/watch?v=zhGnuWwpNxI},{341761932765822979 $& FreedomFries $& 8/1/2017 12:00:00 AM $& look at that head tilt backwards},{283829629763059722 $& ThatNinja $& 2/22/2017 12:00:00 AM $& but this is hentai corner}
+	[356]{287769644419252234 $& Aephilia of the Snow $& 3/5/2017 12:00:00 AM $& can everyone pay me back for their ticket}
+	[357]{283047855470673920 $& Aephilia of the Snow $& 2/20/2017 12:00:00 AM $& LOL},{456244885784100864 $& FreedomFries $& 6/12/2018 12:00:00 AM $& ...}
+	[358]{307746214680461324 $& minnesota212 $& 4/29/2017 12:00:00 AM $& lol}
+	[360]{280424369958682635 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& me}
+	[364]{278335832497192963 $& FreedomFries $& 2/7/2017 12:00:00 AM $& thats just how you speak Tom}
+	[374]{307760889375752192 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& yeah you can}
+	[377]{324303897705316353 $& Toaster443 $& 6/13/2017 12:00:00 AM $& i cant hear the strategy}
+	[380]{317806307417522177 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& He'd agree}
+	[382]{418311865123471370 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& <:yuisad:355416315315486720>},{418302802381504513 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& nah},{307746122833723402 $& minnesota212 $& 4/29/2017 12:00:00 AM $& HOW DO U STAY UP THIS LATE I DONT UNDERSTAND ITS SUPER HUMAN}
+	[383]{308069394976866304 $& Aephilia of the Snow $& 4/30/2017 12:00:00 AM $& nobody appreciates my piano}
+	[385]{301559358062592010 $& FreedomFries $& 4/12/2017 12:00:00 AM $& https://i.redd.it/kg2jp1pl4yqy.jpg}
+	[386]{418301140883734538 $& giri $& 2/28/2018 12:00:00 AM $& woah your character pro pic moves}
+	[387]{418302570470047754 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& gg},{279450393035931648 $& giri $& 2/10/2017 12:00:00 AM $& is this an actual command}
+	[391]{455578679561420801 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& i'm pretty gay},{279450070988881932 $& Kaori Miyazono $& 2/10/2017 12:00:00 AM $& Now Playing: **[MV] SEVENTEEN(세븐틴) _ HIGHLIGHT** added by **xd** `[03:16/03:56]`}
+	[394]{300373705454780416 $& ThatNinja $& 4/8/2017 12:00:00 AM $& http://i.imgur.com/4LaIObs.gifv}
+	[398]{297198118922092546 $& Aephilia of the Snow $& 3/31/2017 12:00:00 AM $& ❤}
+	[405]{278336080476897281 $& FreedomFries $& 2/7/2017 12:00:00 AM $& here}
+	[408]{327294815773655042 $& Shvou $& 6/22/2017 12:00:00 AM $& yeah, im muted},{312420273255219200 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& WutFace}
+	[409]{302293038783528961 $& giri $& 4/14/2017 12:00:00 AM $& tom josh is abusing his power}
+	[411]{418311879224459267 $& giri $& 2/28/2018 12:00:00 AM $& NO}
+	[412]{418314351934439424 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& whatever this is},{342124940478382081 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& yeah}
+	[413]{342124961873526787 $& ThatNinja $& 8/2/2017 12:00:00 AM $& oh ok}
+	[414]{426405132452888578 $& Aephilia of the Snow $& 3/22/2018 12:00:00 AM $& }
+	[415]{359533818362855425 $& Aephilia of the Snow $& 9/19/2017 12:00:00 AM $& women <:monkaS:358808088674828289>}
+	[416]{320390978424930325 $& ThatNinja $& 6/3/2017 12:00:00 AM $& http://i.imgur.com/PumtmHx.jpg}
+	[417]{291009434359037962 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& No it's NOT?}
+	[418]{297198204124921857 $& minnesota212 $& 3/31/2017 12:00:00 AM $& 😁}
+	[419]{456149291505942549 $& FreedomFries $& 6/12/2018 12:00:00 AM $& but on one condition}
+	[420]{317805898238132224 $& FreedomFries $& 5/26/2017 12:00:00 AM $& im kicking you tom},{278336631294132224 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& ROFL}
+	[423]{300849329323900929 $& Toaster443 $& 4/10/2017 12:00:00 AM $& yea},{278336517242355714 $& FreedomFries $& 2/7/2017 12:00:00 AM $& ?}
+	[425]{418301586201378827 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& lmao}
+	[426]{397661405979082752 $& LeNerdSkinner $& 1/2/2018 12:00:00 AM $& NANI?!?!?!??},{279449343638110208 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& Seventeen zzz}
+	[434]{342125055007916033 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& _________, ____________________}
+	[440]{455863930791657473 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere},{313512612748853251 $& melone $& 5/15/2017 12:00:00 AM $& https://www.dotabuff.com/matches/2329552213}
+	[441]{418314836498448386 $& giri $& 2/28/2018 12:00:00 AM $& you gotta escape whatever this is by looking at the future you},{317469312845611010 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& fuck blademail},{302292405921513484 $& giri $& 4/14/2017 12:00:00 AM $& wtf}
+	[444]{317485603501637633 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& kms}
+	[445]{297234950912999424 $& Aephilia of the Snow $& 3/31/2017 12:00:00 AM $& h}
+	[446]{278335763693830146 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& Wow, <@!163818292497088512>, you really are disgusting...}
+	[447]{302299948484001792 $& cybros $& 4/14/2017 12:00:00 AM $& "he didn't do nuffin"},{299372488649998337 $& bobgooeyflonder $& 4/6/2017 12:00:00 AM $& thats 1}
+	[448]{411772855429365761 $& minnesota212 $& 2/10/2018 12:00:00 AM $& It’ll be 1 min}
+	[450]{388962977107148810 $& ThatNinja $& 12/9/2017 12:00:00 AM $& oh hey jaeger, I hear you go to college near me, hows that going?},{278336670066278401 $& Bezi $& 2/7/2017 12:00:00 AM $& ?}
+	[451]{424084252112715806 $& Aephilia of the Snow $& 3/16/2018 12:00:00 AM $& Ok},{302292475194769409 $& giri $& 4/14/2017 12:00:00 AM $& why am i in discord}
+	[463]{418311790384906240 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& oh}
+	[468]{426213671002439680 $& giri $& 3/22/2018 12:00:00 AM $& FifteenIce68423}
+	[470]{411774349536919557 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Lag to dearh}
+	[471]{455850022127403020 $& FreedomFries $& 6/11/2018 12:00:00 AM $& safeway}
+	[474]{278335570218975232 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& <@163492085540978689> , your waifu is shit!}
+	[475]{455596820890910740 $& giri $& 6/11/2018 12:00:00 AM $& <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> <:4Bezi:277873291165958144>}
+	[478]{418315421037494272 $& giri $& 2/28/2018 12:00:00 AM $& but you have the ability to make it THE future},{299760895960285184 $& ThatNinja $& 4/7/2017 12:00:00 AM $& BOAT},{291009643885494272 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& She's like #0},{279084657759354880 $& FreedomFries $& 2/9/2017 12:00:00 AM $& spoiler alert}
+	[479]{279797858264285185 $& FreedomFries $& 2/11/2017 12:00:00 AM $& https://i.redd.it/yedufdshe1ey.png}
+	[480]{373272786400968704 $& Aephilia of the Snow $& 10/27/2017 12:00:00 AM $& man's not hot},{278335967830605825 $& cybros $& 2/7/2017 12:00:00 AM $& what do u mean by "good"? ;p}
+	[485]{304806563468541953 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& NO MATTER HOW THEY EXTEND THEIR HANDS}
+	[486]{330596899939680257 $& melone $& 7/1/2017 12:00:00 AM $& Esterflame: That is fantastic! Yup looking forward to it as well :D
+Esterflame: Lemme know if either of you guys ever get interviewed by slacks or purge or someone else xD
+retired dota player: ofc},{299379747287334923}
+	[487]{455847805643259904 $& FreedomFries $& 6/11/2018 12:00:00 AM $& work pls},{454685835602690059 $& FreedomFries $& 6/8/2018 12:00:00 AM $& d!imtoggle}
+	[491]{317479134907465729 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& can you shut up}
+	[500]{279450317496647690 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& RIP}
+	[504]{418300502757998594 $& giri $& 2/28/2018 12:00:00 AM $& },{317806172469985284 $& Shvou $& 5/26/2017 12:00:00 AM $& plot?}
+	[506]{312419813374820363 $& FreedomFries $& 5/12/2017 12:00:00 AM $& where the fuck have you been}
+	[507]{312420089859407875 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& I muted it},{300844670798528512 $& Aephilia of the Snow $& 4/10/2017 12:00:00 AM $& still in chicago},{290318784508723201 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& Are you playing battle cup}
+	[508]{297197035214471170 $& minnesota212 $& 3/31/2017 12:00:00 AM $& i win}
+	[509]{297947339233034240 $& melone $& 4/2/2017 12:00:00 AM $& https://gyazo.com/7c2b57c96791714218ee652d8874cb8b}
+	[510]{454799604555317249 $& giri $& 6/9/2018 12:00:00 AM $& im gay},{318200429374734336 $& Aephilia of the Snow $& 5/28/2017 12:00:00 AM $& Wut}
+	[516]{426565220899487755 $& giri $& 3/23/2018 12:00:00 AM $& ah kk},{312420239059058689 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Wait},{282698101251375104 $& Anand $& 2/19/2017 12:00:00 AM $& hello???}
+	[517]{411791030866935808 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Lul},{317806194410389504 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& LOL}
+	[519]{454685806184103946 $& FreedomFries $& 6/8/2018 12:00:00 AM $& d!imtoggle}
+	[520]{342874000264790017 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& shout out to my boy conkle}
+	[521]{418300539827388419 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& same}
+	[523]{418303126353870848 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& I don't have much to do over summer so}
+	[526]{280899066794082305 $& Aephilia of the Snow $& 2/14/2017 12:00:00 AM $& gg}
+	[527]{426565038569160714 $& giri $& 3/23/2018 12:00:00 AM $& yo thats pretty legit}
+	[528]{317805776188080129 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Old hentai is like}
+	[533]{418311778137538560 $& giri $& 2/28/2018 12:00:00 AM $& i need daily dose of autism in my life}
+	[536]{339203991521198080 $& giri $& 7/25/2017 12:00:00 AM $& http://i.imgur.com/KKnTQwQ.jpg},{278339707128119298 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& oct}
+	[537]{278336305723604993 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& ?}
+	[541]{308125729428865026 $& giri $& 4/30/2017 12:00:00 AM $& ryan hearthattack driving},{292919025057529856 $& ThatNinja $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=ISHPumshGgA},{279449155234037760 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& ????}
+	[542]{418301801540878337 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& v3 made me pretty teary tbh},{297211987065176064 $& bobgooeyflonder $& 3/31/2017 12:00:00 AM $& https://www.youtube.com/watch?v=kE_mpGZFRv0}
+	[544]{342124975861399553 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& not gonna lie},{283815201109704704 $& Aephilia of the Snow $& 2/22/2017 12:00:00 AM $& Y}
+	[545]{315264734461034497 $& giri $& 5/19/2017 12:00:00 AM $& fuck off},{308125876359397376 $& giri $& 4/30/2017 12:00:00 AM $& SeemsGood},{301570166859366400 $& Aephilia of the Snow $& 4/12/2017 12:00:00 AM $& <@163492085540978689> http://i.imgur.com/COJMN2a.jpg}
+	[547]{317466897480155136 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& i'm not}
+	[548]{411778865359224833 $& minnesota212 $& 2/10/2018 12:00:00 AM $& I’ll wreck mmr}
+	[549]{417987739938586624 $& giri $& 2/27/2018 12:00:00 AM $& },{330596041932013568 $& melone $& 7/1/2017 12:00:00 AM $& retired dota player: great game buddy!
+retired dota player: i had a lot of fun
+Esterflame: Thanks! You too. Yup. And thanks for keeping it clean and positive :)
+Esterflame:  https://steamcommunity-a.akamaihd.net/economy/emoticon/possession 
+retired dota player: Lets play again sometime!
+Esterflame: Definitely. Would be honored to play with you guys again.},{302293048715640832}
+	[551]{300844683758796803 $& Aephilia of the Snow $& 4/10/2017 12:00:00 AM $& i'll be back tomorrow}
+	[555]{455562999432871948 $& giri $& 6/11/2018 12:00:00 AM $& its ok i read naruto},{318200184997806081 $& Aephilia of the Snow $& 5/28/2017 12:00:00 AM $& i can't talk for a while}
+	[556]{301213391824093204 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& http://pm1.narvii.com/6218/4c8986670836e8972872ac00034840c064657671_hq.jpg}
+	[565]{342124926766940170 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& hi boys}
+	[567]{411772597231943681 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Imma be here now}
+	[568]{313338166687956992 $& ThatNinja $& 5/14/2017 12:00:00 AM $& http://i.imgur.com/tykk1Lf.jpg}
+	[569]{455557727557779486 $& giri $& 6/11/2018 12:00:00 AM $& tom has abandoned dota PepeHands}
+	[570]{300844512203505664 $& Toaster443 $& 4/10/2017 12:00:00 AM $& it is death}
+	[572]{418314718571397140 $& giri $& 2/28/2018 12:00:00 AM $& i care about you}
+	[573]{426564805521047572 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& no},{282336749005570050 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& TILTED},{302697787055669259 $& ThatNinja $& 4/15/2017 12:00:00 AM $& https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/17884352_1077937722350315_3673095328764766335_n.jpg?oh=4527b797d7ae96f3b9d8242f3ad209b1&oe=598C9A8F}
+	[574]{343235011035791360 $& FreedomFries $& 8/5/2017 12:00:00 AM $& you make me a}
+	[575]{419383318019178496 $& melone $& 3/3/2018 12:00:00 AM $& WE HEAR YOU},{325487724196790272 $& giri $& 6/17/2017 12:00:00 AM $& Kreygasm}
+	[576]{278336704736133122 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& Lemme do that},{278336274031443971 $& FreedomFries $& 2/7/2017 12:00:00 AM $& petition to change aqua's picture to this far superior photo}
+	[578]{318172725929574411 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& ?}
+	[580]{278336724671791124 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& Wow, <@!163492085540978689>, you really are disgusting...}
+	[585]{376477455676080144 $& FreedomFries $& 11/4/2017 12:00:00 AM $& i just realized}
+	[587]{279449797470060544 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& http://livedoor.4.blogimg.jp/poterobo/imgs/0/5/05531f8a.gif}
+	[601]{455867445991702541 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere}
+	[602]{280432974967603201 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& who did they pick fifth}
+	[603]{425410344739930144 $& Shvou $& 3/19/2018 12:00:00 AM $& hmmmm that last paragraph of cultural life though},{297198140665364480 $& bobgooeyflonder $& 3/31/2017 12:00:00 AM $& EleGiggle}
+	[607]{382218194473189397 $& Aephilia of the Snow $& 11/20/2017 12:00:00 AM $& <@163434671814737922> <:ShuichiSolved:382001130600661002> no that’s wrong}
+	[608]{376477557605793793 $& Aephilia of the Snow $& 11/4/2017 12:00:00 AM $& Years ago},{300844672761200651 $& Aephilia of the Snow $& 4/10/2017 12:00:00 AM $& sry}
+	[610]{455541628778577931 $& Moo $& 6/11/2018 12:00:00 AM $& Im sorry},{304806583483760641 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& FeelsGoodMan},{279450268079357953 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& PogChamp}
+	[611]{456244519483211786 $& FreedomFries $& 6/12/2018 12:00:00 AM $& !addFromHere}
+	[612]{317477974549200897 $& FreedomFries $& 5/26/2017 12:00:00 AM $& }
+	[614]{418301458203541514 $& giri $& 2/28/2018 12:00:00 AM $& i am},{374631974339477505 $& Aephilia of the Snow $& 10/30/2017 12:00:00 AM $& rolf},{317805847348772866 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Which is like my fetish}
+	[615]{279449112754126848 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& Why are you listening to my weeb shit}
+	[620]{302618491742060556 $& Toaster443 $& 4/15/2017 12:00:00 AM $& hello i cant talk cause im in a hotel room with parents}
+	[622]{280870043988918273 $& FreedomFries $& 2/14/2017 12:00:00 AM $& マリオ}
+	[623]{418302596235919363 $& giri $& 2/28/2018 12:00:00 AM $& please hang out w me and peter}
+	[629]{341790417265623051 $& Aephilia of the Snow $& 8/1/2017 12:00:00 AM $& !}
+	[631]{360542362197426186 $& Aephilia of the Snow $& 9/21/2017 12:00:00 AM $& 2d}
+	[632]{280433830332989442 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& FeelsBadMan I'll stop}
+	[633]{376477596843638785 $& FreedomFries $& 11/4/2017 12:00:00 AM $& c}
+	[642]{418301545717694465 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& I don't watch sad anime}
+	[643]{455555973353046027 $& FreedomFries $& 6/11/2018 12:00:00 AM $& banned},{455236632199692288 $& Aephilia of the Snow $& 6/10/2018 12:00:00 AM $& ok},{300844697872498688 $& Aephilia of the Snow $& 4/10/2017 12:00:00 AM $& so i'll play then}
+	[644]{455850170924531722 $& FreedomFries $& 6/11/2018 12:00:00 AM $& do you fuck with the war}
+	[645]{313887522243477515 $& melone $& 5/16/2017 12:00:00 AM $& https://www.facebook.com/photo.php?fbid=10151475429902200&set=ecnf.100001217685470&type=3&theater}
+	[659]{394311925485404171 $& giri $& 12/24/2017 12:00:00 AM $& no thats wrong}
+	[663]{305910105965068290 $& ThatNinja $& 4/24/2017 12:00:00 AM $& http://i.imgur.com/pdGSiXt.jpg}
+	[665]{279449901077889024 $& cybros $& 2/10/2017 12:00:00 AM $& <:fullTilt:278002459048411137>}
+	[666]{455819588383539214 $& giri $& 6/11/2018 12:00:00 AM $& smh}
+	[667]{279449708697747456 $& cybros $& 2/10/2017 12:00:00 AM $& i dabble is being a koreeaboo excuse u}
+	[670]{318042363274461184 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& creds to fries}
+	[672]{297198048650461186 $& Aephilia of the Snow $& 3/31/2017 12:00:00 AM $& Who the hell is minnesota}
+	[673]{279450277726388224 $& giri $& 2/10/2017 12:00:00 AM $& your bot raises my ping}
+	[674]{302292936891039745 $& cybros $& 4/14/2017 12:00:00 AM $& so unmute me?}
+	[679]{455848039752531978 $& FreedomFries $& 6/11/2018 12:00:00 AM $& stay woke}
+	[685]{280431135719161856 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& I don't have my mic}
+	[695]{341714035617824782 $& ThatNinja $& 7/31/2017 12:00:00 AM $& https://twitter.com/addison_angelo/status/890027834932166657}
+	[696]{446416532000735243 $& Aephilia of the Snow $& 5/16/2018 12:00:00 AM $& fortnite?}
+	[704]{279087419972780032 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& Because}
+	[706]{307761323872092160 $& giri $& 4/29/2017 12:00:00 AM $& our voice chat does nothing},{280482819409444864 $& ThatNinja $& 2/12/2017 12:00:00 AM $& http://i.imgur.com/JNXxpKh.jpg}
+	[707]{376477550781792256 $& Aephilia of the Snow $& 11/4/2017 12:00:00 AM $& I did that},{300111517221650444 $& Toaster443 $& 4/8/2017 12:00:00 AM $& <@163434363994898432>#0kys239},{279449135642443776 $& Kaori Miyazono $& 2/10/2017 12:00:00 AM $& <@163434671814737922>, your skip for **[MV] REOL - 宵々古今 / YoiYoi Kokon** was acknowledged.
+The vote to skip has been passed.}
+[708]{418302483006357504}
+	[709]{338444041861595149 $& arvindsindhwani $& 7/22/2017 12:00:00 AM $& if anyone wants to PUBG sometime hmu},{303605067431411713 $& Aephilia of the Snow $& 4/17/2017 12:00:00 AM $& memes},{278335788771442689 $& FreedomFries $& 2/7/2017 12:00:00 AM $& thats not even a real quote}
+	[711]{426565054331093012 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& thanks fam},{306610393764200449 $& Aephilia of the Snow $& 4/26/2017 12:00:00 AM $& Who changed},{279456440111071232 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& should i play lycan},{279858827002773505 $& ThatNinja $& 2/11/2017 12:00:00 AM $& http://i.imgur.com/mKxo9YM.png}
+	[712]{418311731635290122 $& giri $& 2/28/2018 12:00:00 AM $& tom i miss you so much},{317131462447071233 $& FreedomFries $& 5/25/2017 12:00:00 AM $& }
+	[714]{300849389172293633 $& Toaster443 $& 4/10/2017 12:00:00 AM $& cause ima wake rob up}
+	[724]{299372468122943491 $& bobgooeyflonder $& 4/6/2017 12:00:00 AM $& http://www.innatqueenanne.com/}
+	[727]{351123784184627200 $& Bezi $& 8/26/2017 12:00:00 AM $& guck frant},{307761649958518784 $& giri $& 4/29/2017 12:00:00 AM $& action},{296456070283526165 $& FreedomFries $& 3/29/2017 12:00:00 AM $& im fairly sure you belong inside the dumpster},{282362001353867264 $& FreedomFries $& 2/18/2017 12:00:00 AM $& }
+	[731]{418303138194259980 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& we can hang out and stuff}
+	[734]{313494937536561152 $& melone $& 5/15/2017 12:00:00 AM $& https://www.youtube.com/watch?v=GyedETUDZB0}
+	[735]{455880194620784640 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& ?}
+	[738]{426565032248213523 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& https://cdn.discordapp.com/attachments/368993121066811392/424571136316276736/image.jpg},{301201094837796864 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& https://www.youtube.com/watch?v=o845InvtxKk},{300701367595433985 $& ThatNinja $& 4/9/2017 12:00:00 AM $& <@163492085540978689> http://imgur.com/gallery/8JRkw}
+	[740]{324343157242331137 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& Josh^ when we push hg},{299382750849400833 $& bobgooeyflonder $& 4/6/2017 12:00:00 AM $& https://www.google.com/flights/#search;f=JFK,EWR,LGA;t=SEA;d=2017-08-06;r=2017-08-13;sel=JFKSEA0DL2163,SEAJFK0DL2590;s=0;q=flights+from+new+york+to+seattle}
+	[742]{283815239986970624 $& Aephilia of the Snow $& 2/22/2017 12:00:00 AM $& You're wanna be Korean}
+	[744]{283829658351566849 $& giri $& 2/22/2017 12:00:00 AM $& im out}
+	[745]{441083880834072576 $& giri $& 5/2/2018 12:00:00 AM $& Games frozen so i restarted and now im going to go get smth to eat real quick}
+	[746]{307746279088324609 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& LUL}
+	[752]{418300760670076939 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& spoken}
+	[759]{411773169926406144 $& minnesota212 $& 2/10/2018 12:00:00 AM $& 😉},{302292795299856385 $& cybros $& 4/14/2017 12:00:00 AM $& why am i muted?}
+	[760]{307761097836855297 $& giri $& 4/29/2017 12:00:00 AM $& we'll accept}
+	[762]{418314254207418368 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& idk},{317489294786822145 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Me}
+	[763]{291009633764507667 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Who's the other girl}
+	[764]{280433004659343361 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& 4k}
+	[765]{282590530083356672 $& FreedomFries $& 2/18/2017 12:00:00 AM $& https://www.youtube.com/watch?v=5aopMm7UGYA&feature=youtu.be}
+	[767]{418314323086147586 $& giri $& 2/28/2018 12:00:00 AM $& from where},{280426307278340097 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& Done}
+	[769]{426564829340368897 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& fam},{313513565145268225 $& giri $& 5/15/2017 12:00:00 AM $& https://www.dotabuff.com/matches/3114627664}
+	[770]{424084214862839819 $& Shvou $& 3/16/2018 12:00:00 AM $& wasnt invited to the party}
+	[771]{301824798646992896 $& FreedomFries $& 4/12/2017 12:00:00 AM $& http://imgur.com/pbINTh4},{279087880167489536 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& <@163435910422200321>}
+	[775]{324650219667062784 $& ThatNinja $& 6/14/2017 12:00:00 AM $& http://i.imgur.com/5UueB57.png}
+	[781]{307746356997390337 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& nah we're in a 20 minute queue}
+	[785]{307761577078161409 $& giri $& 4/29/2017 12:00:00 AM $& theres josh in voice chat}
+	[794]{280430711440408578 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& Guys check the b team chat for their heroes}
+	[795]{455857937181573150 $& FreedomFries $& 6/11/2018 12:00:00 AM $& yello},{418301728539279362 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& I cry for games},{326514927248605204 $& nilla $& 6/20/2017 12:00:00 AM $& first class airbnb}
+	[796]{455877997019529217 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere},{280215014495748106 $& FreedomFries $& 2/12/2017 12:00:00 AM $& https://gyazo.com/c9e28d653477c133df74e399c0d4dd35}
+	[797]{278337462768762880 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& Wow, <@!201503934127407104>, you really are disgusting...}
+	[800]{456164032827883520 $& FreedomFries $& 6/12/2018 12:00:00 AM $& <@!163818292497088512> respond to me pls 😦}
+	[801]{317477427054116865 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& yes}
+	[802]{330596687779463168 $& melone $& 7/1/2017 12:00:00 AM $& e are
+Esterflame: That is fantastic! Yup looking forward to it as well 😄},{312420267995693068}
+	[803]{426564721106223105 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& <:PepeHands:399041215254888448>}
+	[804]{336667595333697547 $& ThatNinja $& 7/18/2017 12:00:00 AM $& https://www.youtube.com/watch?v=qvv4ZATPGIE}
+	[806]{302292817995235329 $& Aephilia of the Snow $& 4/14/2017 12:00:00 AM $& ?}
+	[808]{283815191022665728 $& Aephilia of the Snow $& 2/22/2017 12:00:00 AM $& K}
+	[809]{317529539872030732 $& bobgooeyflonder $& 5/26/2017 12:00:00 AM $& https://blackandwhitegh.files.wordpress.com/2013/11/1368167964_codeine.jpg}
+	[823]{342872959179816961 $& melone $& 8/4/2017 12:00:00 AM $& yuri is the most mean}
+	[824]{342125063572815873 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& !},{283813155421814784 $& FreedomFries $& 2/22/2017 12:00:00 AM $& https://i.reddituploads.com/9a338e306c6a4043821d7834581a9d72?fit=max&h=1536&w=1536&s=d34cc2c358f31300798000c9497d6251}
+	[827]{342124951672979468 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& pretty excited}
+	[828]{312427648095748117 $& Shvou $& 5/12/2017 12:00:00 AM $& im pretty garbage tier too}
+	[830]{455881925115248642 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere}
+	[831]{305195094510665730 $& FreedomFries $& 4/22/2017 12:00:00 AM $& https://www.youtube.com/watch?v=wiTVgfmRPfA}
+	[833]{280897006615003136 $& Aephilia of the Snow $& 2/14/2017 12:00:00 AM $& I just WANNA play some dota}
+	[835]{313851492857675777 $& Bezi $& 5/16/2017 12:00:00 AM $& Yeah fuck you josh},{278335925703016448 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& I'm tilted}
+	[836]{455879792076521503 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere}
+	[852]{307746269013737472 $& minnesota212 $& 4/29/2017 12:00:00 AM $& we both dying rn}
+	[856]{278336699241857024 $& FreedomFries $& 2/7/2017 12:00:00 AM $& why did you program several ways to insult me}
+	[860]{351378871217684493 $& FreedomFries $& 8/27/2017 12:00:00 AM $& xd},{317805595350794240 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& What anime does Putin watch}
+	[861]{372248328714584064 $& Shvou $& 10/24/2017 12:00:00 AM $& /ts far thee well}
+	[862]{291009462267936769 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& It's Yukino 🤦}
+	[863]{455863898147651584 $& FreedomFries.AI $& 6/11/2018 12:00:00 AM $& Unknown command.},{329139656782249985 $& melone $& 6/27/2017 12:00:00 AM $& https://www.youtube.com/watch?v=pLeTLe811Wg}
+	[864]{291009502784913418 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Excuse me?}
+	[865]{317823018522902529 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& Oh}
+	[866]{455557261604028437 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& hi},{388928592345563136 $& Shady $& 12/9/2017 12:00:00 AM $& This is rob}
+	[867]{317806207383633922 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& But that's},{300844599486840832 $& Aephilia of the Snow $& 4/10/2017 12:00:00 AM $& <:fullTilt:278002459048411137>},{278336271066071041 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& Discord money}
+	[871]{307760622513291265 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Oddly I feel more awake now}
+	[884]{283464740036935681 $& Aephilia of the Snow $& 2/21/2017 12:00:00 AM $& my mom flamed me for liking bts earlier rofl}
+	[886]{455578680144429056 $& Dad Bot $& 6/11/2018 12:00:00 AM $& Hi pretty gay, I'm Dad!}
+	[888]{317822805758705664 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& qait}
+	[892]{279449167229616128 $& giri $& 2/10/2017 12:00:00 AM $& ???}
+	[893]{426565150980440085 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& <:lul:354821497006587915>}
+	[894]{278335925933572097 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& <:fullTilt:278002459048411137> I'M TILTED <:fullTilt:278002459048411137>}
+	[896]{426202515676332035 $& giri $& 3/22/2018 12:00:00 AM $& i was afk}
+	[898]{305187912993996811 $& bobgooeyflonder $& 4/22/2017 12:00:00 AM $& https://www.youtube.com/watch?v=tVj0ZTS4WF4},{282358889570369547 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& !play https://www.youtube.com/watch?v=yPTcKSVAEvA}
+	[899]{291010129955127306 $& FreedomFries $& 3/14/2017 12:00:00 AM $& daily reminder that Makise Kurisu is litteraly the best female character}
+	[901]{280432903610040320 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& don't let your memes be dreams}
+	[906]{278993469073260545 $& Aephilia of the Snow $& 2/8/2017 12:00:00 AM $& https://cdn.discordapp.com/attachments/220292927094521862/278987605771812864/565900bfd05f418fb0422fd7ac2b22e8.png}
+	[909]{318590517313273858 $& ThatNinja $& 5/29/2017 12:00:00 AM $& FagAssTraps.com}
+	[913]{455818645507932180 $& FreedomFries.AI $& 6/11/2018 12:00:00 AM $& YOUR MOM!},{291009419305680906 $& FreedomFries $& 3/14/2017 12:00:00 AM $& oh its aki}
+	[919]{390710004509835265 $& giri $& 12/14/2017 12:00:00 AM $& lmao <@!163818292497088512> i just got that}
+	[921]{317822813299802113 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& wait}
+	[923]{330614325679226892 $& Toaster443 $& 7/1/2017 12:00:00 AM $& https://www.facebook.com/richard.cho.353803}
+	[924]{455848125194829825 $& Shvou $& 6/11/2018 12:00:00 AM $& okaey},{426612799708332042 $& giri $& 3/23/2018 12:00:00 AM $& and died}
+	[926]{456164168710750220 $& FreedomFries $& 6/12/2018 12:00:00 AM $& FeelsBadMan}
+	[929]{418302840449138689 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& I'll be studying for finals}
+	[930]{441065647795994644 $& Moo $& 5/2/2018 12:00:00 AM $& http://www.donttap.com/}
+	[934]{300801406439391232 $& Aephilia of the Snow $& 4/10/2017 12:00:00 AM $& rip}
+	[936]{351064583428898818 $& FreedomFries $& 8/26/2017 12:00:00 AM $& I just noticed this}
+	[939]{278335308968230912 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& <@163492085540978689> , your waifu is shit!}
+	[950]{318200672841629696 $& Aephilia of the Snow $& 5/28/2017 12:00:00 AM $& Where did bezi go}
+	[951]{279449555911704596 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& I'm hosting it on my mac}
+	[952]{279868272948805632 $& bobgooeyflonder $& 2/11/2017 12:00:00 AM $& gg}
+	[954]{281966124541804545 $& FreedomFries $& 2/17/2017 12:00:00 AM $& https://www.youtube.com/watch?v=0g-6xLB9nNM&feature=youtu.be}
+	[955]{426564841252323340 $& giri $& 3/23/2018 12:00:00 AM $& yes}
+	[956]{418314440644100096 $& giri $& 2/28/2018 12:00:00 AM $& are you fr},{401223946671882240 $& giri $& 1/12/2018 12:00:00 AM $& queue into them again}
+	[958]{455597374266540054 $& Dad Bot $& 6/11/2018 12:00:00 AM $& Hi <:4Bezi:277873291165958144>, I'm Dad!},{446503279455895552 $& giri $& 5/17/2018 12:00:00 AM $& who are you},{422249192606531584 $& Aephilia of the Snow $& 3/11/2018 12:00:00 AM $& Banned}
+	[959]{290605929047654400 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& I'm ready to play reno mage kappa},{279838568803729409 $& giri $& 2/11/2017 12:00:00 AM $& ty}
+	[960]{343235035865808907 $& FreedomFries $& 8/5/2017 12:00:00 AM $& you make a beliver}
+	[961]{313883548115271690 $& melone $& 5/16/2017 12:00:00 AM $& https://www.dotabuff.com/esports/teams/2537752}
+	[963]{312419851018960897 $& FreedomFries $& 5/12/2017 12:00:00 AM $& last weeek}
+	[964]{317805689248546836 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& zzzz}
+	[965]{278337482175676428 $& cybros $& 2/7/2017 12:00:00 AM $& :c}
+	[968]{307746309178392576 $& minnesota212 $& 4/29/2017 12:00:00 AM $& r u in the middle of a game?}
+	[978]{317805898317955072 $& Shvou $& 5/26/2017 12:00:00 AM $& 😉},{289982326505603083 $& FreedomFries $& 3/11/2017 12:00:00 AM $& }
+	[980]{332345882156728320 $& ThatNinja $& 7/6/2017 12:00:00 AM $& https://www.facebook.com/grant.uebele?hc_ref=NEWSFEED&fref=nf}
+	[982]{317806093642498070 $& Shvou $& 5/26/2017 12:00:00 AM $& immouto hentai best hentai},{301559288361517056 $& FreedomFries $& 4/12/2017 12:00:00 AM $& http://i.imgur.com/bZNfyJj.jpg},{279084684640518145 $& FreedomFries $& 2/9/2017 12:00:00 AM $& she kills him later on}
+	[986]{374632107919802378 $& ThatNinja $& 10/30/2017 12:00:00 AM $& SKKKRRAAAAAA}
+	[987]{455862544926507018 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere},{307761115759247363 $& giri $& 4/29/2017 12:00:00 AM $& that works too}
+	[988]{300844578116730880 $& Toaster443 $& 4/10/2017 12:00:00 AM $& <:fullTilt:278002459048411137>}
+	[989]{351064622989705218 $& FreedomFries $& 8/26/2017 12:00:00 AM $& but Tom's name is in japanese},{280467476473446410 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& I'll fucking kill all of you},{300801397178368002 $& FreedomFries $& 4/10/2017 12:00:00 AM $& Shimoneta is a great show alright}
+	[997]{317806427039203329 $& FreedomFries $& 5/26/2017 12:00:00 AM $& delet this},{278335706915667969 $& cybros $& 2/7/2017 12:00:00 AM $& what other commands r there?},{303046146975203329 $& ThatNinja $& 4/16/2017 12:00:00 AM $& https://twitter.com/QUACKHOUSE/status/853098124759269376/photo/1}
+	[1012]{335215085804978196 $& ThatNinja $& 7/14/2017 12:00:00 AM $& Josh}
+	[1018]{307757351929249793 $& giri $& 4/29/2017 12:00:00 AM $& kiev majors gonna extend the q time by like an hour}
+	[1019]{411778833713201152 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Dota},{278336604613902336 $& FreedomFries $& 2/7/2017 12:00:00 AM $& insult tom}
+	[1021]{418315194066927627 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& but how do i look at the future}
+	[1024]{317805832324644864 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Current hentai is like monster loli futa younger sisters},{317529658692206602 $& bobgooeyflonder $& 5/26/2017 12:00:00 AM $& https://images.vice.com/vice/images/articles/meta/2016/07/06/inside-the-black-market-for-codeine-in-florida-1467816119.jpg?crop=1xw:0.75xh;center,center&resize=1050:*},{310914271385223179 $& ThatNinja $& 5/7/2017 12:00:00 AM $& http://i.imgur.com/teHAPl6.jpg}
+	[1025]{307746172628631555 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& ?}
+	[1026]{278335742743150592 $& FreedomFries $& 2/7/2017 12:00:00 AM $& its litteraly just insult fries}
+	[1028]{455835855639150594 $& Dad Bot $& 6/11/2018 12:00:00 AM $& Hi not dad, I'm Dad!},{342872755609272320 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& Feels bad man}
+	[1029]{291009671521763328 $& FreedomFries $& 3/14/2017 12:00:00 AM $& yui}
+	[1030]{412104050452987905 $& giri $& 2/11/2018 12:00:00 AM $& https://www.youtube.com/watch?v=sUAJYeNKuIE},{307761219371270144 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Ok I'll c if I can put it up now}
+	[1031]{280899020317130753 $& Aephilia of the Snow $& 2/14/2017 12:00:00 AM $& lion's pretty good}
+	[1032]{282328684793298944 $& FreedomFries $& 2/18/2017 12:00:00 AM $& kek}
+	[1036]{282357904353263616 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& !volume 35}
+	[1047]{418300928500826113 $& giri $& 2/28/2018 12:00:00 AM $& tom whats your favorite anime}
+	[1048]{455233323019796480 $& ThatNinja $& 6/10/2018 12:00:00 AM $& https://i.redd.it/fk166t3za3311.jpg}
+	[1049]{335221141264138241 $& FreedomFries $& 7/14/2017 12:00:00 AM $& do i go for it boys},{304807798888202250 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& <@163818149576310784>}
+	[1051]{324343091706200074 $& giri $& 6/14/2017 12:00:00 AM $& https://www.youtube.com/watch?v=mZlImrU1-bs}
+	[1052]{327341391619555331 $& giri $& 6/22/2017 12:00:00 AM $& https://gyazo.com/33fde9fb8480c05bd937bc35a3c8dd27}
+	[1056]{317490160856072193 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& i just wanted to hear your voices},{312421635841982465 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& 7 people in this chat zzz}
+	[1057]{307760587805294592 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Still in q?}
+	[1058]{326527842487894016 $& FreedomFries $& 6/20/2017 12:00:00 AM $& http://i.imgur.com/HgxwWNh.gifv}
+	[1061]{455558180643274752 $& giri $& 6/11/2018 12:00:00 AM $& anime is toxic},{291009413790302208 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Kpop.}
+	[1064]{278335580281241601 $& cybros $& 2/7/2017 12:00:00 AM $& nice}
+	[1065]{455557227668045824 $& Omar $& 6/11/2018 12:00:00 AM $& tom POGGERS}
+	[1070]{279449531144470539 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& Lag}
+	[1076]{278335871432916992 $& cybros $& 2/7/2017 12:00:00 AM $& ty}
+	[1080]{339600959338708997 $& ThatNinja $& 7/26/2017 12:00:00 AM $& http://imgur.com/gallery/CXloJ93}
+	[1081]{411784226887827457 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Just got 8th place in a solo game tip}
+	[1083]{329054587376107520 $& ThatNinja $& 6/27/2017 12:00:00 AM $& http://i.imgur.com/DwR4zTg.jpg}
+	[1084]{376477592397807616 $& FreedomFries $& 11/4/2017 12:00:00 AM $& give them bac}
+	[1085]{342873024472678400 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& It's ok}
+	[1086]{312420139364777984 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Who keeps inviting people to my discord zzz}
+	[1088]{428329502272258049 $& jaeger $& 3/27/2018 12:00:00 AM $& }
+	[1092]{302621619958972437 $& Aephilia of the Snow $& 4/15/2017 12:00:00 AM $& Ignored FeelsBadMan},{297197966844755968 $& minnesota212 $& 3/31/2017 12:00:00 AM $& i am}
+	[1094]{411778570889723905 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Goooooo do ittt}
+	[1106]{278335755145838593 $& FreedomFries $& 2/7/2017 12:00:00 AM $& and that}
+	[1112]{317807536252125194 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& it was working earlier}
+	[1113]{342872949201829888 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& Hi}
+	[1114]{283463610401816579 $& ThatNinja $& 2/21/2017 12:00:00 AM $& https://www.youtube.com/watch?v=XuBweHIEdNU}
+	[1115]{446416579689840670 $& Aephilia of the Snow $& 5/16/2018 12:00:00 AM $& who are these people},{279087459638444032 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& I just changed the name for this server},{278337462428893184 $& cybros $& 2/7/2017 12:00:00 AM $& insult me}
+	[1117]{327317943119511552 $& Toaster443 $& 6/22/2017 12:00:00 AM $& what are weee doing tmw}
+	[1118]{299383849807511553 $& bobgooeyflonder $& 4/6/2017 12:00:00 AM $& https://www.google.com/flights/#search;f=JFK,EWR,LGA;t=SEA;d=2017-08-07;r=2017-08-13;sel=JFKSEA0DL2163,SEAJFK0DL415;s=0;q=flights+from+new+york+to+seattle}
+	[1120]{279449237035679745 $& Kaori Miyazono $& 2/10/2017 12:00:00 AM $& Enqueued **[MV] SEVENTEEN(세븐틴) _ HIGHLIGHT** to be played. Position in queue: Up next!}
+	[1124]{423685745606262794 $& FreedomFries $& 3/15/2018 12:00:00 AM $& its time by pink phloyd you unvulterred swine'},{307761467048853505 $& giri $& 4/29/2017 12:00:00 AM $& you already are}
+	[1127]{312420083060178944 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& O}
+	[1136]{290301662310957061 $& giri $& 3/12/2017 12:00:00 AM $& GIRUGAMESH}
+	[1143]{280433845654913024 $& melone $& 2/12/2017 12:00:00 AM $& knig can i come over}
+	[1145]{455867620873338892 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !ur mum}
+	[1146]{317805668461445131 $& FreedomFries $& 5/26/2017 12:00:00 AM $& Code Geass}
+	[1148]{304806363945500672 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& or jap}
+	[1149]{343237570265874442 $& FreedomFries $& 8/5/2017 12:00:00 AM $& asd}
+	[1150]{299375133913513984 $& Bezi $& 4/6/2017 12:00:00 AM $& https://www.bestwestern.com/en_US/book/hotels-in-seattle/best-western-executive-inn/propertyCode.48068.html}
+	[1151]{456177532157427712 $& FreedomFries $& 6/12/2018 12:00:00 AM $& what if I watched some anime with you},{376526430026203136 $& FreedomFries $& 11/5/2017 12:00:00 AM $& yay}
+	[1152]{418311792700424204 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& ok}
+	[1155]{324343108944789506 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& https://www.youtube.com/watch?v=BhzX4mZWYS4}
+	[1160]{297233695633571843 $& bobgooeyflonder $& 3/31/2017 12:00:00 AM $& is my mic dead},{283829465623166977 $& giri $& 2/22/2017 12:00:00 AM $& fk}
+	[1161]{317806615443144714 $& FreedomFries $& 5/26/2017 12:00:00 AM $& tom go cm}
+	[1162]{307746393211273217 $& minnesota212 $& 4/29/2017 12:00:00 AM $& oh few i was worried i was being distracting},{300844682999496704 $& Toaster443 $& 4/10/2017 12:00:00 AM $& rip}
+	[1165]{297816771295969290 $& melone $& 4/1/2017 12:00:00 AM $& https://twitter.com/SHSAssassin17}
+	[1166]{317806042140508160 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& That doesn't turn you on}
+	[1174]{374632123790917632 $& Aephilia of the Snow $& 10/30/2017 12:00:00 AM $& two plus two is four minus one dats free quick maths}
+	[1175]{317805698899509258 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Fucking old fart},{302621583187509258 $& Aephilia of the Snow $& 4/15/2017 12:00:00 AM $& HeyGuys}
+	[1178]{278336435721994240 $& cybros $& 2/7/2017 12:00:00 AM $& i approve}
+	[1179]{418314539222827008 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& who knows}
+	[1181]{418301242817642496 $& giri $& 2/28/2018 12:00:00 AM $& i think you guys are mispelling anohana},{324303927967219722 $& Toaster443 $& 6/13/2017 12:00:00 AM $& rip}
+	[1183]{432627758129217546 $& Moo $& 4/8/2018 12:00:00 AM $& someone play a game w. me b4 ikill myself},{455850275534667787 $& FreedomFries $& 6/11/2018 12:00:00 AM $& No I don't fuck with the war}
+	[1185]{341790381324763137 $& Aephilia of the Snow $& 8/1/2017 12:00:00 AM $& Hello boys},{291009720532205569 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Or something...},{303323672469569537 $& ThatNinja $& 4/17/2017 12:00:00 AM $& http://i.imgur.com/6zV8Us4.png}
+	[1188]{313884173310099466 $& melone $& 5/16/2017 12:00:00 AM $& https://www.dotabuff.com/matches/3177092826}
+	[1199]{456244019454935060 $& FreedomFries $& 6/12/2018 12:00:00 AM $& !addFromHere}
+	[1206]{280898787889905664 $& Aephilia of the Snow $& 2/14/2017 12:00:00 AM $& slark kappa}
+	[1208]{292829691323219970 $& Aephilia of the Snow $& 3/19/2017 12:00:00 AM $& some nice bubble tea}
+	[1209]{454801080149213195 $& Dad Bot $& 6/9/2018 12:00:00 AM $& Hi back, I'm Dad!},{425851639233118210 $& giri $& 3/21/2018 12:00:00 AM $& gna go eat}
+	[1210]{418302706361565185 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& over christmas break},{306567911600816128 $& FreedomFries $& 4/25/2017 12:00:00 AM $& thats trash}
+	[1212]{373305949416325123 $& ThatNinja $& 10/27/2017 12:00:00 AM $& GIVE CONKLE NUDES},{303325689543786496 $& Aephilia of the Snow $& 4/17/2017 12:00:00 AM $& Jebaited}
+	[1214]{290605173641052160 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& updating},{282359714740699136 $& Kaori Miyazono $& 2/18/2017 12:00:00 AM $& Now Playing: **K.A.R.D - Oh NaNa M/V** added by **Noctia of the Hyacinths** `[03:12/03:33]`}
+	[1215]{388928499567558656 $& jaeger $& 12/9/2017 12:00:00 AM $& 2}
+	[1216]{360982376039317504 $& FreedomFries $& 9/23/2017 12:00:00 AM $& 2d of course},{295433105618108416 $& ThatNinja $& 3/26/2017 12:00:00 AM $& http://i.imgur.com/SokF1pM.jpg}
+	[1217]{424083925191622667 $& giri $& 3/16/2018 12:00:00 AM $& FeelsBadMan}
+	[1218]{455868631322984458 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere}
+	[1219]{278335808644186112 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& im sure it is}
+	[1221]{418301467829731329 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& oh ok}
+	[1222]{425869231591260167 $& Shady $& 3/21/2018 12:00:00 AM $& Ok},{307760956048670720 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Same as this discord},{306610406170820628 $& Aephilia of the Snow $& 4/26/2017 12:00:00 AM $& The server pic}
+	[1223]{292859788365266944 $& melone $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=Y4nHLHDtyVA&feature=youtu.be},{279447460911251456 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& https://i.reddituploads.com/5832b3719daf47178c2009cf05769a8f?fit=max&h=1536&w=1536&s=2ee3e320912c3cf369eb3e93611ddc7c}
+	[1224]{317806122688053259 $& FreedomFries $& 5/26/2017 12:00:00 AM $& wtf}
+	[1225]{291009681911054349 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& ^}
+	[1226]{418314444242681856 $& giri $& 2/28/2018 12:00:00 AM $& tom},{302621630767693835 $& FreedomFries $& 4/15/2017 12:00:00 AM $& stfu}
+	[1238]{280518842927808512 $& FreedomFries $& 2/13/2017 12:00:00 AM $& https://i.redd.it/1abp7wvktrby.jpg}
+	[1240]{418302789421105152 $& giri $& 2/28/2018 12:00:00 AM $& like next weekend}
+	[1242]{454685695718457385 $& FreedomFries $& 6/8/2018 12:00:00 AM $& d!help}
+	[1243]{279084642986885121 $& FreedomFries $& 2/9/2017 12:00:00 AM $& }
+	[1245]{283464705907884034 $& Aephilia of the Snow $& 2/21/2017 12:00:00 AM $& its me}
+	[1248]{375766483541950466 $& FreedomFries $& 11/2/2017 12:00:00 AM $& ketchup}
+	[1249]{455395178451304448 $& FreedomFries $& 6/10/2018 12:00:00 AM $& thats tsundere as fuck},{426196467871514625 $& giri $& 3/22/2018 12:00:00 AM $& im being a nice rm since hes studying 😃}
+	[1251]{279450296919523339 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& Sure},{279449458713034752 $& giri $& 2/10/2017 12:00:00 AM $& how long till they disband}
+	[1254]{418311921306042378 $& giri $& 2/28/2018 12:00:00 AM $& N O B U L L I}
+	[1255]{307760703392186369 $& minnesota212 $& 4/29/2017 12:00:00 AM $& In that case I'll stop being a distraction now}
+	[1256]{299043373296254977 $& Anand $& 4/5/2017 12:00:00 AM $& http://www.ticketmaster.com/the-international-dota-2-championship-finals-seattle-washington/event/0F00527BEAA1AB66?artistid=1982004&majorcatid=10005&minorcatid=0&bba=1#efeat4211},{283065685909700609 $& ThatNinja $& 2/20/2017 12:00:00 AM $& http://i.imgur.com/CQWNOsE.jpg}
+	[1257]{291009478013222913 $& FreedomFries $& 3/14/2017 12:00:00 AM $& oh}
+	[1259]{317806181198462979 $& FreedomFries $& 5/26/2017 12:00:00 AM $& well theres my Kiss X Sis joke}
+	[1263]{455558092415959040 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& i don't regret it}
+	[1268]{455818657134805012 $& FreedomFries.AI $& 6/11/2018 12:00:00 AM $& Unknown command.}
+	[1270]{302812613920686082 $& Aephilia of the Snow $& 4/15/2017 12:00:00 AM $& lmao}
+	[1272]{317466799983558671 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& bezi},{291009278339317760 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& is rene?},{283471936183468042 $& Omar $& 2/21/2017 12:00:00 AM $& Xd}
+	[1273]{375829537444986891 $& Aephilia of the Snow $& 11/3/2017 12:00:00 AM $& raw sauce*}
+	[1274]{282587881036316673 $& FreedomFries $& 2/18/2017 12:00:00 AM $& https://i.redd.it/pe4xhjb17ngy.jpg}
+	[1275]{342872645815107586 $& giri $& 8/4/2017 12:00:00 AM $& is tom our friend}
+	[1277]{375766493432119325 $& FreedomFries $& 11/2/2017 12:00:00 AM $& raw SAUCE}
+	[1279]{418313798672449536 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& what do I do},{351123546828701700 $& melone $& 8/26/2017 12:00:00 AM $& huh},{278736358288392193 $& Thearesia Van Astrea $& 2/8/2017 12:00:00 AM $& <@163492085540978689> , your waifu is shit!}
+	[1280]{317806204351152130 $& Shvou $& 5/26/2017 12:00:00 AM $& XD}
+	[1284]{455847285948022785 $& FreedomFries $& 6/11/2018 12:00:00 AM $& What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little "clever" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.}
+	[1285]{291009549161463831 $& FreedomFries $& 3/14/2017 12:00:00 AM $& its all about iroha}
+	[1286]{279087065243844608 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& PogChamp Fire Emblem},{278336305564352512 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& ?}
+	[1288]{278335785504210944 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& etc}
+	[1289]{435956204364365825 $& Moo $& 4/18/2018 12:00:00 AM $& They have everything for you men to enjoy
+You can hang out with all the boys},{360542084593090561}
+	[1290]{426564870771572736 $& giri $& 3/23/2018 12:00:00 AM $& and nudes},{279086951837990912 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& Lmao!}
+	[1292]{318596189044080642 $& FreedomFries $& 5/29/2017 12:00:00 AM $& http://imgur.com/cMfkFGP}
+	[1294]{278336390436093954 $& FreedomFries $& 2/7/2017 12:00:00 AM $& }
+	[1301]{389108417278509058 $& jaeger $& 12/9/2017 12:00:00 AM $& I'm avoiding my responsibilities}
+	[1305]{326903375436316683 $& ThatNinja $& 6/21/2017 12:00:00 AM $& http://cps-static.rovicorp.com/3/JPG_500/MI0002/772/MI0002772874.jpg?partner=allrovi.com},{278336197569413120 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& $$$}
+	[1306]{312419895524458496 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& We don't even have school}
+	[1307]{302292920201904129 $& giri $& 4/14/2017 12:00:00 AM $& ?}
+	[1308]{278336261104861186 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& Money},{308044239063875585 $& FreedomFries $& 4/30/2017 12:00:00 AM $& }
+	[1309]{418302568603844610 $& giri $& 2/28/2018 12:00:00 AM $& tom}
+	[1312]{456164118383165451 $& Aephilia of the Snow $& 6/12/2018 12:00:00 AM $& no},{422239908799840257 $& giri $& 3/11/2018 12:00:00 AM $& PepeHands}
+	[1318]{455819407772352523 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !ur mum}
+	[1322]{411772797812080651 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Updating but I have Ethernet}
+	[1332]{307760644894228480 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& just found a game}
+	[1333]{308126071901913088 $& bobgooeyflonder $& 4/30/2017 12:00:00 AM $& 2004 box cars with steering wheel cover SeemsGood}
+	[1338]{411778777475973120 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Againnnn we can win one},{301213527371415552 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& http://oi65.tinypic.com/2ry2849.jpg}
+	[1339]{291009604320624641 $& FreedomFries $& 3/14/2017 12:00:00 AM $& tom Im fucking with you}
+	[1340]{418301430579986432 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& are you being serious or},{317806296848007179 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Where's Jon}
+	[1341]{455849744107831311 $& FreedomFries $& 6/11/2018 12:00:00 AM $& i said stay woke bitch},{299756063035621376 $& ThatNinja $& 4/7/2017 12:00:00 AM $& https://www.airbnb.com/rooms/5364414?checkin=2017-08-07&checkout=2017-08-13&guests=6&adults=6&children=0&infants=0&s=i4XNjAsi}
+	[1343]{426895317447999503 $& Aephilia of the Snow $& 3/24/2018 12:00:00 AM $& Same}
+	[1344]{291035472270983169 $& FreedomFries $& 3/14/2017 12:00:00 AM $& i know you are but what am i}
+	[1345]{278336076865601536 $& FreedomFries $& 2/7/2017 12:00:00 AM $& bezi isn't ehre}
+	[1346]{418315372891209739 $& giri $& 2/28/2018 12:00:00 AM $& regardless of whether thats the real future},{299379712566755328 $& ThatNinja $& 4/6/2017 12:00:00 AM $& http://i.imgur.com/gmL88aL.gifv},{283829580329123840 $& ThatNinja $& 2/22/2017 12:00:00 AM $& what are you streaming}
+	[1351]{304812949749497856 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& good night guys}
+	[1352]{290210798176043018 $& cybros $& 3/11/2017 12:00:00 AM $& ?}
+	[1357]{317491100707192832 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& :c}
+	[1360]{455819442312708120 $& FreedomFries $& 6/11/2018 12:00:00 AM $& we live in the future gents}
+	[1365]{278335594071982080 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& Boiiiiiiiii <:tomasStare:277887766669426688>}
+	[1368]{282358902559866891 $& Kaori Miyazono $& 2/18/2017 12:00:00 AM $& Enqueued **K.A.R.D - Oh NaNa M/V** to be played. Position in queue: Up next!}
+	[1370]{291009346853404673 $& FreedomFries $& 3/14/2017 12:00:00 AM $& ?}
+	[1371]{301559736548065280 $& FreedomFries $& 4/12/2017 12:00:00 AM $& https://i.redd.it/rr1iprbnrzqy.png},{282340204772065280 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& why is everyone so fucking racist}
+	[1372]{455232076963119115 $& FreedomFries $& 6/10/2018 12:00:00 AM $& thislevel of gatekeeping is unreal},{434465350466273280 $& Shvou $& 4/13/2018 12:00:00 AM $& ill be on in like an hour or so}
+	[1374]{418302599557546005 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& in two weeks},{300849418540941312 $& ThatNinja $& 4/10/2017 12:00:00 AM $& reallly?},{294318300349988865 $& FreedomFries $& 3/23/2017 12:00:00 AM $& }
+	[1381]{278338138542178304 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& !pause},{388532261449891841 $& Shvou $& 12/8/2017 12:00:00 AM $& https://www.youtube.com/watch?v=Zyef3NU3wqk}
+	[1382]{342108421702680576 $& FreedomFries $& 8/2/2017 12:00:00 AM $& oh my GOD},{317805731179134987 $& Shvou $& 5/26/2017 12:00:00 AM $& Some old hentai?}
+	[1383]{305187492653694976 $& melone $& 4/22/2017 12:00:00 AM $& https://www.youtube.com/watch?v=unRldLdllZ8}
+	[1385]{454799605486452736 $& Dad Bot $& 6/9/2018 12:00:00 AM $& Hi gay, I'm Dad!}
+	[1386]{291009332013694979 $& FreedomFries $& 3/14/2017 12:00:00 AM $& who is irene}
+	[1387]{282358910906662915 $& Kaori Miyazono $& 2/18/2017 12:00:00 AM $& Now playing in A Team: **K.A.R.D - Oh NaNa M/V**}
+	[1389]{282359713990180864 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& !queue}
+	[1397]{279449603986817036 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& Because you're not a koreeaboo ❤}
+	[1401]{455538215319896064 $& Dad Bot $& 6/11/2018 12:00:00 AM $& Hi an attack helicopter, I'm Dad!}
+	[1405]{324342264551964675 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& https://en.wikipedia.org/wiki/Draymond_Green#/media/File:Draymond_Green_against_Washington_(cropped).jpg}
+	[1406]{426612795744976897 $& giri $& 3/23/2018 12:00:00 AM $& so i fell}
+	[1407]{413926589093511169 $& Shvou $& 2/16/2018 12:00:00 AM $& https://cstarleague.com/dota2/standings}
+	[1408]{292876738269020163 $& ThatNinja $& 3/19/2017 12:00:00 AM $& PIZZA TIME}
+	[1409]{312420164157046784 $& FreedomFries $& 5/12/2017 12:00:00 AM $& <:tomasStare:277887766669426688>}
+	[1411]{374631997177462784 $& Aephilia of the Snow $& 10/30/2017 12:00:00 AM $& the ting goes skrrraaaaaa},{282336283899199488 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& dota 4 gb update ROFL}
+	[1413]{351123389680713729 $& jaeger $& 8/26/2017 12:00:00 AM $& HeyGuys Grant is a God}
+	[1414]{455597312207486987 $& giri $& 6/11/2018 12:00:00 AM $& <:4Bezi:277873291165958144> MY <:4Bezi:277873291165958144> DREAM <:4Bezi:277873291165958144> IS <:4Bezi:277873291165958144> TO <:4Bezi:277873291165958144> FILL <:4Bezi:277873291165958144> THE <:4Bezi:277873291165958144> PAGE <:4Bezi:277873291165958144> WITH <:4Bezi:277873291165958144> BEZIS <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> MY <:4Bezi:277873291165958144> DREAM <:4Bezi:277873291165958144> IS <:4Bezi:277873291165958144> TO <:4Bezi:277873291165958144> FILL <:4Bezi:277873291165958144> THE <:4Bezi:277873291165958144> PAGE <:4Bezi:277873291165958144> WITH <:4Bezi:277873291165958144> BEZIS <:4Bezi:277873291165958144> <:4Bezi:277873291165958144> MY <:4Bezi:277873291165958144> DREAM <:4Bezi:277873291165958144> IS <:4Bezi:277873291165958144> TO <:4Bezi:277873291165958144> FILL <:4Bezi:277873291165958144> THE <:4Bezi:277873291165958144> PAGE <:4Bezi:277873291165958144> WITH <:4Bezi:277873291165958144> BEZIS <:4Bezi:277873291165958144>},{411778847546277899 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Nah I’m bad}
+	[1415]{304808556706791424 $& Bezi $& 4/21/2017 12:00:00 AM $& <@!163818292497088512>  haha}
+	[1419]{280431087380070400 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& don't ban void if the JT guys isn't playing}
+	[1421]{455578700893650949 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& holy shit fuck you dad}
+	[1428]{279450369296302081 $& giri $& 2/10/2017 12:00:00 AM $& !ping}
+	[1429]{335221126529679360 $& FreedomFries $& 7/14/2017 12:00:00 AM $& ive been invited to smoke with the camp crew},{302293087277809666 $& FreedomFries $& 4/14/2017 12:00:00 AM $& i didnt do shit}
+	[1431]{300800976053469185 $& FreedomFries $& 4/10/2017 12:00:00 AM $& Ya know}
+	[1433]{455231993123307531 $& FreedomFries $& 6/10/2018 12:00:00 AM $& },{418302726447955970 $& giri $& 2/28/2018 12:00:00 AM $& will you be home weekend?}
+	[1434]{313873216193953793 $& melone $& 5/16/2017 12:00:00 AM $& https://www.dotabuff.com/matches/3180077035}
+	[1435]{317492438526853122 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& smh},{301213413613502464 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& me_irl}
+	[1437]{372248383202656257 $& Bezi $& 10/24/2017 12:00:00 AM $& fare the well},{290318914175500288 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& Battle Cup Winners}
+	[1438]{455395162215022592 $& FreedomFries $& 6/10/2018 12:00:00 AM $& "Fine! I guess were boyfriend and girlfriend"}
+	[1441]{278335886117175297 $& FreedomFries $& 2/7/2017 12:00:00 AM $& send me a good photo}
+	[1443]{279088261429854219 $& Omar $& 2/9/2017 12:00:00 AM $& <3},{279087897368592386 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& I did it  boys}
+	[1447]{307746248235155459 $& minnesota212 $& 4/29/2017 12:00:00 AM $& i was playing hots w jarrett}
+	[1452]{308069397174550529 $& Aephilia of the Snow $& 4/30/2017 12:00:00 AM $& zzz}
+	[1457]{376477644876939264 $& FreedomFries $& 11/4/2017 12:00:00 AM $& yes}
+	[1460]{312421559513907202 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Three antimages LUL}
+	[1463]{282357904869425152 $& Kaori Miyazono $& 2/18/2017 12:00:00 AM $& <@!163818292497088512>, updated volume from 15 to 35}
+	[1466]{418315449378406400 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& ok}
+	[1467]{418314711411458068 $& giri $& 2/28/2018 12:00:00 AM $& you do tom}
+	[1468]{455878705223303189 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere},{317805607224868864 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Any recommendations},{291009487689613312 $& FreedomFries $& 3/14/2017 12:00:00 AM $& shit taste}
+	[1469]{302972389522669578 $& FreedomFries $& 4/16/2017 12:00:00 AM $& haHAA}
+	[1471]{390711262121558018 $& Aephilia of the Snow $& 12/14/2017 12:00:00 AM $& ?}
+	[1474]{455557278012145664 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& im back},{423685643349131265 $& giri $& 3/15/2018 12:00:00 AM $& WutFace},{411778881822130176 $& minnesota212 $& 2/10/2018 12:00:00 AM $& It’s aight}
+	[1476]{317806161959321600 $& Shvou $& 5/26/2017 12:00:00 AM $& uh}
+	[1478]{317806239843352578 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Double loli younger sisters}
+	[1480]{317805795582541824 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Every girl has huge breasts},{317477388206473217 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& zenzen zense pogchamp}
+	[1483]{312421096156561429 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& 4Head}
+	[1493]{283464665953206272 $& ThatNinja $& 2/21/2017 12:00:00 AM $& its you tom}
+	[1494]{418302688044908546 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& I hung out with him like}
+	[1495]{455843374323204096 $& FreedomFries $& 6/11/2018 12:00:00 AM $& kk},{313512411988623361 $& melone $& 5/15/2017 12:00:00 AM $& https://www.dotabuff.com/matches/2651907674}
+	[1498]{455867133923164180 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere},{324341876314603520 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& https://www.youtube.com/watch?v=vtE3_voC3qU}
+	[1499]{455819409592811520 $& FreedomFries.AI $& 6/11/2018 12:00:00 AM $& YOUR MOM!},{317805934866857984 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& I'M THE FUCKING SERVER OWNER},{278335990257549313 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& He means gay}
+	[1501]{455558075873755136 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& i haven't played dota in like a year}
+	[1502]{337400799644614656 $& ThatNinja $& 7/20/2017 12:00:00 AM $& yes},{299760898111963136 $& ThatNinja $& 4/7/2017 12:00:00 AM $& https://www.airbnb.com/rooms/3987902?checkin=2017-08-07&checkout=2017-08-13&guests=6&adults=6&s=XOcsiICz},{289971427421978624 $& FreedomFries $& 3/11/2017 12:00:00 AM $& https://gfycat.com/HastyFarInganue}
+	[1503]{312419881846964226 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& What do you mean},{282340532989067264 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& edge pan LUL}
+	[1504]{304806326830366740 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& sure <@163818149576310784>}
+	[1506]{287114746963034113 $& giri $& 3/3/2017 12:00:00 AM $& https://www.youtube.com/watch?v=JTw3iOBvvOA}
+	[1507]{418302658206760961 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& yo peter is my fam},{317805941020033025 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& rofl},{283815206403047424 $& Aephilia of the Snow $& 2/22/2017 12:00:00 AM $& S}
+	[1512]{372248353330692117 $& Shvou $& 10/24/2017 12:00:00 AM $& far thee well}
+	[1518]{388928580308172802 $& Shady $& 12/9/2017 12:00:00 AM $& nooooooo}
+	[1522]{376525382070829056 $& FreedomFries $& 11/5/2017 12:00:00 AM $& TOM MAKE ME ADMIN qq}
+	[1525]{289971458556559361 $& FreedomFries $& 3/11/2017 12:00:00 AM $& NO MERCY}
+	[1526]{455471543162634261 $& FreedomFries $& 6/10/2018 12:00:00 AM $& https://www.youtube.com/watch?v=WQxOdvpU_oU&t=2363s&list=FL5Wp_eNwuUnTA4vuxI2FhEA&index=97}
+	[1527]{372233991673348097 $& FreedomFries $& 10/24/2017 12:00:00 AM $& its ya boi}
+	[1528]{424440415845089290 $& FreedomFries $& 3/17/2018 12:00:00 AM $& yolo},{324343605894316033 $& bobgooeyflonder $& 6/14/2017 12:00:00 AM $& http://www.cbssports.com/nba/news/draymond-green-insults-cleveland-they-dont-seem-like-the-sharpest-people-around/}
+	[1533]{278336269581549568 $& cybros $& 2/7/2017 12:00:00 AM $& $$$}
+	[1534]{302618539787812865 $& Toaster443 $& 4/15/2017 12:00:00 AM $& but ima play next game},{278336316595503105 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& which one}
+	[1536]{351805044959739904 $& ThatNinja $& 8/28/2017 12:00:00 AM $& Hi},{341088329392979968 $& giri $& 7/30/2017 12:00:00 AM $& https://stockx.com/adidas-ultra-boost-uncaged-hypebeast}
+	[1537]{282709155414933505 $& FreedomFries $& 2/19/2017 12:00:00 AM $& i enjoy the fact tts if banned on the server}
+	[1538]{454685806729363486 $& Dad Bot $& 6/8/2018 12:00:00 AM $& Im Responses are no longer working here},{317805762053144597 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Old hentai is bad},{284220791636230144 $& ThatNinja $& 2/23/2017 12:00:00 AM $& http://www.rom.on.ca/sites/default/files/styles/gallery_carousel/public/926.18.110_1_0.png?itok=fnutKrQK}
+	[1539]{455867621435244544 $& FreedomFries.AI $& 6/11/2018 12:00:00 AM $& YOUR MOM!},{341761882375454721 $& FreedomFries $& 8/1/2017 12:00:00 AM $& his coreography is top notch}
+	[1540]{307761361516101644 $& giri $& 4/29/2017 12:00:00 AM $& you arent a distraction},{278335593732243456 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& bazinga}
+	[1544]{455878230570696726 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere},{282340284677881856 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& should I solo q LUL},{279449560492015617 $& cybros $& 2/10/2017 12:00:00 AM $& and why am i banned from kpop channel again}
+	[1548]{312419769368444929 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Reeeeee}
+	[1552]{317805528598183947 $& FreedomFries $& 5/26/2017 12:00:00 AM $& }
+	[1556]{299383470596292609 $& ThatNinja $& 4/6/2017 12:00:00 AM $& http://www.technologytell.com/entertainment/files/2014/05/deadringersturtlemcconnell.jpg}
+	[1558]{455558011956756482 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& yeah}
+	[1562]{283465014109536266 $& Omar $& 2/21/2017 12:00:00 AM $& I bet your mom is an EXO fan Kappa}
+	[1563]{400895204187439104 $& Aephilia of the Snow $& 1/11/2018 12:00:00 AM $& weeb},{291009588059439104 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& #2}
+	[1564]{291009608875507712 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& For me, I think}
+	[1565]{426213615205613588 $& giri $& 3/22/2018 12:00:00 AM $& whats ur name},{317485563038924800 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& you guys playing dotes?}
+	[1566]{304806663469268992 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& LMAO},{283829601678000130 $& giri $& 2/22/2017 12:00:00 AM $& rtz}
+	[1569]{307760773101518849 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& yo download dota and watch our game xD},{292860244797947915 $& melone $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=ZwHb4WTvXQ8&feature=youtu.be}
+	[1572]{426564826140114965 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& wanna see my dorm},{297198184252440576 $& Aephilia of the Snow $& 3/31/2017 12:00:00 AM $& Alright I'm outs good night}
+	[1577]{318042296375574528 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& https://www.youtube.com/watch?v=A0NCu7Q3YME&feature=youtu.be},{292880260813291520 $& Aephilia of the Snow $& 3/19/2017 12:00:00 AM $& https://www.opendota.com/matches/3063951313/casts}
+	[1578]{426565143540006918 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& behind me}
+	[1583]{308069373912809473 $& Aephilia of the Snow $& 4/30/2017 12:00:00 AM $& gg}
+	[1584]{317823031256809474 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& You aren't playing dota},{302621557098807296 $& Aephilia of the Snow $& 4/15/2017 12:00:00 AM $& HeyGuys}
+	[1586]{292925214579490816 $& ThatNinja $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=vTIIMJ9tUc8}
+	[1587]{455556197202919466 $& giri $& 6/11/2018 12:00:00 AM $& get him outta here},{317810777140756490 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& ?}
+	[1590]{418302547602964492 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& i'm lonely i haven't seen you guys in like years},{307746413750517760 $& minnesota212 $& 4/29/2017 12:00:00 AM $& phew*},{320388419790307341 $& FreedomFries $& 6/3/2017 12:00:00 AM $& r u saying anime isn't real},{282982718646517760 $& ThatNinja $& 2/19/2017 12:00:00 AM $& http://i.imgur.com/ly9VAbi.jpg}
+	[1595]{359534870730637313 $& Aephilia of the Snow $& 9/19/2017 12:00:00 AM $& https://gyazo.com/e9684eb15c01ecf487f0876dd63c3c94}
+	[1597]{304806717986701324 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& Easy}
+	[1599]{455842875024867338 $& FreedomFries $& 6/11/2018 12:00:00 AM $& test},{359534700961857537 $& Aephilia of the Snow $& 9/19/2017 12:00:00 AM $& https://gyazo.com/a43fa2b2fa4d58d815e701273f047c13},{283829604739842049 $& giri $& 2/22/2017 12:00:00 AM $& straem}
+	[1601]{455694877737353222 $& ThatNinja $& 6/11/2018 12:00:00 AM $& https://i.redd.it/cektd9j3eb311.jpg}
+	[1602]{455863876739923969 $& FreedomFries $& 6/11/2018 12:00:00 AM $& !addFromHere]}
+	[1605]{301570257334566912 $& Aephilia of the Snow $& 4/12/2017 12:00:00 AM $& ROFL},{283829679960358913 $& ThatNinja $& 2/22/2017 12:00:00 AM $& I provide the Hentai experience}
+	[1606]{312421086547410944 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Bezi carry}
+	[1608]{283465047462772736 $& Aephilia of the Snow $& 2/21/2017 12:00:00 AM $& NoKappa}
+	[1611]{422239985585094666 $& giri $& 3/11/2018 12:00:00 AM $& DONT BAN ME monkaH}
+	[1624]{388925077296644097 $& jaeger $& 12/9/2017 12:00:00 AM $& my roommates are deasd again}
+	[1626]{418314354648416256 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& idk}
+	[1630]{394320278676832258 $& Aephilia of the Snow $& 12/24/2017 12:00:00 AM $& SORE WA CHIGAU YO},{312421743375417349 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& I sound like taco /s}
+	[1631]{454685697891368961 $& Dad Bot $& 6/8/2018 12:00:00 AM $& sent to dm!},{318172726286352384 $& Thearesia Van Astrea $& 5/27/2017 12:00:00 AM $& ?}
+	[1632]{418301520065331210 $& giri $& 2/28/2018 12:00:00 AM $& you havent watched it?},{290605990699859969 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& my throat isn't work}
+	[1633]{307761487634628618 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Exactly}
+	[1634]{304806338179891200 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& what request},{280481726432542720 $& ThatNinja $& 2/12/2017 12:00:00 AM $& http://i.imgur.com/cLVAaJw.jpg}
+	[1637]{283814906875346945 $& giri $& 2/22/2017 12:00:00 AM $& BTS IS THE MOST WANNABE BLACKS EVER}
+	[1638]{455818644765671468 $& FreedomFries $& 6/11/2018 12:00:00 AM $& ur mum},{301194570543136769 $& Aephilia of the Snow $& 4/11/2017 12:00:00 AM $& Can anyone play in like}
+	[1640]{343236123281063940 $& Aephilia of the Snow $& 8/5/2017 12:00:00 AM $& ?}
+	[1642]{342878634962321419 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& bye guys}
+	[1643]{280432853660073986 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& just do it},{279780712595324929 $& ThatNinja $& 2/11/2017 12:00:00 AM $& http://i.imgur.com/V0TzPmo.png}
+	[1646]{342124804591190028 $& Aephilia of the Snow $& 8/2/2017 12:00:00 AM $& oh my GOD}
+	[1653]{290605121794998272 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& add me on battle net}
+	[1655]{307760659032965120 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Ooo}
+	[1656]{295020134177964032 $& FreedomFries $& 3/25/2017 12:00:00 AM $& https://imgur.com/d2E0aft}
+	[1658]{454801079419404288 $& Aephilia of the Snow $& 6/9/2018 12:00:00 AM $& im back},{291009658536067072 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& #10*}
+	[1664]{317806707424100353 $& Shvou $& 5/26/2017 12:00:00 AM $& how about suppport sven?}
+	[1665]{455854625317322752 $& FreedomFries $& 6/11/2018 12:00:00 AM $& asd},{307650983796801538 $& ThatNinja $& 4/28/2017 12:00:00 AM $& http://i.imgur.com/nmeIDOy.jpg}
+	[1666]{301570282525687810 $& Aephilia of the Snow $& 4/12/2017 12:00:00 AM $& doctor getting fucked by united airlines}
+	[1670]{335416108029050881 $& Aephilia of the Snow $& 7/14/2017 12:00:00 AM $& no}
+	[1680]{426564971120558080 $& Aephilia of the Snow $& 3/23/2018 12:00:00 AM $& https://cdn.discordapp.com/attachments/368993121066811392/424571895778639882/image.jpg}
+	[1681]{418300747353161728 $& giri $& 2/28/2018 12:00:00 AM $& what}
+	[1682]{312420257580974080 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& Is that}
+	[1688]{307761090744549376 $& giri $& 4/29/2017 12:00:00 AM $& find us and add},{287769576341504001 $& Aephilia of the Snow $& 3/5/2017 12:00:00 AM $& I HAVE FOUR TICKET LET'S GO}
+	[1690]{282357847063265281 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& !play https://www.youtube.com/watch?v=MHqy1JsVvIE}
+	[1691]{278336409205473281 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& ....}
+	[1692]{426613600170409988 $& minnesota212 $& 3/23/2018 12:00:00 AM $& Oh rip lol I thought I was killing theirs}
+	[1693]{278335856413245440 $& cybros $& 2/7/2017 12:00:00 AM $& can we make a cybrospride}
+	[1697]{318172417417674752 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& Lul},{317466594710257665 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& anyone here wanna play dota}
+	[1698]{456149360900702209 $& FreedomFries $& 6/12/2018 12:00:00 AM $& this is a coup},{317492406230450177 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& I said I wanted to hear your voices}
+	[1699]{278335763568001026 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& insult me}
+	[1701]{418311819724193792 $& giri $& 2/28/2018 12:00:00 AM $& KAPPA DUDE}
+	[1702]{335215105166016517 $& ThatNinja $& 7/14/2017 12:00:00 AM $& oh ok}
+	[1705]{291009142506651649 $& FreedomFries $& 3/14/2017 12:00:00 AM $& is rene}
+	[1713]{312419970611150849 $& FreedomFries $& 5/12/2017 12:00:00 AM $& u haven't written in the facebook chat}
+	[1714]{317466653426319360 $& Toaster443 $& 5/26/2017 12:00:00 AM $& we r in game}
+	[1716]{376477528199528450 $& FreedomFries $& 11/4/2017 12:00:00 AM $& tom took away my admin level permissions}
+	[1718]{304806359390748672 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& english}
+	[1720]{279087023019524098 $& FreedomFries $& 2/9/2017 12:00:00 AM $& https://i.reddituploads.com/5832b3719daf47178c2009cf05769a8f?fit=max&h=1536&w=1536&s=2ee3e320912c3cf369eb3e93611ddc7c}
+	[1722]{291009571940728832 $& Aephilia of the Snow $& 3/14/2017 12:00:00 AM $& Iroha is like}
+	[1724]{312404441359712257 $& FreedomFries $& 5/12/2017 12:00:00 AM $& ryan its 2017}
+	[1726]{454192072879243274 $& Moo $& 6/7/2018 12:00:00 AM $& https://www.youtube.com/watch?v=6Kwh45jLlm4}
+	[1734]{317806247745290241 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& Acceptable}
+	[1736]{312066533360795649 $& bobgooeyflonder $& 5/11/2017 12:00:00 AM $& good morning !}
+	[1746]{307760831226052609 $& minnesota212 $& 4/29/2017 12:00:00 AM $& I have it downloaded}
+	[1749]{376525524123648010 $& Aephilia of the Snow $& 11/5/2017 12:00:00 AM $& ok}
+	[1753]{279447154345508864 $& ThatNinja $& 2/10/2017 12:00:00 AM $& http://i.imgur.com/wydWz4L.jpg}
+	[1754]{455541629537878036 $& Dad Bot $& 6/11/2018 12:00:00 AM $& Hi an What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills.
+
+I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words.
+
+You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands.
+
+Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue.
+
+But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it.
+
+You’re fucking dead, kiddo., I'm Dad!},{307760903837712387}
+	[1755]{317489310133911554 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& ok}
+	[1756]{455926967141924865 $& Aephilia of the Snow $& 6/12/2018 12:00:00 AM $& does anyone wanna gimme a hug cus im lonely},{299372499517571072 $& bobgooeyflonder $& 4/6/2017 12:00:00 AM $& possible}
+	[1759]{426565169372594186 $& giri $& 3/23/2018 12:00:00 AM $& pic},{376477613168001044 $& Aephilia of the Snow $& 11/4/2017 12:00:00 AM $& bacc},{305187584471203840 $& bobgooeyflonder $& 4/22/2017 12:00:00 AM $& BibleThump}
+	[1762]{455518653236903938 $& Aephilia of the Snow $& 6/10/2018 12:00:00 AM $& When was this}
+	[1766]{307761592563400714 $& giri $& 4/29/2017 12:00:00 AM $& cant get worse than that}
+	[1767]{290318713943752704 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& It's me},{279450307065544705 $& Aephilia of the Snow $& 2/10/2017 12:00:00 AM $& !ping}
+	[1774]{292860511413075969 $& melone $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=MCv6wnOaFgo&feature=youtu.be}
+	[1782]{312419787638833152 $& FreedomFries $& 5/12/2017 12:00:00 AM $& TOm}
+	[1784]{426564775971913740 $& giri $& 3/23/2018 12:00:00 AM $& is that your dorm bruh},{365329217682145280 $& Bezi $& 10/5/2017 12:00:00 AM $& sdwdsk},{278336724172800000 $& FreedomFries $& 2/7/2017 12:00:00 AM $& insult me}
+	[1785]{300112679966605312 $& Toaster443 $& 4/8/2017 12:00:00 AM $& i dont know}
+	[1787]{418315282134859777 $& giri $& 2/28/2018 12:00:00 AM $& everyone can see the future},{411774325641838602 $& minnesota212 $& 2/10/2018 12:00:00 AM $& I’m tilted},{283464632247648269 $& Aephilia of the Snow $& 2/21/2017 12:00:00 AM $& ROFL}
+	[1789]{312066480172826625 $& bobgooeyflonder $& 5/11/2017 12:00:00 AM $& why does bezi always sound like he just woke up}
+	[1790]{280433895772782593 $& melone $& 2/12/2017 12:00:00 AM $& can i knig?}
+	[1791]{297197895243792395 $& bobgooeyflonder $& 3/31/2017 12:00:00 AM $& join general minnesota my boy},{320419903100289035 $& FreedomFries $& 6/3/2017 12:00:00 AM $& https://www.youtube.com/watch?v=G7RgN9ijwE4}
+	[1792]{455556245152202763 $& Aephilia of the Snow $& 6/11/2018 12:00:00 AM $& i ban}
+	[1793]{279461566716313600 $& cybros $& 2/10/2017 12:00:00 AM $& http://i.imgur.com/azQDb1Q.gifv}
+	[1794]{342008109755006987 $& Aephilia of the Snow $& 8/1/2017 12:00:00 AM $& }
+	[1795]{317807085469433876 $& FreedomFries $& 5/26/2017 12:00:00 AM $& hes coming}
+	[1799]{418315470492532737 $& giri $& 2/28/2018 12:00:00 AM $& <<<<<3}
+	[1807]{318172255987171329 $& Aephilia of the Snow $& 5/27/2017 12:00:00 AM $& @here Who can play battle cup?}
+	[1813]{292860074022404096 $& melone $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=ob8TdILuuB8&feature=youtu.be}
+	[1816]{278336197858820097 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& }
+	[1819]{317806725409538049 $& FreedomFries $& 5/26/2017 12:00:00 AM $& FUkc n}
+	[1820]{413926643514605568 $& Shvou $& 2/16/2018 12:00:00 AM $& ez 100% winrate},{297198069500477440 $& minnesota212 $& 3/31/2017 12:00:00 AM $& its ur boy AY}
+	[1823]{300844496449699841 $& Toaster443 $& 4/10/2017 12:00:00 AM $& dont play in that stack}
+	[1824]{307761309351542784 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& oh alright}
+	[1830]{426612787712884736 $& giri $& 3/23/2018 12:00:00 AM $& you killed my building}
+	[1832]{456148690416041984 $& FreedomFries $& 6/12/2018 12:00:00 AM $& i will}
+	[1845]{351065599419613195 $& ThatNinja $& 8/26/2017 12:00:00 AM $& Yes}
+	[1853]{280433922628911105 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& he's in hsl}
+	[1854]{300111785854238720 $& Toaster443 $& 4/8/2017 12:00:00 AM $& im tilted}
+	[1855]{291009342709432321 $& FreedomFries $& 3/14/2017 12:00:00 AM $& is it tom}
+	[1856]{307760810996924418 $& minnesota212 $& 4/29/2017 12:00:00 AM $& Can I do that is that a thing}
+	[1857]{278336218230685697 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& Feelsbadman I'm broke}
+	[1859]{411773161353248768 $& minnesota212 $& 2/10/2018 12:00:00 AM $& Blame my roommate}
+	[1861]{295395697686216705 $& Aephilia of the Snow $& 3/26/2017 12:00:00 AM $& https://cdn.discordapp.com/attachments/220292927094521862/295372310070820864/Hehexd.png}
+	[1867]{455518573264371723 $& Aephilia of the Snow $& 6/10/2018 12:00:00 AM $& ???}
+	[1880]{307761508769726465 $& giri $& 4/29/2017 12:00:00 AM $& but thats ok dw}
+	[1883]{428038164544749579 $& giri $& 3/27/2018 12:00:00 AM $& https://www.youtube.com/watch?v=yeekIqRqyHo},{425851647143706624 $& giri $& 3/21/2018 12:00:00 AM $& w knig},{418302581278900224 $& giri $& 2/28/2018 12:00:00 AM $& whens your break}
+	[1884]{351123876186685461 $& melone $& 8/26/2017 12:00:00 AM $& hi grant}
+	[1886]{426890477015662594 $& giri $& 3/23/2018 12:00:00 AM $& https://twitter.com/Logic301/status/976181269070364672},{338488807060013066 $& Aephilia of the Snow $& 7/23/2017 12:00:00 AM $& <:arvindGrip:277891167943917570>},{307761250425896971 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& yo accept my request}
+	[1889]{418302756957454356 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& 3/17-3/24},{342878691849797633 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& o/},{316058232747589634 $& melone $& 5/22/2017 12:00:00 AM $& https://gyazo.com/1df696d8dca1621e18630b5dd4f98195}
+	[1891]{376525840135094273 $& Aephilia of the Snow $& 11/5/2017 12:00:00 AM $& done},{317806013082238978 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& I mean},{278339594083237889 $& Kaori Miyazono $& 2/7/2017 12:00:00 AM $& :hear_no_evil:},{300701396594851843 $& ThatNinja $& 4/9/2017 12:00:00 AM $& explain these pls}
+	[1895]{307761625530761218 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& affirmative}
+	[1896]{317806099912982528 $& Shvou $& 5/26/2017 12:00:00 AM $& 😉}
+	[1897]{278336751305490433 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& <@163492085540978689> , your waifu is shit!}
+	[1901]{307748869004066816 $& bobgooeyflonder $& 4/29/2017 12:00:00 AM $& Kappa}
+	[1911]{341761961840869376 $& FreedomFries $& 8/1/2017 12:00:00 AM $& TETSUKE RAISE}
+	[1912]{455849934646935564 $& FreedomFries $& 6/11/2018 12:00:00 AM $& jijjijijijiij}
+	[1913]{330596655038595082 $& melone $& 7/1/2017 12:00:00 AM $& Esterflame: Take care and have a fun filled rest of the night
+retired dota player: yo are you gonna go to ti ?
+Esterflame: Nopes. Sadly i can't go. I have to finish my university
+retired dota player: aww
+Esterflame: You guys going ?
+retired dota player: well fun games! Hope to enjoy another game with you soon !
+retired dota player: yeah we}
+[892]{297198095207235594}
+	[1917]{455538215101923348 $& Bezi $& 6/11/2018 12:00:00 AM $& Im an attack helicopter},{278339695275147265 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& blink veil}
+	[1918]{418311851298783242 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& i see},{316057986919563264 $& melone $& 5/22/2017 12:00:00 AM $& https://gyazo.com/3f1d6359b803e02184369c7ea5edf681}
+	[1920]{330847421435215875 $& FreedomFries $& 7/1/2017 12:00:00 AM $& que est},{292858310296862741 $& ThatNinja $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=ZFo8-JqzSCM}
+	[1921]{278336248693784576 $& cybros $& 2/7/2017 12:00:00 AM $& wats that?}
+	[1922]{278335315536510996 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& ez}
+	[1923]{299746410666917909 $& FreedomFries $& 4/7/2017 12:00:00 AM $& <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385> <:babyRyan:278329979131920385>}
+	[1924]{312427556139696128 $& Aephilia of the Snow $& 5/12/2017 12:00:00 AM $& don't worry i'm bad at farming too and i used to play carry for b team}
+	[1925]{283464939388272640 $& Omar $& 2/21/2017 12:00:00 AM $& LMAO}
+	[1928]{455571027662077954 $& FreedomFries $& 6/11/2018 12:00:00 AM $& y'all gay},{375766437031313409 $& FreedomFries $& 11/2/2017 12:00:00 AM $& 2+2 is 4 minus 1 thts 3 quick maths},{373273166338064402 $& Aephilia of the Snow $& 10/27/2017 12:00:00 AM $& <@163818149576310784> play destiny with me}
+	[1931]{435956374812491777 $& Moo $& 4/18/2018 12:00:00 AM $& You can get yourself clean, you can have a good meal
+You can do whatever you feel}
+[909]{280894849283260427}
+	[1939]{307746854202900480 $& minnesota212 $& 4/29/2017 12:00:00 AM $& also how does a queue last 20 min}
+	[1941]{418301717025914881 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& I don't really cry for anime tho}
+	[1943]{456238541970604034 $& FreedomFries $& 6/12/2018 12:00:00 AM $& yolo}
+	[1949]{283829595046805505 $& giri $& 2/22/2017 12:00:00 AM $& stream}
+	[1952]{282149216535576587 $& ThatNinja $& 2/17/2017 12:00:00 AM $& http://i.imgur.com/57LgRE0.jpg}
+	[1956]{278336628928544768 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& WHY WOULD I PROGRAM THAT}
+	[1960]{418314289150033921 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& how do I get out}
+	[1962]{282357863706394624 $& Kaori Miyazono $& 2/18/2017 12:00:00 AM $& Enqueued **TAEYEON 태연_I Got Love_Music Video** to be played. Position in queue: Up next!}
+	[1965]{324322651286011904 $& Toaster443 $& 6/13/2017 12:00:00 AM $& who won game 1}
+	[1971]{317807063868637195 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& get mar here}
+	[1977]{338444011763138571 $& arvindsindhwani $& 7/22/2017 12:00:00 AM $& <:arvindGrip:277891167943917570>  PogChamp}
+	[1978]{278336670250827777 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& ?}
+	[1979]{418300602137837579 $& giri $& 2/28/2018 12:00:00 AM $& the god has spoken}
+	[1980]{282336510546542593 $& Aephilia of the Snow $& 2/18/2017 12:00:00 AM $& i have like 6 billion updates}
+	[1983]{317806262211313664 $& Aephilia of the Snow $& 5/26/2017 12:00:00 AM $& But you need the futa},{302292894700535820 $& FreedomFries $& 4/14/2017 12:00:00 AM $& wtf I hate menma now},{307665735000522752 $& Aephilia of the Snow $& 4/28/2017 12:00:00 AM $& ^}
+	[1984]{278336750768750596 $& Aephilia of the Snow $& 2/7/2017 12:00:00 AM $& insult fries}
+	[1986]{279449218475884545 $& giri $& 2/10/2017 12:00:00 AM $& !play kpop}
+	[1987]{418301489350443017 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& cause I've been told that it's very good},{293556326892699658 $& ThatNinja $& 3/21/2017 12:00:00 AM $& http://i.imgur.com/Krz8kYv.png}
+	[1988]{279087434698850304 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& It's not actually Seolhyun bot},{278336458912432128 $& Thearesia Van Astrea $& 2/7/2017 12:00:00 AM $& ?}
+	[1996]{342872677658394637 $& Aephilia of the Snow $& 8/4/2017 12:00:00 AM $& ?}
+	[2007]{455843112854487060 $& FreedomFries $& 6/11/2018 12:00:00 AM $& asd},{278336454512476170 $& cybros $& 2/7/2017 12:00:00 AM $& i mean}
+	[2014]{317806158008025089 $& Shvou $& 5/26/2017 12:00:00 AM $& the}
+	[2017]{280433787727380480 $& Aephilia of the Snow $& 2/12/2017 12:00:00 AM $& yuri do you like my set},{279087987218841600 $& Aephilia of the Snow $& 2/9/2017 12:00:00 AM $& Feels good man omar go check}
+	[2018]{418300688091840512 $& Aephilia of the Snow $& 2/28/2018 12:00:00 AM $& i have},{302292860852633602 $& giri $& 4/14/2017 12:00:00 AM $& you're supposed to find out naturally}
+	[2020]{317806675199393793 $& FreedomFries $& 5/26/2017 12:00:00 AM $& or lion}
+	[2021]{280897093218992128 $& Aephilia of the Snow $& 2/14/2017 12:00:00 AM $& also <@163818149576310784> give me the name of the team we're playing this week}
+	[2024]{454685846734372864 $& FreedomFries $& 6/8/2018 12:00:00 AM $& im hungry}
+	[2026]{401223969417592844 $& giri $& 1/12/2018 12:00:00 AM $& some1 get in low prio}
+	[2032]{325068514853519360 $& Aephilia of the Snow $& 6/16/2017 12:00:00 AM $& `mitsuha.png`}
+	[2033]{338541894382518272 $& ThatNinja $& 7/23/2017 12:00:00 AM $& http://imgur.com/gallery/TKEjN}
+	[2041]{304807823278211072 $& Aephilia of the Snow $& 4/21/2017 12:00:00 AM $& FeelsGoodMan}
+	[2042]{322553299536445450 $& FreedomFries $& 6/9/2017 12:00:00 AM $& https://www.youtube.com/watch?v=x9bmVbjn2Ls}
+	[2044]{313512834828861450 $& giri $& 5/15/2017 12:00:00 AM $& https://www.dotabuff.com/matches/3105255765},{278336682015588353 $& cybros $& 2/7/2017 12:00:00 AM $& insult omar},{315715179482447872 $& FreedomFries $& 5/21/2017 12:00:00 AM $& }
+	[2045]{292861120585400320 $& melone $& 3/19/2017 12:00:00 AM $& https://www.youtube.com/watch?v=n06FqMYa3eI&feature=youtu.be},{290318867484377088 $& Aephilia of the Snow $& 3/12/2017 12:00:00 AM $& Nice! Good luck}
+	[2046]{343235022188445696 $& FreedomFries $& 8/5/2017 12:00:00 AM $& you make me a}
+	[2047]{317807683740762112 $& Bezi $& 5/26/2017 12:00:00 AM $& i need to flame omar},{299982404959862784 $& giri $& 4/7/2017 12:00:00 AM $& ima leave soon just play without me}
+}

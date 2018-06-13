@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml;
 
 namespace RadDB3.structure {
-	public class Table {
+	public class Table : IEnumerable<RADTuple> {
 		private const int DEFUALT_SIZE = 1;
 		private const int DEFUALT_COLUMN_WIDTH = 15;
 
@@ -15,7 +16,9 @@ namespace RadDB3.structure {
 		private readonly Relation relation;
 		private LinkedList<RADTuple>[] tuples;
 
-		public readonly SecondaryIndexing SecondaryIndexing;
+		public SecondaryIndexing SecondaryIndexing { private set; get; }
+
+		public bool SecondaryIndexingExists => SecondaryIndexing?.Exists ?? false;
 
 		/// <summary>
 		/// Number of lists
@@ -50,9 +53,9 @@ namespace RadDB3.structure {
 
 		public LinkedList<RADTuple>[] AllLists => tuples;
 
-		public Table(Relation r, int size = DEFUALT_SIZE) :this(r.ToString(), r, size) { }
+		public Table(Relation r, bool createSecondary = true, int size = DEFUALT_SIZE) :this(r.ToString(), r, createSecondary, size) { }
 		
-		public Table(string name, Relation r, int size = DEFUALT_SIZE) {
+		public Table(string name, Relation r, bool createSecondary = true, int size = DEFUALT_SIZE) {
 			if (r == null) return;
 			this.name = name;
 			relation = r;
@@ -60,10 +63,10 @@ namespace RadDB3.structure {
 			for (int i = 0; i < tuples.Length; i++) {
 				tuples[i] = new LinkedList<RADTuple>();
 			}
-			SecondaryIndexing = new SecondaryIndexing(this);
+			if(createSecondary) SecondaryIndexing = new SecondaryIndexing(this);
 		}
 
-		public Table(RADTuple[] tuples) : this(tuples[0]?.relation, tuples.Length) {
+		public Table(RADTuple[] tuples) : this(tuples[0]?.relation, false, tuples.Length) {
 			foreach (RADTuple radTuple in tuples) {
 				Add(radTuple);
 			}
@@ -80,14 +83,19 @@ namespace RadDB3.structure {
 		/// <param name="elements">Keys to check</param>
 		public RADTuple this[params Element[] elements] {
 			get {
-				if (elements.Length != relation.Keys.Length) return null;
+				if (elements.Length != relation.Keys.Length && elements.Length != 1) return null;
 
-				int hash = elements[0].GetHashCode() % Size;
+				int hash = Math.Abs(elements[0].GetHashCode() % Size);
 				foreach (RADTuple radTuple in tuples[hash]) {
 					bool found = true;
-					for (int i = 0; i < relation.Keys.Length; i++) {
-						Element radItem = radTuple[relation.Keys[i]];
-						if (radItem != elements[i]) found = false;
+					if (elements.Length > 1) {
+						for (int i = 0; i < relation.Keys.Length; i++) {
+							Element radItem = radTuple[relation.Keys[i]];
+							if (radItem != elements[i]) found = false;
+						}
+					} else {
+						Element radItem = radTuple[relation.Keys[0]];
+						if (radItem != elements[0]) found = false;
 					}
 
 					if (found) return radTuple;
@@ -126,7 +134,7 @@ namespace RadDB3.structure {
 				Expand();
 				if(MAX_DEBUG) DumpData();
 			}
-			if(SecondaryIndexing.Exists) SecondaryIndexing.Add(tuple);
+			if(SecondaryIndexingExists) SecondaryIndexing.Add(tuple);
 			return true;
 		}
 
@@ -243,6 +251,19 @@ namespace RadDB3.structure {
 			tuples = newTuples;
 		}
 
+		public void CreateSecondaryIndexing() {
+			if (SecondaryIndexingExists) SecondaryIndexing.ReCreateSecondaryIndex();
+			else SecondaryIndexing = new SecondaryIndexing(this);
+		}
+
+		IEnumerator IEnumerable.GetEnumerator() {
+			return GetEnumerator();
+		}
+
+		public IEnumerator<RADTuple> GetEnumerator() {
+			return All.ToList().GetEnumerator();
+		}
+
 		public double GetDistributionRatio() {
 			double numOfListsWithData = 0;
 			foreach (LinkedList<RADTuple> linkedList in tuples) {
@@ -268,6 +289,8 @@ namespace RadDB3.structure {
 		/// Dumps relavent data and a graph representing the distribution of data in the table
 		/// </summary>
 		public void DumpData(int bars = 10, int length = 15) {
+			Console.WriteLine($"Name: {name}");
+			Console.WriteLine($"Relation: {relation.Dump()}");
 			Console.WriteLine("Distribution Ratio: {0:P} ({1})", GetDistributionRatio(), Misc.percentToLetterGrade(GetDistributionRatio()));
 			Console.WriteLine("Size: {0}", Size);
 			Console.WriteLine("Count: {0}", Count);
