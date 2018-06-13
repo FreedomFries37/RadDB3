@@ -82,6 +82,26 @@ namespace RadDB3.structure {
 			
 		}
 
+		public Relation(Relation r, string name1, params string[] optionalNames) : this(
+			ConvertRelationAndStrings(r, name1, optionalNames)) { }
+
+		private static NameTypePair[] ConvertRelationAndStrings(Relation r, string name1, params string[] optionalNames) {
+			NameTypePair[] pairs = new NameTypePair[1 + optionalNames.Length];
+			if (r.IsKey(name1) >= 0) {
+				string keyInfo = r.IsKey(name1) == 1 ? "*" : r.IsKey(name1) == 2 ? "&" : "";
+				pairs[0] = new NameTypePair(keyInfo + name1, r.Types[r[name1]]);
+			}
+
+			for (int i = 0; i < optionalNames.Length; i++) {
+				if (r.IsKey(optionalNames[i]) >= 0) {
+					string keyInfo = r.IsKey(optionalNames[i]) == 1 ? "*" : r.IsKey(optionalNames[i]) == 2 ? "&" : "";
+					pairs[1 + i] = new NameTypePair(keyInfo + name1, r.Types[r[name1]]);
+				}
+			}
+
+			return pairs;
+		}
+
 		public string this[int i] => names[i];
 		public int this[string s] => names.ToList().IndexOf(s);
 

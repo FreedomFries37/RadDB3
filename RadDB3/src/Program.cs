@@ -55,8 +55,8 @@ namespace RadDB3 {
 				db.addTable(tb2);
 
 				AlgebraNode n0 = new AlgebraNode(tb2);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				RADTuple[] tuples = n1.Apply("\"Name\"=\"Dan\"");
+				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"\"Name\"=\"Dan\""}, n0);
+				RADTuple[] tuples = n1.Apply();
 
 				FileInteraction.ConvertDatabaseToFile(db);
 				Commands.SelectTable(db, tb1.Name).PrintTableNoPadding();
@@ -89,8 +89,9 @@ namespace RadDB3 {
 			if (idntm != null) {
 				
 				AlgebraNode n0 = new AlgebraNode(idntm);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				Table t = n1.TableApply("Time=*");
+				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"Time=*/2017 *","Name=FreedomFries"}, n0);
+				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"Message"}, n1);
+				Table t = n2.TableApply();
 				t?.PrintTableNoPadding();
 				t?.DumpData();
 				var asd = from n in t orderby n["Time"].Data select $"{n["Name"]}({((DateTime) n["Time"].Data).ToShortDateString()}): {n["Message"]}";

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,7 +10,7 @@ using RadDB3.scripting;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public class RADTuple : RADObject{
+	public class RADTuple : RADObject, IEnumerable<(string name,Element e)> {
 		public readonly Relation relation;
 		public readonly Element[] elements;
 		public readonly Type[] subTypes; //in order
@@ -19,6 +21,19 @@ namespace RadDB3.structure {
 			relation = r;
 			elements = objects;
 			
+		}
+
+		public RADTuple(Relation r, RADTuple t) {
+			relation = r;
+			Element[] objects = new Element[r.Arity];
+			foreach ((string name, Element e) valueTuple in t) {
+				(string name, Element e) = valueTuple;
+				if (r.IsKey(name) >= 0) {
+					objects[r[name]] = e;
+				}
+			}
+
+			elements = objects;
 		}
 
 		public Element this[int i] => elements[i];
@@ -168,6 +183,19 @@ namespace RadDB3.structure {
 				elements[i] = Element.ConvertToElement(r.Types[i], stringElements[i]);
 			}
 			return new RADTuple(r, elements);
+		}
+
+		IEnumerator IEnumerable.GetEnumerator() {
+			return GetEnumerator();
+		}
+
+		public IEnumerator<(string name, Element e)> GetEnumerator() {
+			List<(string name, Element e)> output = new List<(string name, Element e)>();
+			for (int i = 0; i < relation.Arity; i++) {
+				output.Add((relation.Names[i], elements[i]));
+			}
+
+			return output.GetEnumerator();
 		}
 	}
 	

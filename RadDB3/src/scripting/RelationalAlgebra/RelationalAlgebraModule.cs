@@ -16,6 +16,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		}
 
 		//Node count should be 1
+		//Options in style <string>|<sentence>=<string>|<sentence>
 		public static RADTuple[] Selection(string[] options, params AlgebraNode[] nodes) {
 			Table choice = nodes[0].TableApply();
 			
@@ -85,9 +86,29 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			
 			
 
-			return output.ToArray(); // TEMPORARY
+			return output.ToArray(); 
 		}
 
+		// Node count should be one
+		// Options in style <sentence>|<string>
+		public static RADTuple[] Projection(string[] options, params AlgebraNode[] nodes) {
+			Table choice = nodes[0].TableApply();
+			Regex sentenceRegex = new Regex("\".*\"");
+			for (int i = 0; i < options.Length; i++) {
+				if (sentenceRegex.IsMatch(options[i])) {
+					options[i] = options[i].Substring(0, options[i].Length - 1).Substring(1);
+				}
+			}
+			
+			Relation generatedRelation = new Relation(choice.Relation, options[0], options.Skip(1).ToArray());
+			
+			List<RADTuple> output = new List<RADTuple>();
+			foreach (RADTuple radTuple in choice) {
+				output.Add(new RADTuple(generatedRelation, radTuple));
+			}
+
+			return output.ToArray();
+		}
 		
 	}
 }
