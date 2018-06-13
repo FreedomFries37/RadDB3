@@ -9,3 +9,14 @@ C:\Users\Joshua\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB
 C:\Users\Joshua\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.pdb
 C:\Users\Joshua\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.runtimeconfig.json
 C:\Users\Joshua\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.runtimeconfig.dev.json
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.deps.json
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.runtimeconfig.json
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.runtimeconfig.dev.json
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.dll
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\bin\Debug\netcoreapp2.0\RadDB3.pdb
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.csprojAssemblyReference.cache
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.csproj.CoreCompileInputs.cache
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.AssemblyInfoInputs.cache
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.AssemblyInfo.cs
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.dll
+E:\Documents\ProgrammingWorkspace\RadinDatabaseSystemVersion3\RadDB3\obj\Debug\netcoreapp2.0\RadDB3.pdb

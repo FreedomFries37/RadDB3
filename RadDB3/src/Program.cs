@@ -19,7 +19,7 @@ namespace RadDB3 {
 		private static Database loadedDatabase;
 		
 		static void Main(string[] args) {
-			if (args[0] == "DEBUG") {
+			if (args.Length == 0 || args[0] == "DEBUG") {
 				Database db = new Database("TestDatabase");
 				Relation r = new Relation(("*Name", typeof(RADString)),
 					("Age", typeof(RADInteger)));
@@ -55,8 +55,8 @@ namespace RadDB3 {
 				db.addTable(tb2);
 
 				AlgebraNode n0 = new AlgebraNode(tb2);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				RADTuple[] tuples = n1.Apply("\"Name\"=\"Dan\"");
+				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"\"Name\"=\"Dan\""}, n0);
+				RADTuple[] tuples = n1.Apply();
 
 				FileInteraction.ConvertDatabaseToFile(db);
 				Commands.SelectTable(db, tb1.Name).PrintTableNoPadding();
@@ -85,16 +85,20 @@ namespace RadDB3 {
 			}
 
 			Table idntm = loadedDatabase?["IDNTM"];
+			Table nameNickname = new Table("NN", new Relation(("*Name",typeof(RADString)), ("&Nickname",typeof(RADString))));
+			nameNickname.Add("FreedomFries", "Fries");
 
 			if (idntm != null) {
 				
+				AlgebraNode n00 = new AlgebraNode(nameNickname);
 				AlgebraNode n0 = new AlgebraNode(idntm);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				Table t = n1.TableApply("Name=Toaster443");
+				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"Time=*/2017 *","Name=FreedomFries"}, n0);
+				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"IDNTM(Name)=NN(Name)"}, n1, n00);
+				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"Message"}, n2);
+				Table t = n3.TableApply();
 				t?.PrintTableNoPadding();
 				t?.DumpData();
-				var asd = from n in t orderby n["Time"].Data select $"{n["Name"]}: {n["Message"]}";
-				foreach (var element in asd.Distinct()) {
+				foreach (var element in t) {
 					Console.WriteLine(element);
 				}
 				

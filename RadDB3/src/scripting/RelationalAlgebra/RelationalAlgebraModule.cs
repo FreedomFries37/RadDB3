@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -12,10 +13,17 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		public static bool UsingRegex = false;
 		
 		public static RADTuple[] Reflect(string[] options, params AlgebraNode[] nodes) {
-			return nodes[0].BaseTable.All;
+			Relation generatedRelation = nodes[0].BaseTable.Relation.Clone(nodes[0].BaseTable.Name);
+			RADTuple[] output = nodes[0].BaseTable.All;
+			foreach (RADTuple radTuple in output) {
+				if (!radTuple.AttemptSwitchRelation(generatedRelation)) return null;
+			}
+
+			return output;
 		}
 
 		//Node count should be 1
+		//Options in style <string>|<sentence>=<string>|<sentence>
 		public static RADTuple[] Selection(string[] options, params AlgebraNode[] nodes) {
 			Table choice = nodes[0].TableApply();
 			
@@ -85,9 +93,57 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			
 			
 
-			return output.ToArray(); // TEMPORARY
+			return output.ToArray(); 
 		}
 
-		
+		// Node count should be one
+		// Options in style <sentence>|<string>
+		public static RADTuple[] Projection(string[] options, params AlgebraNode[] nodes) {
+			Table choice = nodes[0].TableApply();
+			Regex sentenceRegex = new Regex("\".*\"");
+			for (int i = 0; i < options.Length; i++) {
+				if (sentenceRegex.IsMatch(options[i])) {
+					options[i] = options[i].Substring(0, options[i].Length - 1).Substring(1);
+				}
+			}
+			
+			Relation generatedRelation = new Relation(choice.Relation, options[0], options.Skip(1).ToArray());
+			
+			List<RADTuple> output = new List<RADTuple>();
+			foreach (RADTuple radTuple in choice) {
+				output.Add(new RADTuple(generatedRelation, radTuple));
+			}
+
+			return output.ToArray();
+		}
+
+		// Node count should be two
+		// Options in form <table_name>(<column_name>,...)=<table_name>(<column_name>,...)
+		public static RADTuple[] InnerJoin(string[] options, params AlgebraNode[] nodes) {
+			Table table1, table2;
+			(string table1ColumnName, string table2ColumnName)[] args;
+			table1 = nodes[0].TableApply();
+			table2 = nodes[1].TableApply();
+
+			foreach (string option in options) {
+				Parser parser = new Parser(option, Parser.ReadOptions.STRING);
+				ParseTree tree = new ParseTree(parser.ParseJoinInfo);
+
+				string[] leftColumns, rightColumns;
+				leftColumns = Parser.ConvertColumns(tree[1]);
+				string leftName = tree[0][0][0].Data;
+				
+				rightColumns = Parser.ConvertColumns(tree[3]);
+				string rightName = tree[2][0][0].Data;
+				for (int i = 0; i < leftColumns.Length; i++) {
+					leftColumns[i] = leftName + "." + leftColumns[i];
+					rightColumns[i] = rightName + "." + rightColumns[i];
+				}
+			}
+			
+
+			return null;
+		}
+
 	}
 }
