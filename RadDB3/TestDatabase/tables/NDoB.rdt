@@ -1,0 +1,14 @@
+NAME:"NDoB";
+SIZE:16;
+RELATION{
+	[*]RadDB3.structure.Types.RADString "name" ();
+	[&]RadDB3.structure.Types.RADDate "DoB" ();
+}
+TUPLES{
+	[1]{Dan $& 5/7/1999},{Jake $& 5/7/1979}
+	[2]{Eli $& 5/7/1945}
+	[3]{Steve $& 5/7/1979}
+	[4]{Max $& 5/7/2009},{David $& 5/7/1939}
+	[8]{Noah $& 5/7/1945}
+	[14]{Radc $& 5/7/1925}
+}

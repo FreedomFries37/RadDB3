@@ -1,0 +1,14 @@
+NAME:"NA";
+SIZE:16;
+RELATION{
+	[*]RadDB3.structure.Types.RADString "Name" ();
+	[-]RadDB3.structure.Types.RADInteger "Age" ();
+}
+TUPLES{
+	[1]{Dan $& 14},{Jake $& 252}
+	[2]{Eli $& 16}
+	[3]{Steve $& 12}
+	[4]{Max $& 44},{David $& 55}
+	[8]{Noah $& 5}
+	[14]{Radc $& 67}
+}

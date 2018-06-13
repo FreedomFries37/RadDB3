@@ -1,0 +1,14 @@
+NAME:"Name-Age-Alive";
+RELATION{
+	[*]RADString "Name" ();
+	[-]RADInteger "Age" ();
+	[-]RADBool "Alive" ();
+}
+TUPLES{
+	[1]{Name:Dan,Age:14,Alive:True},{Name:Jake,Age:252,Alive:True}
+	[2]{Name:Eli,Age:16,Alive:True}
+	[3]{Name:Steve,Age:12,Alive:True}
+	[4]{Name:Max,Age:44,Alive:True},{Name:David,Age:55,Alive:True}
+	[10]{Name:Josh,Age:32,Alive:False}
+	[14]{Name:Radc,Age:67,Alive:True}
+}

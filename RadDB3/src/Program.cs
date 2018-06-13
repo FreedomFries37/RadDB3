@@ -90,10 +90,10 @@ namespace RadDB3 {
 				
 				AlgebraNode n0 = new AlgebraNode(idntm);
 				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				Table t = n1.TableApply("Name=FreedomFries");
+				Table t = n1.TableApply("Name=Toaster443");
 				t?.PrintTableNoPadding();
 				t?.DumpData();
-				var asd = from n in idntm orderby n["Time"].Data select $"{n["Name"]}: {n["Message"]}";
+				var asd = from n in t orderby n["Time"].Data select $"{n["Name"]}: {n["Message"]}";
 				foreach (var element in asd.Distinct()) {
 					Console.WriteLine(element);
 				}
