@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using RadDB3.interaction;
@@ -87,9 +90,14 @@ namespace RadDB3 {
 				
 				AlgebraNode n0 = new AlgebraNode(idntm);
 				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				Table t = n1.TableApply("Time=\"3/*/2018 *\"");
+				Table t = n1.TableApply("Name=FreedomFries");
 				t?.PrintTableNoPadding();
 				t?.DumpData();
+				var asd = from n in idntm orderby n["Time"].Data select $"{n["Name"]}: {n["Message"]}";
+				foreach (var element in asd.Distinct()) {
+					Console.WriteLine(element);
+				}
+				
 			}
 			
 		}
