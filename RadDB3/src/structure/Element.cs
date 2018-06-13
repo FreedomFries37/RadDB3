@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public abstract class Element : StringParsable{
+	public abstract class Element : RADObject, StringParsable{
 		private dynamic data;
 		private string constraints;
 

@@ -8,7 +8,7 @@ using RadDB3.scripting;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public class RADTuple {
+	public class RADTuple : RADObject{
 		public readonly Relation relation;
 		public readonly Element[] elements;
 		public readonly Type[] subTypes; //in order

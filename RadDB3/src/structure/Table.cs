@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Xml;
 
 namespace RadDB3.structure {
-	public class Table : IEnumerable<RADTuple> {
+	public class Table : RADObject, IEnumerable<RADTuple> {
 		private const int DEFUALT_SIZE = 1;
 		private const int DEFUALT_COLUMN_WIDTH = 15;
 
