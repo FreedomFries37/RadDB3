@@ -1,4 +1,6 @@
-﻿namespace RadDB3.scripting.parsers {
+﻿using System.Collections.Generic;
+
+namespace RadDB3.scripting.parsers {
 	public partial class Parser{
 		
 		/**
@@ -79,6 +81,20 @@
 			
 			parent.AddChild(next);
 			return true;
+		}
+
+		public static string[] ConvertColumns(ParseNode parseNode) {
+			if(parseNode.Data != "<columns>") throw new IncompatableParseNodeException();
+			
+			List<string> output = new List<string>();
+			ParseNode nodePtr = parseNode;
+			do {
+				if (nodePtr.Data == "<column_more>") nodePtr = nodePtr["<columns>"];
+				output.Add(nodePtr["<column_name>"][0][0].Data);
+				nodePtr = nodePtr["<column_more>"];
+			} while (nodePtr != null);
+
+			return output.ToArray();
 		}
 	}
 }
