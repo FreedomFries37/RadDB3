@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public class Relation {
+	public class Relation : IEnumerable<(string, Type)>, ICloneable{
 		private readonly Type[] types;
 		private readonly Type[] subTypes;
 		private readonly string[] names;
@@ -82,6 +84,26 @@ namespace RadDB3.structure {
 			
 		}
 
+		public Relation(Relation r, string name1, params string[] optionalNames) : this(
+			ConvertRelationAndStrings(r, name1, optionalNames)) { }
+
+		private static NameTypePair[] ConvertRelationAndStrings(Relation r, string name1, params string[] optionalNames) {
+			NameTypePair[] pairs = new NameTypePair[1 + optionalNames.Length];
+			if (r.IsKey(name1) >= 0) {
+				string keyInfo = r.IsKey(name1) == 1 ? "*" : r.IsKey(name1) == 2 ? "&" : "";
+				pairs[0] = new NameTypePair(keyInfo + name1, r.Types[r[name1]]);
+			}
+
+			for (int i = 0; i < optionalNames.Length; i++) {
+				if (r.IsKey(optionalNames[i]) >= 0) {
+					string keyInfo = r.IsKey(optionalNames[i]) == 1 ? "*" : r.IsKey(optionalNames[i]) == 2 ? "&" : "";
+					pairs[1 + i] = new NameTypePair(keyInfo + name1, r.Types[r[name1]]);
+				}
+			}
+
+			return pairs;
+		}
+
 		public string this[int i] => names[i];
 		public int this[string s] => names.ToList().IndexOf(s);
 
@@ -99,6 +121,23 @@ namespace RadDB3.structure {
 			if (keys[0] == index) return 1;
 			if (keys.ToList().Contains(index)) return 2;
 			return 0;
+		}
+
+		IEnumerator IEnumerable.GetEnumerator() {
+			return GetEnumerator();
+		}
+
+		public IEnumerator<(string, Type)> GetEnumerator() {
+			List<(string, Type)> output = new List<(string, Type)>();
+			for (int i = 0; i < Arity; i++) {
+				string name = "";
+				if (i == Keys[0]) name += "*";
+				else if (Keys.Contains(i)) name += "&";
+				name += names[i];
+				output.Add((name, types[i]));
+			}
+
+			return output.GetEnumerator();
 		}
 
 		public override string ToString() {
@@ -151,6 +190,31 @@ namespace RadDB3.structure {
 			}
 
 			Console.WriteLine();
+		}
+
+		public object Clone() {
+			(string, Type)[] output = new (string, Type)[Arity];
+			for (int i = 0; i < Arity; i++) {
+				string keyInfo = IsKey(names[i]) == 1 ? "*" : IsKey(names[i]) == 2 ? "&" : "";
+				output[i] = (keyInfo + names[i], types[i]);
+			}
+			
+			return new Relation(output);
+		}
+
+		/// <summary>
+		/// Appends <para>s</para> to each name
+		/// </summary>
+		/// <param name="s">The string to append</param>
+		/// <returns>the clone with modified names</returns>
+		public Relation Clone(string s) {
+			(string, Type)[] output = new (string, Type)[Arity];
+			for (int i = 0; i < Arity; i++) {
+				string keyInfo = IsKey(names[i]) == 1 ? "*" : IsKey(names[i]) == 2 ? "&" : "";
+				output[i] = (keyInfo + s + "." + names[i], types[i]);
+			}
+			
+			return new Relation(output);
 		}
 	}
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,30 +10,44 @@ using RadDB3.scripting;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public class RADTuple : RADObject{
-		public readonly Relation relation;
+	public class RADTuple : RADObject, IEnumerable<(string name,Element e)> {
+		private Relation _relation;
+		public Relation relation => _relation;
 		public readonly Element[] elements;
 		public readonly Type[] subTypes; //in order
 
 		public const string ELEMENT_SEPERATOR = " $& ";
 
 		public RADTuple(Relation r, params Element[] objects) {
-			relation = r;
+			_relation = r;
 			elements = objects;
 			
+		}
+
+		public RADTuple(Relation r, RADTuple t) {
+			_relation = r;
+			Element[] objects = new Element[r.Arity];
+			foreach ((string name, Element e) valueTuple in t) {
+				(string name, Element e) = valueTuple;
+				if (r.IsKey(name) >= 0) {
+					objects[r[name]] = e;
+				}
+			}
+
+			elements = objects;
 		}
 
 		public Element this[int i] => elements[i];
 
 		public Element this[string str] {
 			set {
-				int index = relation.Names.ToList().IndexOf(str);
+				int index = _relation.Names.ToList().IndexOf(str);
 				if (index < 0 ||
 					index >= elements.Length) return;
 				elements[index] = value;
 			}
 			get {
-				int index = relation.Names.ToList().IndexOf(str);
+				int index = _relation.Names.ToList().IndexOf(str);
 				if (index < 0 ||
 					index >= elements.Length) return null;
 				return this[index];
@@ -46,7 +62,7 @@ namespace RadDB3.structure {
 		public dynamic getValue(int index) {
 			if (index >= elements.Length ||
 				index < 0) throw new IndexOutOfRangeException();
-			return Convert.ChangeType(elements[index], relation.Types[index]);
+			return Convert.ChangeType(elements[index], _relation.Types[index]);
 		}
 
 		/// <summary>
@@ -61,33 +77,42 @@ namespace RadDB3.structure {
 				index < 0 ||
 				elements[index] == null) return false;
 
-			value = Convert.ChangeType(elements[index], relation.Types[index]);
+			value = Convert.ChangeType(elements[index], _relation.Types[index]);
 			return true;
 		}
 
 		public Element[] GetKeyElements() {
-			Element[] output = new Element[relation.Arity];
+			Element[] output = new Element[_relation.Arity];
 			int index = 0;
-			foreach (int keyIndex in relation.Keys) {
+			foreach (int keyIndex in _relation.Keys) {
 				output[index++] = elements[keyIndex];
 			}
 
 			return output;
 		}
 
+		public bool AttemptSwitchRelation(Relation r) {
+			if (r.Arity != relation.Arity) return false;
+			for (int i = 0; i < r.Arity; i++) {
+				if (r.Types[i] != relation.Types[i]) return false;
+			}
+
+			_relation = r;
+			return true;
+		}
 
 		public override int GetHashCode() {
-			return elements[relation.Keys[0]].GetHashCode();
+			return elements[_relation.Keys[0]].GetHashCode();
 		}
 
 		public override string ToString() {
 			string output = "{";
 
-			for (int i = 0; i < relation.Arity-1; i++) {
-				output += relation.Names[i] + ":" + elements[i] + ",";
+			for (int i = 0; i < _relation.Arity-1; i++) {
+				output += _relation.Names[i] + ":" + elements[i] + ",";
 			}
 
-			output += relation.Names[relation.Arity - 1] + ":" + elements[relation.Arity - 1];
+			output += _relation.Names[_relation.Arity - 1] + ":" + elements[_relation.Arity - 1];
 
 			return output + "}";
 		}
@@ -95,13 +120,13 @@ namespace RadDB3.structure {
 		public string DetailedDump() {
 			string output = "{";
 
-			for (int i = 0; i < relation.Arity-1; i++) {
-				if (i == relation.Keys[0]) output += "*";
-				else if (relation.Keys.Contains(i)) output += "&";
-				output += relation.Names[i] + "<" + relation.Types[i].Name + ">" + ":" + elements[i] + ", ";
+			for (int i = 0; i < _relation.Arity-1; i++) {
+				if (i == _relation.Keys[0]) output += "*";
+				else if (_relation.Keys.Contains(i)) output += "&";
+				output += _relation.Names[i] + "<" + _relation.Types[i].Name + ">" + ":" + elements[i] + ", ";
 			}
 
-			output += relation.Names[relation.Arity - 1] + ":" + elements[relation.Arity - 1];
+			output += _relation.Names[_relation.Arity - 1] + ":" + elements[_relation.Arity - 1];
 
 			return output + "}";
 		}
@@ -109,11 +134,11 @@ namespace RadDB3.structure {
 		public string LessDetailedDump() {
 			string output = "{";
 
-			for (int i = 0; i < relation.Arity-1; i++) {
+			for (int i = 0; i < _relation.Arity-1; i++) {
 				output += elements[i] + ELEMENT_SEPERATOR;
 			}
 
-			output += elements[relation.Arity - 1];
+			output += elements[_relation.Arity - 1];
 
 			return output + "}";
 		}
@@ -168,6 +193,19 @@ namespace RadDB3.structure {
 				elements[i] = Element.ConvertToElement(r.Types[i], stringElements[i]);
 			}
 			return new RADTuple(r, elements);
+		}
+
+		IEnumerator IEnumerable.GetEnumerator() {
+			return GetEnumerator();
+		}
+
+		public IEnumerator<(string name, Element e)> GetEnumerator() {
+			List<(string name, Element e)> output = new List<(string name, Element e)>();
+			for (int i = 0; i < _relation.Arity; i++) {
+				output.Add((_relation.Names[i], elements[i]));
+			}
+
+			return output.GetEnumerator();
 		}
 	}
 	

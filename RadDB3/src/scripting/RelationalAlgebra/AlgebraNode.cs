@@ -10,6 +10,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		private RelationalAlgebraFunction function;
 		private LinkedList<AlgebraNode> children;
 		private readonly bool _isBase;
+		public string[] Options { get; set; }
 		public Table BaseTable { get; protected set; }
 
 		public AlgebraNode[] Children => children.ToArray();
@@ -30,21 +31,22 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			function = RelationalAlgebraModule.Reflect;
 		}
 
-		public AlgebraNode(RelationalAlgebraFunction func, AlgebraNode first, params AlgebraNode[] children) {
+		public AlgebraNode(RelationalAlgebraFunction func, string[] options, AlgebraNode first, params AlgebraNode[] children) {
 			_isBase = false;
 			function = func;
+			Options = options;
 			this.children = new LinkedList<AlgebraNode>(children);
 			this.children.AddFirst(first);
 		}
 
-		public RADTuple[] Apply(params string[] options) {
-			if (_isBase) return function(options, this);
-			return function(options, Children);
+		public RADTuple[] Apply() {
+			if (_isBase) return function(Options, this);
+			return function(Options, Children);
 		}
 
-		public Table TableApply(params string[] options) {
+		public Table TableApply() {
 
-			RADTuple[] tuples = Apply(options);
+			RADTuple[] tuples = Apply();
 			if (tuples.Length == 0) return null;
 			Table output = new Table(tuples);
 

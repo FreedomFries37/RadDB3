@@ -243,7 +243,7 @@ namespace RadDB3.structure {
 
 			foreach (LinkedList<RADTuple> linkedList in tuples) {
 				foreach (RADTuple radTuple in linkedList) {
-					int hash = radTuple.GetHashCode() % newTuples.Length;
+					int hash = Math.Abs(radTuple.GetHashCode() % newTuples.Length);
 					newTuples[hash].AddLast(radTuple);
 				}
 			}
