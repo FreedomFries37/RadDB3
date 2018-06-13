@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -12,7 +13,13 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		public static bool UsingRegex = false;
 		
 		public static RADTuple[] Reflect(string[] options, params AlgebraNode[] nodes) {
-			return nodes[0].BaseTable.All;
+			Relation generatedRelation = nodes[0].BaseTable.Relation.Clone(nodes[0].BaseTable.Name);
+			RADTuple[] output = nodes[0].BaseTable.All;
+			foreach (RADTuple radTuple in output) {
+				if (!radTuple.AttemptSwitchRelation(generatedRelation)) return null;
+			}
+
+			return output;
 		}
 
 		//Node count should be 1
@@ -109,6 +116,25 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 			return output.ToArray();
 		}
-		
+
+		// Node count should be two
+		// Options in form <table_name>(<column_name>,...)=<table_name>(<column_name>,...)
+		public static RADTuple[] InnerJoin(string[] options, params AlgebraNode[] nodes) {
+			Table table1, table2;
+			(string table1ColumnName, string table2ColumnName)[] args;
+			table1 = nodes[0].TableApply();
+			table2 = nodes[1].TableApply();
+
+			foreach (string option in options) {
+				Parser parser = new Parser(option, Parser.ReadOptions.STRING);
+				ParseTree tree = new ParseTree(parser.ParseJoinInfo);
+				
+				
+			}
+			
+
+			return null;
+		}
+
 	}
 }

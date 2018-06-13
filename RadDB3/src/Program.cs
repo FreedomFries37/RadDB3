@@ -85,17 +85,19 @@ namespace RadDB3 {
 			}
 
 			Table idntm = loadedDatabase?["IDNTM"];
+			Table nameNickname = new Table("NN", new Relation(("Name",typeof(RADString)), ("Nickname",typeof(RADString))));
+			nameNickname.Add("FreedomFries", "Fries");
 
 			if (idntm != null) {
 				
 				AlgebraNode n0 = new AlgebraNode(idntm);
 				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"Time=*/2017 *","Name=FreedomFries"}, n0);
-				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"Message"}, n1);
-				Table t = n2.TableApply();
+				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"IDNTM(Name)=NN(Name)"}, n1);
+				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"Message"}, n2);
+				Table t = n3.TableApply();
 				t?.PrintTableNoPadding();
 				t?.DumpData();
-				var asd = from n in t orderby n["Time"].Data select $"{n["Name"]}({((DateTime) n["Time"].Data).ToShortDateString()}): {n["Message"]}";
-				foreach (var element in asd.Distinct()) {
+				foreach (var element in t) {
 					Console.WriteLine(element);
 				}
 				

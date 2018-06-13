@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using RadDB3.structure.Types;
 
 namespace RadDB3.structure {
-	public class Relation {
+	public class Relation : IEnumerable<(string, Type)>, ICloneable{
 		private readonly Type[] types;
 		private readonly Type[] subTypes;
 		private readonly string[] names;
@@ -121,6 +123,23 @@ namespace RadDB3.structure {
 			return 0;
 		}
 
+		IEnumerator IEnumerable.GetEnumerator() {
+			return GetEnumerator();
+		}
+
+		public IEnumerator<(string, Type)> GetEnumerator() {
+			List<(string, Type)> output = new List<(string, Type)>();
+			for (int i = 0; i < Arity; i++) {
+				string name = "";
+				if (i == Keys[0]) name += "*";
+				else if (Keys.Contains(i)) name += "&";
+				name += names[i];
+				output.Add((name, types[i]));
+			}
+
+			return output.GetEnumerator();
+		}
+
 		public override string ToString() {
 			string output = "";
 			for (int i = 0; i < Arity-1; i++) {
@@ -171,6 +190,31 @@ namespace RadDB3.structure {
 			}
 
 			Console.WriteLine();
+		}
+
+		public object Clone() {
+			(string, Type)[] output = new (string, Type)[Arity];
+			for (int i = 0; i < Arity; i++) {
+				string keyInfo = IsKey(names[i]) == 1 ? "*" : IsKey(names[i]) == 2 ? "&" : "";
+				output[i] = (keyInfo + names[i], types[i]);
+			}
+			
+			return new Relation(output);
+		}
+
+		/// <summary>
+		/// Appends <para>s</para> to each name
+		/// </summary>
+		/// <param name="s">The string to append</param>
+		/// <returns>the clone with modified names</returns>
+		public Relation Clone(string s) {
+			(string, Type)[] output = new (string, Type)[Arity];
+			for (int i = 0; i < Arity; i++) {
+				string keyInfo = IsKey(names[i]) == 1 ? "*" : IsKey(names[i]) == 2 ? "&" : "";
+				output[i] = (keyInfo + s + "." + names[i], types[i]);
+			}
+			
+			return new Relation(output);
 		}
 	}
 }
