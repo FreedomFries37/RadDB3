@@ -19,7 +19,7 @@ namespace RadDB3 {
 		private static Database loadedDatabase;
 		
 		static void Main(string[] args) {
-			if (args[0] == "DEBUG") {
+			if (args.Length == 0 || args[0] == "DEBUG") {
 				Database db = new Database("TestDatabase");
 				Relation r = new Relation(("*Name", typeof(RADString)),
 					("Age", typeof(RADInteger)));
@@ -90,10 +90,10 @@ namespace RadDB3 {
 				
 				AlgebraNode n0 = new AlgebraNode(idntm);
 				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, n0);
-				Table t = n1.TableApply("Name=Toaster443");
+				Table t = n1.TableApply("Time=*");
 				t?.PrintTableNoPadding();
 				t?.DumpData();
-				var asd = from n in t orderby n["Time"].Data select $"{n["Name"]}: {n["Message"]}";
+				var asd = from n in t orderby n["Time"].Data select $"{n["Name"]}({((DateTime) n["Time"].Data).ToShortDateString()}): {n["Message"]}";
 				foreach (var element in asd.Distinct()) {
 					Console.WriteLine(element);
 				}

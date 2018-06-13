@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Schema;
 using RadDB3.scripting;
 using RadDB3.scripting.parsers;
 using RadDB3.structure;
@@ -37,6 +38,7 @@ namespace RadDB3.interaction {
 		}
 
 		private static Table ConvertStringToTable(string str) {
+			str = str.Replace("\r", "");
 			Parser p = new Parser(str, Parser.ReadOptions.STRING, Parser.ParseOptions.REMOVE_ONLY_TABS);
 			ParseTree tree = new ParseTree(p.ParseTable);
 			if (!tree.successfulParse) return null;
@@ -126,7 +128,7 @@ namespace RadDB3.interaction {
 			DirectoryInfo outsideDir = Directory.CreateDirectory(db.ToString());
 			DirectoryInfo tableDir = Directory.CreateDirectory(outsideDir + "/tables");
 
-			StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\" + outsideDir + @"\" + db + ".rd3");
+			StreamWriter writer = new StreamWriter(outsideDir + @"\" + db + ".rd3");
 			
 			writer.Write($"NAME:{db}\n");
 			writer.Write($"SIZE:{db.Size}\nTABLES:\n");
@@ -178,8 +180,8 @@ namespace RadDB3.interaction {
 				return null;
 			}
 
-			
-			
+
+			str = str.Replace("\r", "");
 			
 			string[] strSplit = str.Split("\n");
 			string name = strSplit[0].Remove(0, "NAME:".Length);
