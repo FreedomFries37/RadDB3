@@ -87,14 +87,15 @@ namespace RadDB3 {
 			Table idntm = loadedDatabase?["IDNTM"];
 			Table nameNickname = new Table("NN", new Relation(("*Name",typeof(RADString)), ("&Nickname",typeof(RADString))));
 			nameNickname.Add("FreedomFries", "Fries");
+			nameNickname.Add("Toaster443", "Toaster");
 
 			if (idntm != null) {
 				
 				AlgebraNode n00 = new AlgebraNode(nameNickname);
 				AlgebraNode n0 = new AlgebraNode(idntm);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"Time=*/2017 *","Name=FreedomFries"}, n0);
+				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"IDNTM.Time=*/2017 *"}, n0);
 				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"IDNTM(Name)=NN(Name)"}, n1, n00);
-				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"Message"}, n2);
+				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"IDNTM.ID","NN.Nickname","IDNTM.Message"}, n2);
 				Table t = n3.TableApply();
 				t?.PrintTableNoPadding();
 				t?.DumpData();

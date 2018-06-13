@@ -24,11 +24,12 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 	
 
-		public AlgebraNode(Table tb) {
+		public AlgebraNode(Table tb, params string[] options) {
 			_isBase = true;
 			BaseTable = tb;
 			children = new LinkedList<AlgebraNode>();
 			function = RelationalAlgebraModule.Reflect;
+			Options = options;
 		}
 
 		public AlgebraNode(RelationalAlgebraFunction func, string[] options, AlgebraNode first, params AlgebraNode[] children) {

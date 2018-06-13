@@ -13,6 +13,10 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		public static bool UsingRegex = false;
 		
 		public static RADTuple[] Reflect(string[] options, params AlgebraNode[] nodes) {
+			if (options.Length == 1 &&
+				options[0] == "pure") {
+				return nodes[0].BaseTable.All;
+			}
 			Relation generatedRelation = nodes[0].BaseTable.Relation.Clone(nodes[0].BaseTable.Name);
 			RADTuple[] output = nodes[0].BaseTable.All;
 			foreach (RADTuple radTuple in output) {
@@ -26,6 +30,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		//Options in style <string>|<sentence>=<string>|<sentence>
 		public static RADTuple[] Selection(string[] options, params AlgebraNode[] nodes) {
 			Table choice = nodes[0].TableApply();
+			if (options.Length == 0) return choice.All;
 			
 			(string name, string data)[] columnDataTuples = new (string, string)[options.Length];
 			for (int i = 0; i < options.Length; i++) {
@@ -118,6 +123,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		}
 
 		// Node count should be two
+		// only one option
 		// Options in form <table_name>(<column_name>,...)=<table_name>(<column_name>,...)
 		public static RADTuple[] InnerJoin(string[] options, params AlgebraNode[] nodes) {
 			Table table1, table2;
@@ -125,24 +131,96 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			table1 = nodes[0].TableApply();
 			table2 = nodes[1].TableApply();
 
-			foreach (string option in options) {
-				Parser parser = new Parser(option, Parser.ReadOptions.STRING);
-				ParseTree tree = new ParseTree(parser.ParseJoinInfo);
+			string option = options[0];
+			Parser parser = new Parser(option, Parser.ReadOptions.STRING);
+			ParseTree tree = new ParseTree(parser.ParseJoinInfo);
 
-				string[] leftColumns, rightColumns;
-				leftColumns = Parser.ConvertColumns(tree[1]);
-				string leftName = tree[0][0][0].Data;
-				
-				rightColumns = Parser.ConvertColumns(tree[3]);
-				string rightName = tree[2][0][0].Data;
-				for (int i = 0; i < leftColumns.Length; i++) {
-					leftColumns[i] = leftName + "." + leftColumns[i];
-					rightColumns[i] = rightName + "." + rightColumns[i];
-				}
+			List<string> leftColumns, rightColumns;
+			leftColumns = Parser.ConvertColumns(tree[1]).ToList();
+			string leftName = tree[0][0][0].Data;
+			
+			rightColumns = Parser.ConvertColumns(tree[3]).ToList();
+			string rightName = tree[2][0][0].Data;
+
+			if (leftColumns.Count != rightColumns.Count) return null;
+			for (int i = 0; i < leftColumns.Count; i++) {
+				leftColumns[i] = leftName + "." + leftColumns[i];
+				rightColumns[i] = rightName + "." + rightColumns[i];
 			}
 			
 
-			return null;
+
+			List<NameTypePair> pairs = new List<NameTypePair>();
+			int maxSize = table1.Relation.Arity + table2.Relation.Arity - leftColumns.Capacity;
+			
+			int index = 0;
+			bool firstSwitch = true;
+			while (pairs.Count < maxSize) {
+				NameTypePair next;
+			
+				
+				if (pairs.Count < table1.Relation.Arity) { // add from left
+					string name = table1.Relation.Names[index];
+					Type left =  table1.Relation.Types[table1.Relation[name]];
+					next = new NameTypePair(name, left);
+				} else { //add from righht
+					if (firstSwitch) {
+						firstSwitch = false;
+						index = 0;
+					}
+					string name = table2.Relation.Names[index];
+					Type right = table2.Relation.Types[table2.Relation[name]];
+					if (rightColumns.Contains(name)) {
+						Type left = table1.Relation.Types[table1.Relation[leftColumns[rightColumns.IndexOf(name)]]];
+						
+						if (left != right) {
+							next = null;
+							index++;
+						} else {
+							index++;
+							continue;
+						}
+						
+					} else next = new NameTypePair(name, right);
+				}
+				
+				pairs.Add(next);
+				index++;
+			}
+			
+			Relation generatedRelation = new Relation(pairs.ToArray());
+			List<RADTuple> allGenerated = new List<RADTuple>();
+			foreach (RADTuple radTuple in table1.All) {
+				List<Element> importantElements = new List<Element>();
+				foreach (string leftColumnName in leftColumns) {
+					importantElements.Add(radTuple[leftColumnName]);
+				}
+				List<string> searchQueries = new List<string>();
+				for(int i = 0; i < importantElements.Count; i++) {
+					searchQueries.Add(
+						$"\"{rightColumns[i]}\"=\"{importantElements[i]}\""
+						);
+				}
+				AlgebraNode node0 = new AlgebraNode(table2, "pure");
+				AlgebraNode node1 = new AlgebraNode(Selection, searchQueries.ToArray(), node0);
+				List<RADTuple> foundRightTable = node1.Apply().ToList();
+
+				foreach (RADTuple tuple in foundRightTable) {
+					if (tuple != null) {
+						List<Element> finaList = radTuple.ToListOfElements();
+						foreach (string columnName in tuple.relation.Names) {
+							if (!rightColumns.Contains(columnName)) {
+								finaList.Add(tuple[columnName]);
+							}
+						}
+
+						allGenerated.Add(new RADTuple(generatedRelation, finaList.ToArray()));
+					}
+				}
+			}
+		
+
+			return allGenerated.ToArray();
 		}
 
 	}
