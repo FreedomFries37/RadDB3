@@ -128,8 +128,17 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			foreach (string option in options) {
 				Parser parser = new Parser(option, Parser.ReadOptions.STRING);
 				ParseTree tree = new ParseTree(parser.ParseJoinInfo);
+
+				string[] leftColumns, rightColumns;
+				leftColumns = Parser.ConvertColumns(tree[1]);
+				string leftName = tree[0][0][0].Data;
 				
-				
+				rightColumns = Parser.ConvertColumns(tree[3]);
+				string rightName = tree[2][0][0].Data;
+				for (int i = 0; i < leftColumns.Length; i++) {
+					leftColumns[i] = leftName + "." + leftColumns[i];
+					rightColumns[i] = rightName + "." + rightColumns[i];
+				}
 			}
 			
 
