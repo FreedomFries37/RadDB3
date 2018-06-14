@@ -13,12 +13,13 @@ using RadDB3.structure.Types;
 
 namespace RadDB3 {
 
-	public delegate bool ParserFunction(out ParseNode node);
+	
 	
 	static class Program {
 		private static Database loadedDatabase;
 		
 		static void Main(string[] args) {
+			
 			if (args.Length == 0 || args[0] == "DEBUG") {
 				Database db = new Database("TestDatabase");
 				Relation r = new Relation(("*Name", typeof(RADString)),
@@ -85,25 +86,38 @@ namespace RadDB3 {
 			}
 
 			Table idntm = loadedDatabase?["IDNTM"];
-			Table nameNickname = new Table("NN", new Relation(("*Name",typeof(RADString)), ("&Nickname",typeof(RADString))));
-			nameNickname.Add("FreedomFries", "Fries");
-			nameNickname.Add("Toaster443", "Toaster");
+			Table nameNicknameId = new Table("NN", new Relation(("*Name",typeof(RADString)), ("&Nickname",typeof(RADString)), ("&ID", typeof(RADInteger))));
+			nameNicknameId.Add("FreedomFries", "Fries", 1);
+			nameNicknameId.Add("Toaster443", "Toaster", 2);
+			Table idRole = new Table("RoleInfo", new Relation(("*ID",typeof(RADInteger)), ("Role",typeof(RADString))));
+			idRole.Add(1, "Admin");
+			idRole.Add(2, "Standard");
 
+			loadedDatabase?.addTable(nameNicknameId);
+			loadedDatabase?.addTable(idRole);
+
+			CommandInterpreter c = new CommandInterpreter(loadedDatabase, "(IDNTM)");
+
+			
 			if (idntm != null) {
+
+				loadedDatabase?.TableApplyRelationalAlgebra(new string[0], new string[0],
+					"(IDNTM(\"Name\")=(Name)NN)(NN.ID)=(ID)RoleInfo").PrintTableNoPadding();
 				
-				AlgebraNode n00 = new AlgebraNode(nameNickname);
+				AlgebraNode n01 = new AlgebraNode(idRole);
+				AlgebraNode n00 = new AlgebraNode(nameNicknameId);
 				AlgebraNode n0 = new AlgebraNode(idntm);
 				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"IDNTM.Time=*/2017 *"}, n0);
 				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"IDNTM(Name)=NN(Name)"}, n1, n00);
-				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"IDNTM.ID","NN.Nickname","IDNTM.Message"}, n2);
-				Table t = n3.TableApply();
-				t?.PrintTableNoPadding();
+				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"(...)(NN.ID)=RoleInfo(ID)"}, n2, n01);
+				AlgebraNode n4 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"IDNTM.ID","NN.Nickname","RoleInfo.Role","IDNTM.Message"}, n3);
+				Table t = n4.TableApply();
+			
 				t?.DumpData();
-				foreach (var element in t) {
-					Console.WriteLine(element);
-				}
-				
+				t?.PrintTableNoPadding();
 			}
+			
+			
 			
 		}
 	}

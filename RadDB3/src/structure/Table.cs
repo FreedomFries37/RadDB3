@@ -285,6 +285,15 @@ namespace RadDB3.structure {
 			return output;
 		}
 
+		public override string ToString() {
+			return name;
+		}
+
+		public override string Dump() {
+			DumpData();
+			return null;
+		}
+
 		/// <summary>
 		/// Dumps relavent data and a graph representing the distribution of data in the table
 		/// </summary>

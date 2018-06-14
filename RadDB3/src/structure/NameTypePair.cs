@@ -22,5 +22,9 @@ namespace RadDB3.structure {
 		public string Name => name;
 
 		public Type Type => type;
+
+		public override string ToString() {
+			return $"({name},{type.Name})";
+		}
 	}
 }

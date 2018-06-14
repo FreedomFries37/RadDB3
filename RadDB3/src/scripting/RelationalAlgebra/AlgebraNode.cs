@@ -19,30 +19,28 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 		public RelationalAlgebraFunction Function {
 			get => function;
-			set => function = value;
+			private set => function = value;
 		}
-
-	
 
 		public AlgebraNode(Table tb, params string[] options) {
 			_isBase = true;
 			BaseTable = tb;
 			children = new LinkedList<AlgebraNode>();
-			function = RelationalAlgebraModule.Reflect;
+			Function = RelationalAlgebraModule.Reflect;
 			Options = options;
 		}
 
 		public AlgebraNode(RelationalAlgebraFunction func, string[] options, AlgebraNode first, params AlgebraNode[] children) {
 			_isBase = false;
-			function = func;
+			Function = func;
 			Options = options;
 			this.children = new LinkedList<AlgebraNode>(children);
 			this.children.AddFirst(first);
 		}
 
 		public RADTuple[] Apply() {
-			if (_isBase) return function(Options, this);
-			return function(Options, Children);
+			if (_isBase) return Function(Options, this);
+			return Function(Options, Children);
 		}
 
 		public Table TableApply() {
@@ -51,11 +49,20 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			if (tuples.Length == 0) return null;
 			Table output = new Table(tuples);
 
-			if (function == RelationalAlgebraModule.Reflect) {
+			if (Function == RelationalAlgebraModule.Reflect) {
 				output.CreateSecondaryIndexing();
 			}
 
 			return output;
+		}
+
+		public int Count() {
+			int count = 1;
+			foreach (AlgebraNode parseNode in children) {
+				count += parseNode.Count();
+			}
+
+			return count;
 		}
 	}
 }

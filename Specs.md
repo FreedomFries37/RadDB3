@@ -4,18 +4,21 @@ Runtime tempvars are cleared after every command
 Objects can be piped through commands
 
 PRIVATE TYPES:
-	<new_table> : <table>
 	<nametypepair>:
-		(<sentence>:<string>[(constaints)])
+		(<sentence>,<string>[(constaints)])
+	<selection>:
+		<string>=<string>
+	<method>:
+		<string>(<object>,...)
 
 OBJECT CREATION:
 	<object>:
+		<object>.<method>
+		(<object>) #objects value is whatever type it stores, so (<Table>) is also a Table
 		<Table>
 		<TupleList>
 		<RADTuple>
 		<Element>
-		(<object>) #objects value is whatever type it stores, so (<Table>) is also a Table
-		<object>.<method>
 		
 		Fields:
 			dynamic data;
@@ -48,6 +51,32 @@ OBJECT CREATION:
 		[<RADtype> ]<sentence>|<string> # defaults to string RADtype
 		<RADTuple>[<sentence:column name>]
 		<RADTuple>[<int:index>]
+		
+		
+COMMANDS:
+
+	BEGIN LIVE SESSION:
+		load [ -d | -f ]  <sentence>
+			-d directory name
+			-f .rd3 file name
+		load -l
+			finds the first database in the current directory
+		
+	TABLE COMMANDS
+	# all of these commands return a Table object
+	<command>:
+		<table>:
+			<new_table>:
+				new Table(<string>,<nametypepair>,...)
+			
+			<join_info_full>
+			
+			<sentence> #table name in database
+			
+			{<table>(<selection>,...)@<columns>}
+			{<table>(<selection>,...)}
+		
+EXAMPLES:
 		
 	example: (ITNAP).list["0040402121232"]["Message"]
 	

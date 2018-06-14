@@ -125,6 +125,8 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		// Node count should be two
 		// only one option
 		// Options in form <table_name>(<column_name>,...)=<table_name>(<column_name>,...)
+		// 		or (<table>)=<table_name>(<column_name>,...)
+		//		or <table_name>(<column_name>,...)=(<table>)
 		public static RADTuple[] InnerJoin(string[] options, params AlgebraNode[] nodes) {
 			Table table1, table2;
 			(string table1ColumnName, string table2ColumnName)[] args;
@@ -137,42 +139,47 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 			List<string> leftColumns, rightColumns;
 			leftColumns = Parser.ConvertColumns(tree[1]).ToList();
-			string leftName = tree[0][0][0].Data;
+			string leftName = tree[0].Data != "TABLE DATA" ? tree[0][0][0].Data + "." : "";
 			
+
 			rightColumns = Parser.ConvertColumns(tree[3]).ToList();
-			string rightName = tree[2][0][0].Data;
+			string rightName = tree[2].Data != "TABLE DATA" ? tree[2][0][0].Data + "." : "";
 
 			if (leftColumns.Count != rightColumns.Count) return null;
 			for (int i = 0; i < leftColumns.Count; i++) {
-				leftColumns[i] = leftName + "." + leftColumns[i];
-				rightColumns[i] = rightName + "." + rightColumns[i];
+				leftColumns[i] = leftName + leftColumns[i];
+				rightColumns[i] = rightName + rightColumns[i];
 			}
-			
+
 
 
 			List<NameTypePair> pairs = new List<NameTypePair>();
 			int maxSize = table1.Relation.Arity + table2.Relation.Arity - leftColumns.Capacity;
-			
+
 			int index = 0;
 			bool firstSwitch = true;
 			while (pairs.Count < maxSize) {
 				NameTypePair next;
-			
-				
+
+
 				if (pairs.Count < table1.Relation.Arity) { // add from left
+					
 					string name = table1.Relation.Names[index];
-					Type left =  table1.Relation.Types[table1.Relation[name]];
-					next = new NameTypePair(name, left);
+					string keyInfo = table1.Relation.Keys.ElementAt(0) == index ? "*" :
+						table1.Relation.Keys.Contains(index) ? "&" : "";
+					Type left = table1.Relation.Types[table1.Relation[name]];
+					next = new NameTypePair(keyInfo + name, left);
 				} else { //add from righht
 					if (firstSwitch) {
 						firstSwitch = false;
 						index = 0;
 					}
+
 					string name = table2.Relation.Names[index];
 					Type right = table2.Relation.Types[table2.Relation[name]];
 					if (rightColumns.Contains(name)) {
 						Type left = table1.Relation.Types[table1.Relation[leftColumns[rightColumns.IndexOf(name)]]];
-						
+
 						if (left != right) {
 							next = null;
 							index++;
@@ -180,14 +187,14 @@ namespace RadDB3.scripting.RelationalAlgebra {
 							index++;
 							continue;
 						}
-						
+
 					} else next = new NameTypePair(name, right);
 				}
-				
+
 				pairs.Add(next);
 				index++;
 			}
-			
+
 			Relation generatedRelation = new Relation(pairs.ToArray());
 			List<RADTuple> allGenerated = new List<RADTuple>();
 			foreach (RADTuple radTuple in table1.All) {
@@ -195,12 +202,14 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				foreach (string leftColumnName in leftColumns) {
 					importantElements.Add(radTuple[leftColumnName]);
 				}
+
 				List<string> searchQueries = new List<string>();
-				for(int i = 0; i < importantElements.Count; i++) {
+				for (int i = 0; i < importantElements.Count; i++) {
 					searchQueries.Add(
 						$"\"{rightColumns[i]}\"=\"{importantElements[i]}\""
-						);
+					);
 				}
+
 				AlgebraNode node0 = new AlgebraNode(table2, "pure");
 				AlgebraNode node1 = new AlgebraNode(Selection, searchQueries.ToArray(), node0);
 				List<RADTuple> foundRightTable = node1.Apply().ToList();
@@ -218,7 +227,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 					}
 				}
 			}
-		
+
 
 			return allGenerated.ToArray();
 		}

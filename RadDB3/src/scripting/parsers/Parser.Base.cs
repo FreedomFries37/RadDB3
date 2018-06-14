@@ -1,16 +1,23 @@
 ﻿
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
 
 namespace RadDB3.scripting.parsers {
+	public delegate bool ParserFunction(out ParseNode node);
+
+	public delegate bool InternalParserFunction(ParseNode node);
+	
+	
 	public partial class Parser {
-		private string parsableString;
-		private int index;
-		private ParseNode head;
+		protected string parsableString;
+		protected int index;
+		protected ParseNode head;
 
 		public char CurrentCharacter => index < parsableString.Length ? parsableString[index] : (char) 420;
 		
@@ -19,6 +26,47 @@ namespace RadDB3.scripting.parsers {
 			REMOVE_ALL_NONSPACE_WHITESPACE,
 			ALL_WHITESPACE_TO_SPACE,
 			REMOVE_ONLY_TABS
+		}
+
+		
+		/// <summary>
+		/// Used For Nondeterminate Grammars
+		/// </summary>
+		protected class SaveState {
+			public readonly int savedIndex;
+			public readonly string originalString;
+			public readonly List<ParseNode> nodeData;
+
+			public SaveState(Parser parser) {
+				savedIndex = parser.index;
+				originalString = parser.parsableString;
+				nodeData = null;
+			}
+			
+			public SaveState(Parser parser, ParseNode node) {
+				savedIndex = parser.index;
+				originalString = parser.parsableString;
+				nodeData = new List<ParseNode>(node.Children);
+			}
+		}
+
+		protected SaveState SaveParserState() {
+			return new SaveState(this);
+		}
+		
+		protected SaveState SaveParserState(ParseNode p) {
+			return new SaveState(this, p);
+		}
+
+		protected void LoadSaveState(SaveState s) {
+			index = s.savedIndex;
+			parsableString = s.originalString;
+		}
+		
+		protected void LoadSaveState(SaveState s, ParseNode p) {
+			index = s.savedIndex;
+			parsableString = s.originalString;
+			p.ChildrenList = new List<ParseNode>(s.nodeData);
 		}
 
 		/// <summary>
@@ -82,11 +130,12 @@ namespace RadDB3.scripting.parsers {
 			return s;
 		}
 
+
 		/// <summary>
 		/// Advances the pointer by one char, unless its at the end of the file
 		/// </summary>
 		/// <returns>if the pointer moved forward</returns>
-		private bool AdvancePointer() {
+		protected bool AdvancePointer() {
 			index++;
 			return true;
 		}
@@ -96,7 +145,7 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <param name="c">The character to check</param>
 		/// <returns>If c matches the current character</returns>
-		private bool MatchChar(char c) {
+		protected bool MatchChar(char c) {
 			return c == CurrentCharacter;
 		}
 
@@ -105,7 +154,7 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <param name="c">The character to check</param>
 		/// <returns>If c matches the current character</returns>
-		private bool ConsumeChar(char c) {
+		protected bool ConsumeChar(char c) {
 			if (!MatchChar(c)) return false;
 			AdvancePointer();
 			return true;
@@ -116,7 +165,7 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <param name="str">The string to check</param>
 		/// <returns>If it matches</returns>
-		private bool MatchString(string str) {
+		protected bool MatchString(string str) {
 			int originalIndex = index;
 			for (int i = 0; i < str.Length; i++) {
 				if (originalIndex + i >= parsableString.Length) return false;
@@ -132,7 +181,7 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <param name="pattern">Regex pattern</param>
 		/// <returns>If it matches</returns>
-		private bool MatchPattern(string pattern) {
+		protected bool MatchPattern(string pattern) {
 			Regex regex = new Regex(pattern);
 			int tempIndex = 1;
 			string check = parsableString.Substring(index);
@@ -153,7 +202,7 @@ namespace RadDB3.scripting.parsers {
 			return false;
 		}
 
-		private bool ConsumePattern(string pattern) {
+		protected bool ConsumePattern(string pattern) {
 			Regex regex = new Regex(pattern);
 			int tempIndex = 1;
 			string check = parsableString.Substring(index);
@@ -175,7 +224,7 @@ namespace RadDB3.scripting.parsers {
 			return false;
 		}
 
-		private bool ConsumePattern(string pattern, out string matchedString) {
+		protected bool ConsumePattern(string pattern, out string matchedString) {
 			Regex regex = new Regex(pattern);
 			int tempIndex = 1;
 			string check = parsableString.Substring(index);
@@ -207,7 +256,7 @@ namespace RadDB3.scripting.parsers {
 		/// </summary>
 		/// <param name="str">The string to check</param>
 		/// <returns>If it matches</returns>
-		private bool ConsumeString(string str) {
+		protected bool ConsumeString(string str) {
 			if (!MatchString(str)) return false;
 			index += str.Length;
 			return true;
@@ -217,8 +266,7 @@ namespace RadDB3.scripting.parsers {
 		
 		/**
 		 * <sentence>:
-		 *
-		 * 		"<string>"
+		 * 		"<sentence'>"
 		 *
 		 * <sentence'>:
 		 * 		<sentence_char><sentence_tail>
@@ -230,6 +278,7 @@ namespace RadDB3.scripting.parsers {
 		 * 		<sentence'>
 		 * 
 		 * <string>:
+		 * 		<sentence>
 		 * 		<char><string_tail>
 		 *
 		 * <char>:
@@ -249,7 +298,7 @@ namespace RadDB3.scripting.parsers {
 			return true;
 		}
 		
-		private bool ParseSentence(ParseNode parent) {
+		protected bool ParseSentence(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence>");
 
 			if (!ConsumeChar('"')) return false;
@@ -262,7 +311,7 @@ namespace RadDB3.scripting.parsers {
 
 		
 		
-		private bool ParseSentencePrime(ParseNode parent) {
+		protected bool ParseSentencePrime(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence'>");
 
 			if (!ParseSentenceChar(next)) return false;
@@ -271,7 +320,7 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
-		private bool ParseSentenceChar(ParseNode parent) {
+		protected bool ParseSentenceChar(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence_char>");
 
 			if (!MatchPattern(@".")) return false;
@@ -284,7 +333,7 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
-		private bool ParseSentenceTail(ParseNode parent) {
+		protected bool ParseSentenceTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<sentence_tail>");
 
 			if (!MatchChar('"') && !ParseSentencePrime(next)) return false;
@@ -294,7 +343,7 @@ namespace RadDB3.scripting.parsers {
 		}
 
 
-		public bool ParseString(out ParseNode parent) {
+		protected bool ParseString(out ParseNode parent) {
 			ParseNode next = new ParseNode("<string>");
 			parent = null;
 			if (!ParseChar(next)) return false;
@@ -304,12 +353,14 @@ namespace RadDB3.scripting.parsers {
 			return true;
 		}
 		
-		private bool ParseString(ParseNode parent) {
+		protected bool ParseString(ParseNode parent) {
 			ParseNode next = new ParseNode("<string>");
 
-			if (!ParseChar(next)) return false;
-			if (!ParseStringTail(next)) return false;
-			
+			if (!ParseSentence(next)) {
+				if (!ParseChar(next)) return false;
+				if (!ParseStringTail(next)) return false;
+			}
+
 			parent.AddChild(next);
 			return true;
 		}
@@ -336,7 +387,7 @@ namespace RadDB3.scripting.parsers {
 			return true;
 		}
 
-		private bool ParseInt(ParseNode parent) {
+		protected bool ParseInt(ParseNode parent) {
 			ParseNode next = new ParseNode("<int>");
 
 			if (!ParseDigit(next)) return false;
@@ -406,5 +457,44 @@ namespace RadDB3.scripting.parsers {
 			
 			return output;
 		}
+		
+		/// <summary>
+		/// In form object,object,...
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="function"></param>
+		/// <returns></returns>
+		public bool ParseList(ParseNode parent, InternalParserFunction function) {
+			ParseNode next = new ParseNode($"<list_{function.Method.Name.Replace("Parse","").ToLower()}>");
+
+			if (ParseListObject(next, function)) {
+				if (!ParseListMore(next, function)) return false;
+			} else {
+				next.AddChild(new ParseNode("empty"));
+			}
+			
+			parent.AddChild(next);
+			return true;
+		}
+
+		private bool ParseListObject(ParseNode parent, InternalParserFunction function) {
+			ParseNode next = new ParseNode($"<{function.Method.Name.Replace("Parse","").ToLower()}>");
+
+			if (!function(next)) return false;
+	
+			parent.AddChild(next);
+			return true;
+		}
+
+		private bool ParseListMore(ParseNode parent, InternalParserFunction function) {
+			ParseNode next = new ParseNode("<list_more>");
+			if (ConsumeChar(',')) {
+				if (!ParseList(next,function)) return false;
+			}
+			
+			parent.AddChild(next);
+			return true;
+		}
+
 	}
 }
