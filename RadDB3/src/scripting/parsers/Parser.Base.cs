@@ -112,15 +112,20 @@ namespace RadDB3.scripting.parsers {
 					case ParseOptions.ALL_WHITESPACE_TO_SPACE:
 						s = s.Replace('\t', ' ');
 						s = s.Replace('\n', ' ');
+						s = s.Replace("\r", "");
 						break;
 					
 					case ParseOptions.REMOVE_ALL_WHITESPACE:
 						s = s.Replace("\t", "");
 						s = s.Replace("\n", "");
+						s = s.Replace("\r", "");
 						s = s.Replace(" ", "");
 						break;
 					
 					case ParseOptions.REMOVE_ALL_NONSPACE_WHITESPACE:
+						s = s.Replace("\t", "");
+						s = s.Replace("\n", "");
+						s = s.Replace("\r", "");
 						break;
 					case ParseOptions.REMOVE_ONLY_TABS:
 						s = s.Replace("\t", "");
@@ -263,6 +268,17 @@ namespace RadDB3.scripting.parsers {
 		}
 
 		public static string StringToSentence(string input) => "\"" + input + "\"";
+
+		public static string lowerCamelCaseToLowerSeperated(string input) {
+			string output = "";
+			for (int i = 0; i < input.Length; i++) {
+				char original = input[i];
+				if (i > 0 && input.ToLower()[i] != original) output += "_" + input.ToLower()[i];
+				else output += original.ToString().ToLower();
+			}
+
+			return output;
+		}
 		
 		/**
 		 * <sentence>:
@@ -465,7 +481,7 @@ namespace RadDB3.scripting.parsers {
 		/// <param name="function"></param>
 		/// <returns></returns>
 		public bool ParseList(ParseNode parent, InternalParserFunction function) {
-			ParseNode next = new ParseNode($"<list_{function.Method.Name.Replace("Parse","").ToLower()}>");
+			ParseNode next = new ParseNode($"<list_{lowerCamelCaseToLowerSeperated(function.Method.Name.Replace("Parse",""))}>");
 
 			if (ParseListObject(next, function)) {
 				if (!ParseListMore(next, function)) return false;
@@ -478,7 +494,7 @@ namespace RadDB3.scripting.parsers {
 		}
 
 		private bool ParseListObject(ParseNode parent, InternalParserFunction function) {
-			ParseNode next = new ParseNode($"<{function.Method.Name.Replace("Parse","").ToLower()}>");
+			ParseNode next = new ParseNode("<list_object>");
 
 			if (!function(next)) return false;
 	
@@ -495,6 +511,22 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
+
+		public static List<ParseNode> ConvertListNodeToListOfListObjects(ParseNode parseNode) {
+			if(!parseNode.Data.Contains("list_")) throw new IncompatableParseNodeException();
+			
+			List<ParseNode> output = new List<ParseNode>();
+			ParseNode nodePtr = parseNode;
+			do {
+				if (nodePtr.Data == "<list_more>") nodePtr = nodePtr[0];
+				output.Add(nodePtr["<list_object>"][0]);
+				nodePtr = nodePtr["<list_more>"];
+			} while (nodePtr != null);
+
+			return output;
+		}
+		
+		
 
 	}
 }

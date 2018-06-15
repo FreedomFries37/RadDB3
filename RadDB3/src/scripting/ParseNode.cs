@@ -118,6 +118,8 @@ namespace RadDB3.scripting {
 			
 		}
 
+	
+		
 		public int Count() {
 			int count = 1;
 			foreach (ParseNode parseNode in children) {

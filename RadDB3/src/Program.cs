@@ -96,18 +96,21 @@ namespace RadDB3 {
 			loadedDatabase?.addTable(nameNicknameId);
 			loadedDatabase?.addTable(idRole);
 
-			CommandInterpreter c = new CommandInterpreter(loadedDatabase, "(IDNTM)");
-
+		
 			
 			if (idntm != null) {
 
-				loadedDatabase?.TableApplyRelationalAlgebra(new string[0], new string[0],
-					"(IDNTM(\"Name\")=(Name)NN)(NN.ID)=(ID)RoleInfo").PrintTableNoPadding();
+				CommandInterpreter c = new CommandInterpreter(loadedDatabase, 
+					@"{(IDNTM(Name)=(Name)NN)(NN.ID)=RoleInfo(ID)
+						[RoleInfo.Role=Admin,NN.Nickname=Fries]
+						@IDNTM.ID,NN.Nickname,RoleInfo.Role,IDNTM.Message}");
+				(c.output as Table)?.PrintTableNoPadding();
+				/*
 				
 				AlgebraNode n01 = new AlgebraNode(idRole);
 				AlgebraNode n00 = new AlgebraNode(nameNicknameId);
 				AlgebraNode n0 = new AlgebraNode(idntm);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"IDNTM.Time=*/2017 *"}, n0);
+				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"IDNTM.Time=*2017 *"}, n0);
 				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"IDNTM(Name)=NN(Name)"}, n1, n00);
 				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"(...)(NN.ID)=RoleInfo(ID)"}, n2, n01);
 				AlgebraNode n4 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"IDNTM.ID","NN.Nickname","RoleInfo.Role","IDNTM.Message"}, n3);
@@ -115,6 +118,7 @@ namespace RadDB3 {
 			
 				t?.DumpData();
 				t?.PrintTableNoPadding();
+				*/
 			}
 			
 			

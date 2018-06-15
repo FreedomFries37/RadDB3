@@ -60,7 +60,7 @@ namespace RadDB3.scripting.parsers {
 			return true;
 		}
 
-		private bool ParseJoinInfoFull(ParseNode parent) {
+		protected bool ParseJoinInfoFull(ParseNode parent) {
 			ParseNode next = new ParseNode("<join_info_full>");
 			
 			if (!ParseJoinObject(next)) return false;
@@ -175,7 +175,7 @@ namespace RadDB3.scripting.parsers {
 			parent.AddChild(next);
 			return true;
 		}
-		private bool ParseColumns(ParseNode parent) {
+		public bool ParseColumns(ParseNode parent) {
 			ParseNode next = new ParseNode("<columns>");
 
 			if (!ParseColumnName(next)) return false;

@@ -64,5 +64,24 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 			return count;
 		}
+
+		public void PrintTree() => PrintTree(0);
+		private void PrintTree(int index) {
+			for (int i = 0; i < index; i++) {
+				Console.Write("   ");
+			}
+
+			if (Options.Length > 0) {
+				for (int i = 0; i < Options.Length - 1; i++) {
+					Console.Write(Options[i] + ",");
+				}
+
+				Console.WriteLine(Options[Options.Length - 1]);
+			}else Console.WriteLine(BaseTable.Name);
+
+			foreach (AlgebraNode algebraNode in children) {
+				algebraNode.PrintTree(index+1);
+			}
+		}
 	}
 }

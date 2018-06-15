@@ -72,7 +72,7 @@ method  | false | _string_(_list_object_)
 			
 			<join_info_full>
 			
-			<sentence> #table name in database
+			<string> #table name in database
 			
 			{<table>(<selection>,...)@<columns>}
 			{<table>(<selection>,...)}
