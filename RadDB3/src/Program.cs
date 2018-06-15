@@ -89,8 +89,10 @@ namespace RadDB3 {
 			Table nameNicknameId = new Table("NN", new Relation(("*Name",typeof(RADString)), ("&Nickname",typeof(RADString)), ("&ID", typeof(RADInteger))));
 			nameNicknameId.Add("FreedomFries", "Fries", 1);
 			nameNicknameId.Add("Toaster443", "Toaster", 2);
+			nameNicknameId.Add("arvindsindhwani", "Nilla", 3);
 			Table idRole = new Table("RoleInfo", new Relation(("*ID",typeof(RADInteger)), ("Role",typeof(RADString))));
 			idRole.Add(1, "Admin");
+			idRole.Add(3, "Admin");
 			idRole.Add(2, "Standard");
 
 			loadedDatabase?.addTable(nameNicknameId);
@@ -101,11 +103,19 @@ namespace RadDB3 {
 			if (idntm != null) {
 
 				CommandInterpreter c = new CommandInterpreter(loadedDatabase, 
-					@"{(IDNTM(Name)=(Name)NN)(NN.ID)=RoleInfo(ID)
-						[RoleInfo.Role=Admin,NN.Nickname=Fries]
+					@"	{(IDNTM(Name)=(Name)NN)(NN.ID)=RoleInfo(ID)
+						[RoleInfo.Role=Admin]
 						@IDNTM.ID,NN.Nickname,RoleInfo.Role,IDNTM.Message}");
 				(c.output as Table)?.PrintTableNoPadding();
+				
+				c = new CommandInterpreter(loadedDatabase,
+					@"	{NN(ID)=RoleInfo(ID)
+						[RoleInfo.Role=Admin]
+						@NN.Name,NN.Nickname}");
+				(c.output as Table)?.PrintTableNoPadding();
 				/*
+				 
+				
 				
 				AlgebraNode n01 = new AlgebraNode(idRole);
 				AlgebraNode n00 = new AlgebraNode(nameNicknameId);
