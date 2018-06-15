@@ -17,6 +17,8 @@ namespace RadDB3.interaction {
 			ParseTree tree = new ParseTree(ParseObject);
 			
 		}
+		
+		public bool ParseCommand
 
 
 

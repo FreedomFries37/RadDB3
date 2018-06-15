@@ -1,17 +1,18 @@
+# General Info
 Commands can be converted into objects of four types: Element, RADTuple, RADTuple[] (as TupleList), or Table
 Runtime variables can be created to store the types
 Runtime tempvars are cleared after every command
 Objects can be piped through commands
 
-PRIVATE TYPES:
-	<nametypepair>:
-		(<sentence>,<string>[(constaints)])
-	<selection>:
-		<string>=<string>
-	<method>:
-		<string>(<object>,...)
+### PRIVATE TYPES:
 
-OBJECT CREATION:
+Syntactic Category | Optional | Rule
+--- | :---: | ---
+nametypepair | false | (_sentence_,_string_[(_constaints_)])
+selection	| false | _string_=_string_
+method  | false | _string_(_list_object_)
+
+### OBJECT CREATION:
 	<object>:
 		<object>.<method>
 		(<object>) #objects value is whatever type it stores, so (<Table>) is also a Table
@@ -53,7 +54,7 @@ OBJECT CREATION:
 		<RADTuple>[<int:index>]
 		
 		
-COMMANDS:
+### COMMANDS:
 
 	BEGIN LIVE SESSION:
 		load [ -d | -f ]  <sentence>
@@ -76,7 +77,7 @@ COMMANDS:
 			{<table>(<selection>,...)@<columns>}
 			{<table>(<selection>,...)}
 		
-EXAMPLES:
+### EXAMPLES:
 		
 	example: (ITNAP).list["0040402121232"]["Message"]
 	
