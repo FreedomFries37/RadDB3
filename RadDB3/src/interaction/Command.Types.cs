@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using RadDB3.structure;
 
 namespace RadDB3.interaction {
@@ -13,6 +14,10 @@ namespace RadDB3.interaction {
 				}
 
 				return t;
+			}
+
+			public override void SetName(string s) {
+				(Data as Table)?.SetName(s);
 			}
 		}
 

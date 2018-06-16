@@ -13,6 +13,8 @@ namespace RadDB3.interaction {
 				Data = data;
 			}
 
+			public virtual void SetName(string s) { }
+
 			public virtual string Dump() => Data?.Dump();
 		}
 		

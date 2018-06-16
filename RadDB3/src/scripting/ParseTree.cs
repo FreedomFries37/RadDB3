@@ -19,6 +19,10 @@ namespace RadDB3.scripting {
 		public void PrintTree() {
 			head.Print(0);
 		}
+		public void PrintTree(int maxDepth) {
+			head.Print(0,maxDepth);
+		}
+
 
 		public ParseNode this[string s] => head[s];
 

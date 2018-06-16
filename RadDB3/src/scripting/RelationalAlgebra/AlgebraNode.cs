@@ -12,6 +12,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 		private readonly bool _isBase;
 		public string[] Options { get; set; }
 		public Table BaseTable { get; protected set; }
+		public int Tuples { get; protected set; }
 
 		public AlgebraNode[] Children => children.ToArray();
 		public AlgebraNode Parent { private set; get; }
@@ -29,6 +30,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			children = new LinkedList<AlgebraNode>();
 			Function = RelationalAlgebraModule.Reflect;
 			Options = options;
+			Tuples = tb.Count;
 		}
 
 		public AlgebraNode(RelationalAlgebraFunction func, string[] options, AlgebraNode first, params AlgebraNode[] children) {
@@ -44,7 +46,9 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 		public RADTuple[] Apply() {
 			if (_isBase) return Function(Options, this);
-			return Function(Options, Children);
+			RADTuple[] output = Function(Options, Children);
+			Tuples = output.Length;
+			return output;
 		}
 
 		public Table TableApply() {
@@ -52,7 +56,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			RADTuple[] tuples = Apply();
 			if (tuples.Length == 0) return null;
 			Table output = new Table(tuples);
-
+			output.ReSize();
 			if (Function == RelationalAlgebraModule.Reflect) {
 				output.CreateSecondaryIndexing();
 			}
@@ -113,7 +117,17 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			return output;
 		}
 
-		public void PrintTree() => PrintTree(0);
+		public void EnforceParenthood() {
+			foreach (AlgebraNode algebraNode in children) {
+				algebraNode.Parent = this;
+				algebraNode.EnforceParenthood();
+			}
+		}
+
+		public void PrintTree() {
+			PrintTree(0);
+			Console.WriteLine();
+		}
 		private void PrintTree(int index) {
 			for (int i = 0; i < index; i++) {
 				Console.Write("   ");
@@ -124,14 +138,41 @@ namespace RadDB3.scripting.RelationalAlgebra {
 					Console.Write(Options[i] + ",");
 				}
 
-				Console.WriteLine(Options[Options.Length - 1]);
+				Console.WriteLine(Options[Options.Length - 1] + "  Tuples: " + Tuples);
 			} else {
 				string optionDetail = Options.Length > 0 ? $"[{Options[0]}] " : "";
-				Console.WriteLine(optionDetail + BaseTable.Name);
+				Console.WriteLine(optionDetail + BaseTable.Name + "  Tuples: " + Tuples);
 			}
 
 			foreach (AlgebraNode algebraNode in children) {
 				algebraNode.PrintTree(index+1);
+			}
+		}
+
+		public void PrintTreeMaxDepth(int maxDepth) {
+			PrintTree(0,maxDepth);
+		}
+
+
+		private void PrintTree(int indent, int maxDepth) {
+			if (indent == maxDepth) return;
+			for (int i = 0; i < indent; i++) {
+				Console.Write("   ");
+			}
+
+			if (function != RelationalAlgebraModule.Reflect) {
+				for (int i = 0; i < Options.Length - 1; i++) {
+					Console.Write(Options[i] + ",");
+				}
+
+				Console.WriteLine(Options[Options.Length - 1] + "  Tuples: " + Tuples);
+			} else {
+				string optionDetail = Options.Length > 0 ? $"[{Options[0]}] " : "";
+				Console.WriteLine(optionDetail + BaseTable.Name + "  Tuples: " + Tuples);
+			}
+
+			foreach (AlgebraNode algebraNode in children) {
+				algebraNode.PrintTree(indent+1, maxDepth);
 			}
 		}
 	}

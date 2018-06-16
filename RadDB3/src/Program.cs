@@ -101,19 +101,31 @@ namespace RadDB3 {
 		
 			
 			if (idntm != null) {
-
-				CommandInterpreter c = new CommandInterpreter(loadedDatabase, 
-					@"	{(IDNTM(Name)=(Name)NN)(NN.ID)=RoleInfo(ID)
-						[RoleInfo.Role=Admin]
-						@IDNTM.ID,NN.Nickname,RoleInfo.Role,IDNTM.Message}");
-				(c.output as Table)?.PrintTableNoPadding();
 				
+				
+				var c = new CommandInterpreter(loadedDatabase, "{IDNTM[Name=*]@Name} as NameTable");
+				c = new CommandInterpreter(loadedDatabase, "NameTable");
+				c = new CommandInterpreter(loadedDatabase, "{NameTable(Name)=NN(Name)[NN.Name=*]} as NameTable2}");
+				c = new CommandInterpreter(loadedDatabase, 
+					@"{IDNTM(Name)=(NN(ID)=RoleInfo(ID))(NN.Name)" +
+					"[IDNTM.Time=*]" +
+					"@IDNTM.ID,IDNTM.Name,IDNTM.Message} as CoolTable");
+				c = new CommandInterpreter(loadedDatabase, "{NameTable2(Name)=CoolTable(Name)[CoolTable.Name=*]@CoolTable.ID}");
+				
+				(c.output as Table)?.PrintTableNoPadding();
+				(c.output as Table)?.Dump();
+				Console.WriteLine("Tuples Created: {0}", RelationalAlgebraModule.TuplesCreated);
+				RelationalAlgebraModule.ResetTuplesCreated();
+				/*
 				c = new CommandInterpreter(loadedDatabase,
 					@"	{NN(ID)=RoleInfo(ID)
 						[RoleInfo.Role=Admin]
 						@NN.Name,NN.Nickname}");
 				(c.output as Table)?.PrintTableNoPadding();
-				/*
+				
+				Console.WriteLine("Tuples Created: {0}", RelationalAlgebraModule.TuplesCreated);
+
+				
 				 
 				
 				

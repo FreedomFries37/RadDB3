@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
+using RadDB3.interaction;
 using RadDB3.scripting.parsers;
 using RadDB3.structure;
 
@@ -26,7 +27,13 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				int index = 0;
 				foreach (ParseNode tableName in tableNames) {
 					string name = tableName[0][0].Data;
-					tables[index] = db[name];
+					Table tb;
+					if (CommandInterpreter.variables.ContainsKey(name)) {
+						tb = CommandInterpreter.variables[name].Data as Table;
+					} else {
+						tb = db[name];
+					}
+					tables[index] = tb;
 					if (tables[index] == null) return;
 					index++;
 				}
@@ -40,27 +47,31 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				if (fixedJoins == null) return;
 				head = fixedJoins;
 			} else {
-				Table tb = db[tableInfo];
+				Table tb;
+				if (CommandInterpreter.variables.ContainsKey(tableInfo)) {
+					tb = CommandInterpreter.variables[tableInfo].Data as Table;
+				} else {
+					tb = db[tableInfo];
+				}
+				
 				if (tb == null) return;
-				head = new AlgebraNode(tb);
+				head = new AlgebraNode(tb, "pure");
 			} 
 
-		
+			head.PrintTree();
+			head.EnforceParenthood();
 			if (selections.Length > 0) {
+				
 				foreach (string selection in selections) {
 					var algebraNode = head;
 				
 					
-					Regex namedSelectionStyle = new Regex("\\w*.\\w*=\"?\\w\"?");
+					Regex namedSelectionStyle = new Regex("\\w*\\.\\w*=\"?\\w*\"?");
 					if (namedSelectionStyle.IsMatch(selection)) {
 						string tableName = selection.Split('.')[0];
-						string columnName = selection.Split('=')[0].Split('.')[1];
-						string data = selection.Split('=')[1];
 
 						var originalNode = nameToAlgebraNode[tableName];
 						var originalParent = originalNode.Parent;
-
-						string modifiedSelection = $"{columnName}={data}";
 						
 						AlgebraNode n = new AlgebraNode(RelationalAlgebraModule.Selection,new []{selection}, originalNode);
 						originalParent.ReplaceChild(originalNode,n);
@@ -70,7 +81,10 @@ namespace RadDB3.scripting.RelationalAlgebra {
 						AlgebraNode n = new AlgebraNode(RelationalAlgebraModule.Selection,new []{selection}, algebraNode);
 						head = n;
 					}
+					head.PrintTree();
 				}
+				
+				
 			}
 
 			if (projections.Length > 0) {
@@ -78,25 +92,6 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				AlgebraNode p = new AlgebraNode(RelationalAlgebraModule.Projection, projections, algebraNode);
 				head = p;
 			}
-			
-			
-			/**
-			 * By now the general layout of the tree should be:
-			 * Projections
-			 * 		Selection
-			 * 			Selection
-			 * 				...
-			 * 					Join/Table
-			 * 						Join/Table
-			 * 						Table/Table
-			 */
-			
-			
-			//Selection pushing
-			
-			
-			
-			
 
 			PrintTree();
 			successfulParse = true;
@@ -104,6 +99,25 @@ namespace RadDB3.scripting.RelationalAlgebra {
 
 		public AlgebraNodeTree(Database db, string[] projections, string[] selections, ParseNode joinInfoFull) : 
 			this(db,projections,selections,ConvertJoinInfoNodeToString(joinInfoFull)) { }
+
+		public AlgebraNodeTree(Table t, string[] projections, string[] selections) {
+			head = new AlgebraNode(t, "pure");
+			if (selections.Length > 0) {
+				foreach (string selection in selections) {
+					var algebraNode = head;
+					AlgebraNode n = new AlgebraNode(RelationalAlgebraModule.Selection,new []{selection}, algebraNode);
+					head = n;
+				}
+			}
+			if (projections.Length > 0) {
+				var algebraNode = head;
+				AlgebraNode p = new AlgebraNode(RelationalAlgebraModule.Projection, projections, algebraNode);
+				head = p;
+			}
+			
+			PrintTree();
+			successfulParse = true;
+		}
 
 		private static string ConvertJoinInfoNodeToString(ParseNode p) {
 			if(!p.Equals("<join_info_full>")) throw new IncompatableParseNodeException();

@@ -12,7 +12,7 @@ namespace RadDB3.structure {
 
 		private const bool MAX_DEBUG = false;
 		
-		private readonly string name;
+		private string name;
 		private readonly Relation relation;
 		private LinkedList<RADTuple>[] tuples;
 
@@ -24,7 +24,10 @@ namespace RadDB3.structure {
 		/// Number of lists
 		/// </summary>
 		public int Size => tuples.Length;
-		public string Name => name;
+		public string Name {
+			get => name;
+			set => name = value;
+		}
 		public Relation Relation => relation;
 		public int Count {
 			get {
@@ -249,6 +252,26 @@ namespace RadDB3.structure {
 			}
 
 			tuples = newTuples;
+		}
+
+		public void ReSize() {
+			LinkedList<RADTuple>[] newTuples = new LinkedList<RADTuple>[Count*2];
+			for (int i = 0; i < newTuples.Length; i++) {
+				newTuples[i] = new LinkedList<RADTuple>();
+			}
+
+			foreach (LinkedList<RADTuple> linkedList in tuples) {
+				foreach (RADTuple radTuple in linkedList) {
+					int hash = Math.Abs(radTuple.GetHashCode() % newTuples.Length);
+					newTuples[hash].AddLast(radTuple);
+				}
+			}
+
+			tuples = newTuples;
+		}
+
+		public void SetName(string s) {
+			Name = s;
 		}
 
 		public void CreateSecondaryIndexing() {

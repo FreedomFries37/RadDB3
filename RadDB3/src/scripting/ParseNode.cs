@@ -154,5 +154,16 @@ namespace RadDB3.scripting {
 				parseNode.Print(indent+1);
 			}
 		}
+
+		public void Print(int indent, int maxDepth) {
+			if (indent == maxDepth) return;
+			for (int i = 0; i < indent; i++) {
+				Console.Write("   ");
+			}
+			Console.Write(this + "\n");
+			foreach (ParseNode parseNode in children) {
+				parseNode.Print(indent+1,maxDepth);
+			}
+		}
 	}
 }

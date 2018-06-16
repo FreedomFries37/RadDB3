@@ -383,7 +383,7 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseChar(ParseNode parent) {
 			ParseNode next = new ParseNode("<char>");
 
-			if (!MatchPattern(@"[a-zA-Z_.0-9]")) return false;
+			if (!MatchPattern(@"[a-zA-Z_.0-9*]")) return false;
 			ParseNode nextNext = new ParseNode("" + CurrentCharacter);
 			
 			next.AddChild(nextNext);
@@ -395,7 +395,7 @@ namespace RadDB3.scripting.parsers {
 		private bool ParseStringTail(ParseNode parent) {
 			ParseNode next = new ParseNode("<string_tail>");
 
-			if (MatchPattern(@"[a-zA-Z_.0-9]")) {
+			if (MatchPattern(@"[a-zA-Z_.0-9*]")) {
 				if (!ParseString(next)) return false;
 			}
 			
@@ -514,7 +514,7 @@ namespace RadDB3.scripting.parsers {
 
 		public static List<ParseNode> ConvertListNodeToListOfListObjects(ParseNode parseNode) {
 			if(!parseNode.Data.Contains("list_")) throw new IncompatableParseNodeException();
-			
+			if(parseNode.Contains("empty")) return new List<ParseNode>();
 			List<ParseNode> output = new List<ParseNode>();
 			ParseNode nodePtr = parseNode;
 			do {

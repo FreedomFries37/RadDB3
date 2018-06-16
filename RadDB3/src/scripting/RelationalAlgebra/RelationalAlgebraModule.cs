@@ -11,6 +11,13 @@ namespace RadDB3.scripting.RelationalAlgebra {
 	public static class RelationalAlgebraModule {
 
 		public static bool UsingRegex = false;
+		public static int TuplesCreated { private set; get; }
+
+		public static void ResetTuplesCreated() => TuplesCreated = 0;
+
+		static RelationalAlgebraModule() {
+			TuplesCreated = 0;
+		}
 		
 		public static RADTuple[] Reflect(string[] options, params AlgebraNode[] nodes) {
 			if (options.Length == 1 &&
@@ -23,6 +30,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				if (!radTuple.AttemptSwitchRelation(generatedRelation)) return null;
 			}
 
+			TuplesCreated += output.Length;
 			return output;
 		}
 
@@ -63,6 +71,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				List<RADTuple> next = new List<RADTuple>();
 				
 				var columData = columnDataTuples[i];
+				if (!UsingRegex) columData.data = columData.data.Replace("*", ".*");
 				if(choice.Relation.IsKey(columData.name) == -1) continue;
 				
 				Element eData = columData.data.Contains("*") ? null : Element.ConvertToElement(choice.Relation.Types[choice.Relation[columData.name]], columData.data);
@@ -80,7 +89,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 							if (eData != null && radTuple[columData.name] == eData) {
 								next.Add(radTuple);
 							} else {
-								if (!UsingRegex) columData.data = columData.data.Replace("*", ".*");
+								
 								Regex regex = new Regex(columData.data);
 								Match m = regex.Match(radTuple[columData.name].ToString());
 								if (m.Success &&
@@ -92,12 +101,13 @@ namespace RadDB3.scripting.RelationalAlgebra {
 					}
 				}
 
+				TuplesCreated += next.Count;
 				output = first ? next : output.Intersect(next).ToList();
 				first = false;
 			}
 			
 			
-
+			
 			return output.ToArray(); 
 		}
 
@@ -119,6 +129,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				output.Add(new RADTuple(generatedRelation, radTuple));
 			}
 
+			TuplesCreated += output.Count;
 			return output.ToArray();
 		}
 
@@ -228,7 +239,7 @@ namespace RadDB3.scripting.RelationalAlgebra {
 				}
 			}
 
-
+			TuplesCreated += allGenerated.Count;
 			return allGenerated.ToArray();
 		}
 

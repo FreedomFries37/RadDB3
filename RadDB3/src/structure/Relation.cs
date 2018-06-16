@@ -103,6 +103,14 @@ namespace RadDB3.structure {
 		public string this[int i] => names[i];
 		public int this[string s] => names.ToList().IndexOf(s);
 
+		public void StripTableNames() {
+			for (int i = 0; i < Arity; i++) {
+				if (names[i].Contains(".")) {
+					names[i] = names[i].Substring(names[i].IndexOf('.') + 1);
+				}
+			}
+		}
+
 		/// <summary>
 		/// Returns -1 if not a key
 		/// 		0 if exists but not a key
