@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using RadDB3.interaction;
 using RadDB3.scripting.parsers;
 using RadDB3.structure;
@@ -117,6 +118,12 @@ namespace RadDB3.scripting.RelationalAlgebra {
 			
 			PrintTree();
 			successfulParse = true;
+		}
+
+		public async Task<AlgebraNodeTree> CreateAlgebraNodeTree(Database db, string[] projections, string[] selections, string tableInfo) {
+			var output = new AlgebraNodeTree(db, projections, selections, tableInfo);
+
+			return output;
 		}
 
 		private static string ConvertJoinInfoNodeToString(ParseNode p) {

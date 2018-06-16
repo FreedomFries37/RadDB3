@@ -60,8 +60,8 @@ namespace RadDB3.interaction {
 					break;
 				default: {
 					foreach (CommandObject commandObject in objects) {
-						(commandObject.Data as Table)?.PrintTableNoPadding();
-						(commandObject.Data as Table)?.DumpData();
+						(commandObject?.Data as Table)?.PrintTableNoPadding();
+						(commandObject?.Data as Table)?.DumpData();
 					}
 				}
 					break;

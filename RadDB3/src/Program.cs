@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using RadDB3.interaction;
 using RadDB3.scripting;
 using RadDB3.scripting.parsers;
@@ -17,52 +20,21 @@ namespace RadDB3 {
 	
 	static class Program {
 		private static Database loadedDatabase;
+
+		private static string command = "";
+		private static bool buttonClicked = false;
+
+		static void Main(string[] args) => MainAsync(args);
 		
-		static void Main(string[] args) {
+		static async void MainAsync(string[] args) {
 			
 			if (args.Length == 0 || args[0] == "DEBUG") {
-				Database db = new Database("TestDatabase");
-				Relation r = new Relation(("*Name", typeof(RADString)),
-					("Age", typeof(RADInteger)));
-				//RADTuple t = new RADTuple(r, new RADString("Josh"), new RADInteger(32), new RADGeneric<bool>(false));
-
-				Table tb1 = new Table("NA", r);
-
-
-				tb1.Add("Dan", 14);
-				tb1.Add("Radc", 67);
-				tb1.Add("Eli", 16);
-				tb1.Add("Jake", 252);
-				tb1.Add("Steve", 12);
-				tb1.Add("Max", 44);
-				tb1.Add("David", 55);
-				tb1.Add("Noah", 5);
-
-				Table tb2 = new Table("NDoB", new Relation(("*name", typeof(RADString)),
-					("&DoB", typeof(RADDate))));
-
-				tb2.Add("Dan", new DateTime(1999, 5, 7));
-				tb2.Add("Radc", new DateTime(1925, 5, 7));
-				tb2.Add("Eli", new DateTime(1945, 5, 7));
-				tb2.Add("Jake", new DateTime(1979, 5, 7));
-				tb2.Add("Steve", new DateTime(1979, 5, 7));
-				tb2.Add("Max", new DateTime(2009, 5, 7));
-				tb2.Add("David", new DateTime(1939, 5, 7));
-				tb2.Add("Noah", new DateTime(1945, 5, 7));
-
-				Element[] elements = tb2.SecondaryIndexing.Get(("DoB", "5/7/*"));
-
-				db.addTable(tb1);
-				db.addTable(tb2);
-
-				AlgebraNode n0 = new AlgebraNode(tb2);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"\"Name\"=\"Dan\""}, n0);
-				RADTuple[] tuples = n1.Apply();
-
-				FileInteraction.ConvertDatabaseToFile(db);
-				Commands.SelectTable(db, tb1.Name).PrintTableNoPadding();
-				FileInteraction.ConvertDirectoriesInCurrentDirectoryToDatabases()[0].PrintDataBase();
+				
 			} else {
+
+				string path = "";
+				bool useDirectory = false;
+				
 				for (int i = 0; i < args.Length; i++) {
 					string arg = args[i];
 					switch (arg) {
@@ -81,6 +53,57 @@ namespace RadDB3 {
 							loadedDatabase?.DumpDataBase();
 						}
 							break;
+						case "-p":
+						case "--path": {
+							path = i + 1 < args.Length ? args[i + 1] : "";
+						}
+							break;
+						case "-d": {
+							useDirectory = true;
+						}
+							break;
+					}
+				}
+
+				if (path != "") {
+					loadedDatabase = useDirectory
+						? FileInteraction.ConvertDirectoryToDatabase(path)
+						: FileInteraction.ConvertFileToDatabase(path);
+				}
+
+				bool dontStop = true;
+				
+				while (loadedDatabase != null && dontStop) {
+					Console.Write(">>  ");
+					bool endCommand = false;
+					command = "";
+					while (!endCommand) {
+						var keyInfo = Console.ReadKey();
+						buttonClicked = true;
+						Regex acceptableCharacters = new Regex("\\w");
+						if(!suggestionRunning) DisplaySuggestions(3000);
+						if (keyInfo.Key == ConsoleKey.Enter) {
+							Console.WriteLine();
+							Console.Write("  ");
+						}
+
+						if (keyInfo.Key == ConsoleKey.Backspace) {
+							command = command.Substring(0, command.Length - 1);
+							Console.Write(" ");
+							Console.Write("\b");
+						}
+						if (keyInfo.KeyChar == ';') {
+							Console.WriteLine();
+							if (command.ToLower() == "exit") {
+								dontStop = false;
+								break;
+							}
+							endCommand = true;
+						} else if(acceptableCharacters.IsMatch("" + keyInfo.KeyChar)) command += keyInfo.KeyChar;
+					}
+
+					if (dontStop) {
+						var commandInterpreter = new CommandInterpreter(loadedDatabase, command);
 					}
 				}
 			}
@@ -143,8 +166,25 @@ namespace RadDB3 {
 				*/
 			}
 			
-			
+		
 			
 		}
+
+		private static bool suggestionRunning = false;
+		static async Task DisplaySuggestions(int delay) {
+			suggestionRunning = true;
+			if (buttonClicked) {
+				buttonClicked = false;
+				await Task.Delay(delay);
+				if (!buttonClicked) {
+					string suggestion = "SUGGESTION";
+					Console.Write(suggestion + "?");
+				}
+
+				suggestionRunning = false;
+			}
+
+		}
+
 	}
 }

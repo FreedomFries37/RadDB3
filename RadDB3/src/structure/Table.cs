@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace RadDB3.structure {
@@ -66,7 +67,8 @@ namespace RadDB3.structure {
 			for (int i = 0; i < tuples.Length; i++) {
 				tuples[i] = new LinkedList<RADTuple>();
 			}
-			if(createSecondary) SecondaryIndexing = new SecondaryIndexing(this);
+
+			CreateSecondaryIndexing();
 		}
 
 		public Table(RADTuple[] tuples) : this(tuples[0]?.relation, false, tuples.Length) {
@@ -274,8 +276,8 @@ namespace RadDB3.structure {
 			Name = s;
 		}
 
-		public void CreateSecondaryIndexing() {
-			if (SecondaryIndexingExists) SecondaryIndexing.ReCreateSecondaryIndex();
+		public async Task CreateSecondaryIndexing() {
+			if (SecondaryIndexingExists) await SecondaryIndexing.ReCreateSecondaryIndex();
 			else SecondaryIndexing = new SecondaryIndexing(this);
 		}
 
