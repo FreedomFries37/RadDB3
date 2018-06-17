@@ -22,7 +22,6 @@ namespace RadDB3 {
 		private static Database loadedDatabase;
 
 		private static string command = "";
-		private static bool buttonClicked = false;
 
 		static void Main(string[] args) => MainAsync(args);
 		
@@ -72,6 +71,8 @@ namespace RadDB3 {
 				}
 
 				bool dontStop = true;
+				List<string> commands = new List<string>();
+				
 				
 				while (loadedDatabase != null && dontStop) {
 					Console.Write(">>  ");
@@ -79,31 +80,44 @@ namespace RadDB3 {
 					command = "";
 					while (!endCommand) {
 						var keyInfo = Console.ReadKey();
-						buttonClicked = true;
-						Regex acceptableCharacters = new Regex("\\w");
-						if(!suggestionRunning) DisplaySuggestions(3000);
+						Regex acceptableCharacters = new Regex("\\w| ");
+					
 						if (keyInfo.Key == ConsoleKey.Enter) {
+							
 							Console.WriteLine();
-							Console.Write("  ");
+							
+							if (command.Length == 0) {
+								foreach (string s in commands) {
+									var commandInterpreter = new CommandInterpreter(loadedDatabase, s);
+								}
+								Console.Write(">>  ");
+								commands = new List<string>();
+							} else {
+								Console.Write("  ");
+							}
 						}
 
 						if (keyInfo.Key == ConsoleKey.Backspace) {
-							command = command.Substring(0, command.Length - 1);
-							Console.Write(" ");
-							Console.Write("\b");
+							if (command.Length > 0) {
+								command = command.Substring(0, command.Length - 1);
+								Console.Write(" ");
+								Console.Write("\b");
+							}
 						}
 						if (keyInfo.KeyChar == ';') {
-							Console.WriteLine();
+							commands.Add(command);
+							//Console.WriteLine();
 							if (command.ToLower() == "exit") {
 								dontStop = false;
 								break;
 							}
-							endCommand = true;
+
+							command = "";
 						} else if(acceptableCharacters.IsMatch("" + keyInfo.KeyChar)) command += keyInfo.KeyChar;
 					}
 
 					if (dontStop) {
-						var commandInterpreter = new CommandInterpreter(loadedDatabase, command);
+						
 					}
 				}
 			}
@@ -170,21 +184,7 @@ namespace RadDB3 {
 			
 		}
 
-		private static bool suggestionRunning = false;
-		static async Task DisplaySuggestions(int delay) {
-			suggestionRunning = true;
-			if (buttonClicked) {
-				buttonClicked = false;
-				await Task.Delay(delay);
-				if (!buttonClicked) {
-					string suggestion = "SUGGESTION";
-					Console.Write(suggestion + "?");
-				}
-
-				suggestionRunning = false;
-			}
-
-		}
+		
 
 	}
 }
