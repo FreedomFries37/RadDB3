@@ -21,6 +21,8 @@ namespace RadDB3 {
 	static class Program {
 		private static Database loadedDatabase;
 
+		private static bool liveSession;
+
 		private static string command = "";
 
 		static void Main(string[] args) => MainAsync(args);
@@ -38,6 +40,8 @@ namespace RadDB3 {
 					string arg = args[i];
 					switch (arg) {
 						case "-l":
+							liveSession = true;
+							break;
 						case "--local": { // --local <int> or --local <string>
 							Database[] databases = FileInteraction.ConvertDirectoriesInCurrentDirectoryToDatabases();
 							if (int.TryParse(args[i+1], out int index)) {
@@ -72,52 +76,73 @@ namespace RadDB3 {
 
 				bool dontStop = true;
 				List<string> commands = new List<string>();
-				
-				
-				while (loadedDatabase != null && dontStop) {
-					Console.Write(">>  ");
-					bool endCommand = false;
-					command = "";
-					while (!endCommand) {
-						var keyInfo = Console.ReadKey();
-						Regex acceptableCharacters = new Regex("\\w| ");
-					
-						if (keyInfo.Key == ConsoleKey.Enter) {
-							
-							Console.WriteLine();
-							
-							if (command.Length == 0) {
-								foreach (string s in commands) {
-									var commandInterpreter = new CommandInterpreter(loadedDatabase, s);
-								}
-								Console.Write(">>  ");
-								commands = new List<string>();
-							} else {
-								Console.Write("  ");
-							}
-						}
 
-						if (keyInfo.Key == ConsoleKey.Backspace) {
-							if (command.Length > 0) {
-								command = command.Substring(0, command.Length - 1);
+				if (liveSession) {
+					while (loadedDatabase != null && dontStop) {
+						Console.Write(">>  ");
+						bool endCommand = false;
+
+						bool afterCommandMode = false;
+						command = "";
+						while (!endCommand) {
+							var keyInfo = Console.ReadKey();
+							Regex acceptableCharacters = new Regex("\\w|[*\\{\\[\\(\\}\\]\\)@_\"=><]");
+
+							if (keyInfo.Key == ConsoleKey.Enter) {
+
+								Console.WriteLine();
+
+								if (command.Length == 0) {
+									foreach (string s in commands) {
+										var commandInterpreter = new CommandInterpreter(loadedDatabase, s);
+									}
+
+									Console.Write(">> ");
+									commands = new List<string>();
+								} else {
+									Console.Write("  ");
+								}
+							}
+
+							if (keyInfo.Key == ConsoleKey.Backspace) {
+								if (command.Length > 0) {
+									command = command.Substring(0, command.Length - 1);
+									Console.Write(" ");
+									Console.Write("\b");
+								} else {
+									Console.Write(" ");
+								}
+							} else if (keyInfo.KeyChar == ';') {
+								commands.Add(command);
+								keyInfo = Console.ReadKey();
+								afterCommandMode = true;
+								if (keyInfo.Key == ConsoleKey.Enter && command.ToLower() == "exit") {
+									dontStop = false;
+									break;
+								}
+
+								command = "";
+							} else if (keyInfo.Key == ConsoleKey.Spacebar || 
+										keyInfo.Key == ConsoleKey.Tab) {
+								
+								if (!afterCommandMode) {
+									command += keyInfo.KeyChar;
+								}
+							} else if (acceptableCharacters.IsMatch("" + keyInfo.KeyChar)) {
+								command += keyInfo.KeyChar;
+								if (afterCommandMode) afterCommandMode = false;
+							}
+							else {
 								Console.Write(" ");
 								Console.Write("\b");
 							}
 						}
-						if (keyInfo.KeyChar == ';') {
-							commands.Add(command);
-							//Console.WriteLine();
-							if (command.ToLower() == "exit") {
-								dontStop = false;
-								break;
-							}
 
-							command = "";
-						} else if(acceptableCharacters.IsMatch("" + keyInfo.KeyChar)) command += keyInfo.KeyChar;
+						if (dontStop) { }
 					}
-
-					if (dontStop) {
-						
+				} else {
+					if (!args[args.Length - 1].Contains('-')) {
+						var commandInterpreter = new CommandInterpreter(loadedDatabase, args[args.Length - 1]);
 					}
 				}
 			}
@@ -162,22 +187,8 @@ namespace RadDB3 {
 				
 				Console.WriteLine("Tuples Created: {0}", RelationalAlgebraModule.TuplesCreated);
 
-				
-				 
-				
-				
-				AlgebraNode n01 = new AlgebraNode(idRole);
-				AlgebraNode n00 = new AlgebraNode(nameNicknameId);
-				AlgebraNode n0 = new AlgebraNode(idntm);
-				AlgebraNode n1 = new AlgebraNode(RelationalAlgebraModule.Selection, new []{"IDNTM.Time=*2017 *"}, n0);
-				AlgebraNode n2 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"IDNTM(Name)=NN(Name)"}, n1, n00);
-				AlgebraNode n3 = new AlgebraNode(RelationalAlgebraModule.InnerJoin, new []{"(...)(NN.ID)=RoleInfo(ID)"}, n2, n01);
-				AlgebraNode n4 = new AlgebraNode(RelationalAlgebraModule.Projection, new []{"IDNTM.ID","NN.Nickname","RoleInfo.Role","IDNTM.Message"}, n3);
-				Table t = n4.TableApply();
-			
-				t?.DumpData();
-				t?.PrintTableNoPadding();
 				*/
+				
 			}
 			
 		
