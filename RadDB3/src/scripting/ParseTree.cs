@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using RadDB3.scripting.parsers;
 
 namespace RadDB3.scripting {
 	public class ParseTree {
@@ -17,10 +19,18 @@ namespace RadDB3.scripting {
 		public void PrintTree() {
 			head.Print(0);
 		}
+		public void PrintTree(int maxDepth) {
+			head.Print(0,maxDepth);
+		}
+
 
 		public ParseNode this[string s] => head[s];
 
 		public ParseNode this[int i] => head[i];
+
+		public List<ParseNode> GetAllOfType(string type) {
+			return head.GetAllOfType(type);
+		}
 
 	}
 }

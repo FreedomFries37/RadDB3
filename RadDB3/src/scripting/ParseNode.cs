@@ -16,11 +16,16 @@ namespace RadDB3.scripting {
 		public dynamic ConvertedValue => convertedValue;
 
 		public string Data {
-			private set => data = value;
+			set => data = value;
 			get => data;
 		}
 
 		public ParseNode[] Children => children.ToArray();
+
+		public List<ParseNode> ChildrenList {
+			set => children = value;
+			get => children;
+		}
 
 		public ParseNode(string data) {
 			Data = data;
@@ -50,6 +55,34 @@ namespace RadDB3.scripting {
 			set => children[n] = value;
 		}
 
+		public List<ParseNode> GetAllOfTypeOnlyDirectChildren(string s) {
+			List<ParseNode> outout = new List<ParseNode>();
+			foreach (ParseNode parseNode in children) {
+				if (parseNode.data == s) {
+					outout.Add(parseNode);
+				}
+			}
+
+			return outout;
+		}
+
+		public List<ParseNode> GetAllOfType(string s) {
+			List<ParseNode> outout = new List<ParseNode>();
+			foreach (ParseNode parseNode in children) {
+				if (parseNode.data == s) {
+					outout.Add(parseNode);
+				}
+				outout.AddRange(parseNode.GetAllOfType(s));
+			}
+
+			return outout;
+		}
+
+
+		public bool Equals(string s) {
+			return Data == s;
+		}
+
 		public void CleanUp() {
 			Regex grammarRule = new Regex("<\\w*>");
 			for (int i = children.Count - 1; i >= 0; i--) {
@@ -63,7 +96,10 @@ namespace RadDB3.scripting {
 						}
 							break;
 						case "<string>": {
-							ParseNode next = new ParseNode(Parser.ConvertString(children[i]));
+							ParseNode next;
+							if (children[i].children[0].data == "<sentence>") {
+								next= new ParseNode(Parser.ConvertSentence(children[i].children[0]));
+							} else next= new ParseNode(Parser.ConvertString(children[i]));
 							children[i].children = new List<ParseNode> {next};
 						}
 							break;
@@ -82,6 +118,8 @@ namespace RadDB3.scripting {
 			
 		}
 
+	
+		
 		public int Count() {
 			int count = 1;
 			foreach (ParseNode parseNode in children) {
@@ -93,6 +131,10 @@ namespace RadDB3.scripting {
 
 		public void Convert(ParseNodeConverter func) {
 			convertedValue = func(this);
+		}
+
+		public bool Contains(string s) {
+			return this[s] != null;
 		}
 
 		/// <summary>
@@ -110,6 +152,17 @@ namespace RadDB3.scripting {
 			Console.Write(this + "\n");
 			foreach (ParseNode parseNode in children) {
 				parseNode.Print(indent+1);
+			}
+		}
+
+		public void Print(int indent, int maxDepth) {
+			if (indent == maxDepth) return;
+			for (int i = 0; i < indent; i++) {
+				Console.Write("   ");
+			}
+			Console.Write(this + "\n");
+			foreach (ParseNode parseNode in children) {
+				parseNode.Print(indent+1,maxDepth);
 			}
 		}
 	}

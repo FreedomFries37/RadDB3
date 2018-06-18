@@ -89,16 +89,12 @@ namespace RadDB3.structure {
 
 		private static NameTypePair[] ConvertRelationAndStrings(Relation r, string name1, params string[] optionalNames) {
 			NameTypePair[] pairs = new NameTypePair[1 + optionalNames.Length];
-			if (r.IsKey(name1) >= 0) {
-				string keyInfo = r.IsKey(name1) == 1 ? "*" : r.IsKey(name1) == 2 ? "&" : "";
-				pairs[0] = new NameTypePair(keyInfo + name1, r.Types[r[name1]]);
-			}
-
+			pairs[0] = new NameTypePair(name1, r.Types[r[name1]]);
 			for (int i = 0; i < optionalNames.Length; i++) {
-				if (r.IsKey(optionalNames[i]) >= 0) {
-					string keyInfo = r.IsKey(optionalNames[i]) == 1 ? "*" : r.IsKey(optionalNames[i]) == 2 ? "&" : "";
-					pairs[1 + i] = new NameTypePair(keyInfo + name1, r.Types[r[name1]]);
-				}
+				string name = optionalNames[i];
+				if (name.StartsWith("*")) name = name.Substring(1);
+				pairs[1 + i] = new NameTypePair(optionalNames[i], r.Types[r[name]]);
+				
 			}
 
 			return pairs;
@@ -106,6 +102,14 @@ namespace RadDB3.structure {
 
 		public string this[int i] => names[i];
 		public int this[string s] => names.ToList().IndexOf(s);
+
+		public void StripTableNames() {
+			for (int i = 0; i < Arity; i++) {
+				if (names[i].Contains(".")) {
+					names[i] = names[i].Substring(names[i].IndexOf('.') + 1);
+				}
+			}
+		}
 
 		/// <summary>
 		/// Returns -1 if not a key
@@ -159,8 +163,7 @@ namespace RadDB3.structure {
 			}
 			if (Arity - 1 == Keys[0]) output += "*";
 			else if (Keys.Contains(Arity - 1)) output += "&";
-			output += $"{names[Arity - 1]}<{types[Arity - 1].Name}>-";
-			output += names[Arity - 1];
+			output += $"{names[Arity - 1]}<{types[Arity - 1].Name}>";
 			return output;
 		}
 

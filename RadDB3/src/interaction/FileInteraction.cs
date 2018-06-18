@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Schema;
 using RadDB3.scripting;
 using RadDB3.scripting.parsers;
@@ -141,11 +142,7 @@ namespace RadDB3.interaction {
 			writer.Close();
 		}
 
-		// FOR .rd3 files
-		public static Database ConvertFileToDatabase(string filepath) {
-			return ConvertStringToDatabase(FileToString(filepath),  new FileInfo(filepath));
-		}
-
+		
 		public static Database ConvertDirectoryToDatabase(string dirPath) {
 			DirectoryInfo info = new DirectoryInfo(dirPath);
 			foreach (var file in info.EnumerateFiles()) {
@@ -156,6 +153,12 @@ namespace RadDB3.interaction {
 
 			return null;
 		}
+		
+		// FOR .rd3 files
+		public static Database ConvertFileToDatabase(string filepath) {
+			return ConvertStringToDatabase(FileToString(filepath),  new FileInfo(filepath));
+		}
+
 
 		public static Database ConvertCurrentDirectoryToDatabase() {
 			return ConvertDirectoryToDatabase(Environment.CurrentDirectory);
@@ -191,7 +194,7 @@ namespace RadDB3.interaction {
 			for (int i = 3; i < strSplit.Length-1; i++) {
 				output.addTable(ConvertFileToTable(tableDirectoryInfo.FullName + @"\" + strSplit[i]));
 			}
-			
+
 			return output;
 		}
 		

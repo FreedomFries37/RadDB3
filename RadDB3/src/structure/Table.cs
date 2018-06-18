@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace RadDB3.structure {
@@ -12,7 +13,7 @@ namespace RadDB3.structure {
 
 		private const bool MAX_DEBUG = false;
 		
-		private readonly string name;
+		private string name;
 		private readonly Relation relation;
 		private LinkedList<RADTuple>[] tuples;
 
@@ -24,7 +25,10 @@ namespace RadDB3.structure {
 		/// Number of lists
 		/// </summary>
 		public int Size => tuples.Length;
-		public string Name => name;
+		public string Name {
+			get => name;
+			set => name = value;
+		}
 		public Relation Relation => relation;
 		public int Count {
 			get {
@@ -63,7 +67,8 @@ namespace RadDB3.structure {
 			for (int i = 0; i < tuples.Length; i++) {
 				tuples[i] = new LinkedList<RADTuple>();
 			}
-			if(createSecondary) SecondaryIndexing = new SecondaryIndexing(this);
+
+			CreateSecondaryIndexing();
 		}
 
 		public Table(RADTuple[] tuples) : this(tuples[0]?.relation, false, tuples.Length) {
@@ -251,8 +256,28 @@ namespace RadDB3.structure {
 			tuples = newTuples;
 		}
 
-		public void CreateSecondaryIndexing() {
-			if (SecondaryIndexingExists) SecondaryIndexing.ReCreateSecondaryIndex();
+		public void ReSize() {
+			LinkedList<RADTuple>[] newTuples = new LinkedList<RADTuple>[Count*2];
+			for (int i = 0; i < newTuples.Length; i++) {
+				newTuples[i] = new LinkedList<RADTuple>();
+			}
+
+			foreach (LinkedList<RADTuple> linkedList in tuples) {
+				foreach (RADTuple radTuple in linkedList) {
+					int hash = Math.Abs(radTuple.GetHashCode() % newTuples.Length);
+					newTuples[hash].AddLast(radTuple);
+				}
+			}
+
+			tuples = newTuples;
+		}
+
+		public void SetName(string s) {
+			Name = s;
+		}
+
+		public async Task CreateSecondaryIndexing() {
+			if (SecondaryIndexingExists) await SecondaryIndexing.ReCreateSecondaryIndex();
 			else SecondaryIndexing = new SecondaryIndexing(this);
 		}
 
@@ -283,6 +308,15 @@ namespace RadDB3.structure {
 			}
 
 			return output;
+		}
+
+		public override string ToString() {
+			return name;
+		}
+
+		public override string Dump() {
+			DumpData();
+			return null;
 		}
 
 		/// <summary>

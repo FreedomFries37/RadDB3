@@ -1,21 +1,25 @@
+# General Info
 Commands can be converted into objects of four types: Element, RADTuple, RADTuple[] (as TupleList), or Table
 Runtime variables can be created to store the types
 Runtime tempvars are cleared after every command
 Objects can be piped through commands
 
-PRIVATE TYPES:
-	<new_table> : <table>
-	<nametypepair>:
-		(<sentence>:<string>[(constaints)])
+### PRIVATE TYPES:
 
-OBJECT CREATION:
+Syntactic Category | Optional | Rule
+--- | :---: | ---
+nametypepair | false | (_sentence_,_string_[(_constaints_)])
+selection	| false | _string_=_string_
+method  | false | _string_(_list_object_)
+
+### OBJECT CREATION:
 	<object>:
+		<object>.<method>
+		(<object>) #objects value is whatever type it stores, so (<Table>) is also a Table
 		<Table>
 		<TupleList>
 		<RADTuple>
 		<Element>
-		(<object>) #objects value is whatever type it stores, so (<Table>) is also a Table
-		<object>.<method>
 		
 		Fields:
 			dynamic data;
@@ -48,6 +52,48 @@ OBJECT CREATION:
 		[<RADtype> ]<sentence>|<string> # defaults to string RADtype
 		<RADTuple>[<sentence:column name>]
 		<RADTuple>[<int:index>]
+		
+		
+### COMMANDS:
+
+# BEGIN LIVE SESSION
+
+		load [ -d | -f ]  <sentence>
+			-d directory name
+			-f .rd3 file name
+		load -l
+			finds the first database in the current directory
+			
+# General
+	
+	<command>:
+		<method>:
+			<method_name>(<list_param>)
+			
+		<method_name>:
+			<string>
+		<param>:
+			<int>
+			<string>
+			<object>
+	
+		
+# TABLE COMMANDS
+
+	# all of these commands return a table, that is then dumped to the console.
+	<command>:
+		<table>:
+			<new_table>:
+				new Table(<string>,<nametypepair>,...)
+			
+			<join_info_full>
+			
+			<string> #table name in database
+			
+			{<table>(<selection>,...)@<columns>}
+			{<table>(<selection>,...)}
+		
+### EXAMPLES:
 		
 	example: (ITNAP).list["0040402121232"]["Message"]
 	

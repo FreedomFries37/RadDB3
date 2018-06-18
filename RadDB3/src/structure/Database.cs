@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RadDB3.scripting.RelationalAlgebra;
 
 namespace RadDB3.structure {
 	public partial class Database : IEnumerable<Table> {
@@ -55,5 +56,20 @@ namespace RadDB3.structure {
 				Console.WriteLine();
 			}
 		}
+
+		public AlgebraNodeTree CreateNodeTree(string[] projections, string[] selections, string joinFullInfo) =>
+			new AlgebraNodeTree(this, projections, selections, joinFullInfo);
+
+	
+		public Table TableApplyRelationalAlgebra(AlgebraNodeTree tree) => tree.TableAply();
+		
+		public Table TableApplyRelationalAlgebra(string[] projections, string[] selections, string joinFullInfo) =>
+			TableApplyRelationalAlgebra(CreateNodeTree(projections, selections, joinFullInfo));
+
+
+		public RADTuple[] ApplyRelationalAlgebra(AlgebraNodeTree tree) => tree.Apply();
+
+		public RADTuple[] ApplyRelationalAlgebra(string[] projections, string[] selections, string joinFullInfo) =>
+			ApplyRelationalAlgebra(CreateNodeTree(projections, selections, joinFullInfo));
 	}
 }

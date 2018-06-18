@@ -91,6 +91,10 @@ namespace RadDB3.structure {
 			return output;
 		}
 
+		public List<Element> ToListOfElements() {
+			return elements.ToList();
+		}
+
 		public bool AttemptSwitchRelation(Relation r) {
 			if (r.Arity != relation.Arity) return false;
 			for (int i = 0; i < r.Arity; i++) {
