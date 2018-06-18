@@ -56,15 +56,31 @@ method  | false | _string_(_list_object_)
 		
 ### COMMANDS:
 
-	BEGIN LIVE SESSION:
+# BEGIN LIVE SESSION
+
 		load [ -d | -f ]  <sentence>
 			-d directory name
 			-f .rd3 file name
 		load -l
 			finds the first database in the current directory
+			
+# General
+	
+	<command>:
+		<method>:
+			<method_name>(<list_param>)
+			
+		<method_name>:
+			<string>
+		<param>:
+			<int>
+			<string>
+			<object>
+	
 		
-	TABLE COMMANDS
-	# all of these commands return a Table object
+# TABLE COMMANDS
+
+	# all of these commands return a table, that is then dumped to the console.
 	<command>:
 		<table>:
 			<new_table>:
