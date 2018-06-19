@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RadDB3.interaction;
 using RadDB3.scripting.RelationalAlgebra;
 
 namespace RadDB3.structure {
@@ -42,6 +43,8 @@ namespace RadDB3.structure {
 			}
 		}
 
+		public bool Contains(string s) => this[s] != null;
+
 		public void PrintDataBase() {
 			foreach (Table table in this) {
 				table.PrintTable(25);
@@ -71,5 +74,10 @@ namespace RadDB3.structure {
 
 		public RADTuple[] ApplyRelationalAlgebra(string[] projections, string[] selections, string joinFullInfo) =>
 			ApplyRelationalAlgebra(CreateNodeTree(projections, selections, joinFullInfo));
+
+		public RADObject EmulateCommand(string command, params string[] options) {
+			var interpreter = new CommandInterpreter(this, command, options);
+			return interpreter.output;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using RadDB3.scripting;
@@ -15,31 +16,44 @@ namespace RadDB3.interaction {
 		public RADObject output { get; private set; }
 		private Database db;
 
-		public readonly static Dictionary<string, CommandObject> variables;
+		public static readonly Dictionary<string, CommandObject> variables;
+
+		private static readonly string[] KeyWords = {
+			"return",
+			"setVar"
+		};
 
 		static CommandInterpreter() {
 			variables = new Dictionary<string, CommandObject>();
 		}
 		
 		public CommandInterpreter(Database db, string command, params string[] options) :
-			base(command, ReadOptions.STRING, ParseOptions.REMOVE_ALL_NONSPACE_WHITESPACE) {
+			base(command, ReadOptions.STRING, ParseOptions.REMOVE_ALL_NONSPACE_WHITESPACE, KeyWords) {
 			this.db = db;
-			ParseTree tree = new ParseTree(ParseCommand);
-			tree.PrintTree(6);
+			ParseTree tree = new ParseTree(ParseCommandStructure);
+			
 
 			head = tree.Head;
-			DoCommand(head);
+			foreach (var node in ConvertListNodeToListOfListObjects(head["<list_command>"])) {
+				DoCommand(node);
+			}
+			
+		}
+
+		public bool ObjectExists(string name) {
+			return variables.ContainsKey(name) || db.Contains(name);
 		}
 
 
 		public void DoCommand(ParseNode n) {
-			
+			if(!n.Equals("<command>")) throw new IncompatableParseNodeException();
+			n.Print(1);
 			List<CommandObject> objects = new List<CommandObject>();
 			string methodName = "";
 			ParseNode methodNode = null;
 		
 			if (n.Contains("<method>")) {
-				methodName = n["<method>"][0].Data;
+				methodName = n["<method>"][0].Data == "<string>" ? n["<method>"][0][0].Data : n["<method>"][0].Data;
 				methodNode = n["<method>"];
 			}
 
@@ -49,7 +63,7 @@ namespace RadDB3.interaction {
 
 			switch (methodName) {
 				case "setVar": {
-					string varName = methodNode?["<string>"][0].Data ?? "temp";
+					string varName = "$" + (methodNode?["<string>"][0].Data ?? "temp");
 					objects[0].SetName(varName);
 					Table t = objects[0].Data as Table;
 					t?.Relation.StripTableNames();
@@ -58,11 +72,12 @@ namespace RadDB3.interaction {
 					} else variables.Add(varName, objects[0]);
 				}
 					break;
+				case "return": {
+					output = objects[0].radObject;
+				}
+					break;
 				default: {
-					foreach (CommandObject commandObject in objects) {
-						(commandObject?.Data as Table)?.PrintTableNoPadding();
-						(commandObject?.Data as Table)?.DumpData();
-					}
+					output = objects[objects.Count - 1].radObject;
 				}
 					break;
 			}
@@ -128,8 +143,16 @@ namespace RadDB3.interaction {
 
 			return new CommandTable(tableOutput);
 		}
-		
-		
+
+		public bool ParseCommandStructure(out ParseNode parent) {
+			parent = null;
+			ParseNode output = new ParseNode("<command_structure>");
+
+			if (!ParseList(output, ParseCommand, ";")) return false;
+
+			parent = output;
+			return true;
+		}
 		
 
 		public bool ParseCommand(out ParseNode parent) {
@@ -137,6 +160,28 @@ namespace RadDB3.interaction {
 			ParseNode output = new ParseNode("<command>");
 			SaveState s1 = SaveParserState(output);
 			output.AddChild(new ParseNode("<method>"));
+			
+			
+		
+			
+			
+			if (ParseString(output["<method>"])) {
+				if (ConsumeChar('(')) {
+
+					if (!ParseList(output, ParseObject)) return false;
+					if (!ConsumeChar(')')) return false;
+					
+					parent = output;
+					return true;
+				}
+				if (ConsumePattern("\\s+")) {
+					if (ParseObject(output)) {
+						parent = output;
+						return true;
+					}
+				}
+			}
+			LoadSaveState(s1, output);
 			// Table based commands
 			if (ParseObject(output)) {
 				if (ConsumeString(" as ")) {
@@ -151,6 +196,16 @@ namespace RadDB3.interaction {
 			return true;
 		}
 
+		public bool ParseCommand(ParseNode parent) {
+			bool occured = ParseCommand(out ParseNode next);
+
+			if (occured) {
+				parent.AddChild(next);
+				return true;
+			}
+
+			return false;
+		}
 
 
 		public bool ParseObject(out ParseNode parent) {
@@ -268,9 +323,12 @@ namespace RadDB3.interaction {
 			
 			
 			if (ParseString(next)) {
+				string name = ConvertString(next["<string>"]);
 				
-				parent.AddChild(next);
-				return true;
+				if (ObjectExists(name)) {
+					parent.AddChild(next);
+					return true;
+				}
 			}
 
 
@@ -278,6 +336,7 @@ namespace RadDB3.interaction {
 		}
 		
 		private bool ParseTupleList(ParseNode parent) {
+			return false;
 			ParseNode next = new ParseNode("<method>");
 			
 			
@@ -286,6 +345,7 @@ namespace RadDB3.interaction {
 		}
 		
 		private bool ParseTuple(ParseNode parent) {
+			return false;
 			ParseNode next = new ParseNode("<method>");
 			
 			
@@ -294,6 +354,7 @@ namespace RadDB3.interaction {
 		}
 		
 		private bool ParseElement(ParseNode parent) {
+			return false;
 			ParseNode next = new ParseNode("<method>");
 			
 			

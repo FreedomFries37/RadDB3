@@ -28,6 +28,14 @@ namespace RadDB3.scripting.parsers {
 			REMOVE_ONLY_TABS
 		}
 
+		public void Reset() {
+			index = 0;
+		}
+
+		public void SetParseString(string str) {
+			parsableString = str;
+			index = 0;
+		}
 		
 		/// <summary>
 		/// Used For Nondeterminate Grammars
@@ -103,11 +111,18 @@ namespace RadDB3.scripting.parsers {
 			}
 		}
 
-		public Parser(string s, ReadOptions readOptions, ParseOptions parseOption) : this(s, readOptions) {
-			parsableString = ApplyRule(parsableString, parseOption);
+		public Parser(string s, ReadOptions readOptions, ParseOptions parseOption, params string[] keywords) : this(s, readOptions) {
+			parsableString = ApplyRule(parsableString, parseOption, keywords);
 		}
 
-		private string ApplyRule(string s, ParseOptions option) {
+		private string ApplyRule(string s, ParseOptions option, params string[] keywords) {
+			
+			foreach (string keyword in keywords) {
+				
+				Regex regex = new Regex($"\\s*{keyword}\\s+");
+				s = regex.Replace(s, keyword + (char) 420);
+				
+			}
 			switch (option) {
 					case ParseOptions.ALL_WHITESPACE_TO_SPACE:
 						s = s.Replace('\t', ' ');
@@ -130,6 +145,10 @@ namespace RadDB3.scripting.parsers {
 					case ParseOptions.REMOVE_ONLY_TABS:
 						s = s.Replace("\t", "");
 						break;
+			}
+
+			if (keywords.Length > 0) {
+				s = s.Replace("" + (char) 420, " ");
 			}
 
 			return s;
@@ -474,17 +493,40 @@ namespace RadDB3.scripting.parsers {
 			return output;
 		}
 		
+		
 		/// <summary>
-		/// In form object,object,...
+		/// In form object sepeator object sepeator ...
 		/// </summary>
 		/// <param name="parent"></param>
 		/// <param name="function"></param>
+		/// <param name="seperator"></param>
 		/// <returns></returns>
-		public bool ParseList(ParseNode parent, InternalParserFunction function) {
+		public bool ParseList(out ParseNode parent, InternalParserFunction function, string seperator = ",") {
+			parent = null;
 			ParseNode next = new ParseNode($"<list_{lowerCamelCaseToLowerSeperated(function.Method.Name.Replace("Parse",""))}>");
 
 			if (ParseListObject(next, function)) {
-				if (!ParseListMore(next, function)) return false;
+				if (!ParseListMore(next, function,seperator)) return false;
+			} else {
+				next.AddChild(new ParseNode("empty"));
+			}
+
+			parent = next;
+			return true;
+		}
+		
+		/// <summary>
+		/// In form object sepeator object sepeator ...
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="function"></param>
+		/// <param name="seperator"></param>
+		/// <returns></returns>
+		public bool ParseList(ParseNode parent, InternalParserFunction function, string seperator = ",") {
+			ParseNode next = new ParseNode($"<list_{lowerCamelCaseToLowerSeperated(function.Method.Name.Replace("Parse",""))}>");
+
+			if (ParseListObject(next, function)) {
+				if (!ParseListMore(next, function,seperator)) return false;
 			} else {
 				next.AddChild(new ParseNode("empty"));
 			}
@@ -502,10 +544,10 @@ namespace RadDB3.scripting.parsers {
 			return true;
 		}
 
-		private bool ParseListMore(ParseNode parent, InternalParserFunction function) {
+		private bool ParseListMore(ParseNode parent, InternalParserFunction function, string seperator) {
 			ParseNode next = new ParseNode("<list_more>");
-			if (ConsumeChar(',')) {
-				if (!ParseList(next,function)) return false;
+			if (ConsumeString(seperator)) {
+				if (!ParseList(next,function,seperator)) return false;
 			}
 			
 			parent.AddChild(next);
@@ -525,8 +567,20 @@ namespace RadDB3.scripting.parsers {
 
 			return output;
 		}
-		
-		
+
+		public static List<string> ConvertListNodeToListOfStrings(ParseNode parseNode) {
+			if(!parseNode.Data.Contains("list_")) throw new IncompatableParseNodeException();
+			if(parseNode.Contains("empty")) return new List<string>();
+			var output = new List<string>();
+			ParseNode nodePtr = parseNode;
+			do {
+				if (nodePtr.Data == "<list_more>") nodePtr = nodePtr[0];
+				output.Add(nodePtr["<list_object>"][0][0].Data);
+				nodePtr = nodePtr["<list_more>"];
+			} while (nodePtr != null);
+
+			return output;
+		}
 
 	}
 }
