@@ -6,8 +6,10 @@ namespace RadDB3.interaction {
 	
 	public static partial class Commands {
 
-		public class CommandObject {
+		public class CommandObject{
 			public RADObject Data { set; get; }
+
+			public RADObject radObject => Data;
 
 			public CommandObject(RADObject data) {
 				Data = data;

@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\Joshua\\Documents\\ProgrammingWorkspace\\RadinDatabaseSystemVersion3\\RadDB3\\RadDB3.csproj",
+    "projectUniqueName": "E:\\Documents\\ProgrammingWorkspace\\RadinDatabaseSystemVersion3\\RadDB3\\RadDB3.csproj",
     "projectName": "RadDB3",
-    "projectPath": "C:\\Users\\Joshua\\Documents\\ProgrammingWorkspace\\RadinDatabaseSystemVersion3\\RadDB3\\RadDB3.csproj",
-    "outputPath": "C:\\Users\\Joshua\\Documents\\ProgrammingWorkspace\\RadinDatabaseSystemVersion3\\RadDB3\\obj\\",
+    "projectPath": "E:\\Documents\\ProgrammingWorkspace\\RadinDatabaseSystemVersion3\\RadDB3\\RadDB3.csproj",
+    "outputPath": "E:\\Documents\\ProgrammingWorkspace\\RadinDatabaseSystemVersion3\\RadDB3\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

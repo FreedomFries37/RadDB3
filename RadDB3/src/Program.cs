@@ -23,7 +23,7 @@ namespace RadDB3 {
 
 		private static bool liveSession;
 
-		private static string command = "";
+	
 
 		static void Main(string[] args) => MainAsync(args);
 		
@@ -75,30 +75,32 @@ namespace RadDB3 {
 				}
 
 				bool dontStop = true;
-				List<string> commands = new List<string>();
-
-				if (liveSession) {
+			
+		
+				if (liveSession && loadedDatabase != null) {
 					while (loadedDatabase != null && dontStop) {
 						Console.Write(">>  ");
 						bool endCommand = false;
 
 						bool afterCommandMode = false;
-						command = "";
+						string command = "";
 						while (!endCommand) {
 							var keyInfo = Console.ReadKey();
-							Regex acceptableCharacters = new Regex("\\w|[*\\{\\[\\(\\}\\]\\)@_\"=><]");
+							Regex acceptableCharacters = new Regex("\\w|[*\\{\\[\\(\\}\\]\\)@_\"=><;$]");
 
 							if (keyInfo.Key == ConsoleKey.Enter) {
 
 								Console.WriteLine();
 
-								if (command.Length == 0) {
-									foreach (string s in commands) {
-										var commandInterpreter = new CommandInterpreter(loadedDatabase, s);
+								if (afterCommandMode) {
+									if (command.ToLower() == "exit;") {
+										dontStop = false;
+										break;
 									}
-
+									command = command.Substring(0, command.Length - 1);
+									CommandInterpreter c = new CommandInterpreter(loadedDatabase, command);
+									c.output.Dump();
 									Console.Write(">> ");
-									commands = new List<string>();
 								} else {
 									Console.Write("  ");
 								}
@@ -113,15 +115,9 @@ namespace RadDB3 {
 									Console.Write(" ");
 								}
 							} else if (keyInfo.KeyChar == ';') {
-								commands.Add(command);
-								keyInfo = Console.ReadKey();
+								command += ";";
 								afterCommandMode = true;
-								if (keyInfo.Key == ConsoleKey.Enter && command.ToLower() == "exit") {
-									dontStop = false;
-									break;
-								}
-
-								command = "";
+								
 							} else if (keyInfo.Key == ConsoleKey.Spacebar || 
 										keyInfo.Key == ConsoleKey.Tab) {
 								
@@ -140,10 +136,12 @@ namespace RadDB3 {
 
 						if (dontStop) { }
 					}
-				} else {
+				} else if(loadedDatabase != null) {
 					if (!args[args.Length - 1].Contains('-')) {
 						var commandInterpreter = new CommandInterpreter(loadedDatabase, args[args.Length - 1]);
 					}
+				} else {
+					Console.WriteLine("No Loaded Database");
 				}
 			}
 
