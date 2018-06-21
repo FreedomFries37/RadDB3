@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using RadDB3.interaction;
-using RadDB3.scripting;
-using RadDB3.scripting.parsers;
 using RadDB3.scripting.RelationalAlgebra;
 using RadDB3.structure;
 using RadDB3.structure.Types;
@@ -22,9 +14,6 @@ namespace RadDB3 {
 		private static Database loadedDatabase;
 
 		private static bool liveSession;
-
-	
-
 		static void Main(string[] args) => MainAsync(args);
 		
 		static async void MainAsync(string[] args) {
