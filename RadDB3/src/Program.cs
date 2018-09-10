@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using RadDB3.interaction;
@@ -16,10 +17,17 @@ namespace RadDB3 {
 		private static bool liveSession;
 		static void Main(string[] args) => MainAsync(args);
 		
-		static async void MainAsync(string[] args) {
+		static void MainAsync(string[] args) {
 			
 			if (args.Length == 0 || args[0] == "DEBUG") {
-				
+				Table tb = new Table(
+					"fileTest",
+					new Relation(
+						("Name", typeof(RADString)),
+						("Path", typeof(RADFile))));
+
+				tb.Add("test1", new FileInfo("alg1.pdf"));
+				((RADFile) tb[new RADString("test1")].elements[1]).OpenFile();
 			} else {
 
 				string path = "";

@@ -19,7 +19,12 @@ namespace RadDB3.interaction {
 
 			public virtual string Dump() => Data?.Dump();
 		}
-		
+
+		public static Table CreateTable(Database db, string command) => CreateCommandTable(db, command).Data as Table;
+		public static CommandTable CreateCommandTable(Database db, string command) {
+			CommandInterpreter v = new CommandInterpreter(db, command);
+			return new CommandTable(v.output as Table);
+		}
 		public static Table SelectTable(Database db, string s) => SelectTableCommand(db, s).Data as Table;
 		public static CommandTable SelectTableCommand(Database db, string s) {
 			return new CommandTable(db[s]);
@@ -27,6 +32,9 @@ namespace RadDB3.interaction {
 
 		public static RADTuple[] List(Table t) => t.All;
 		public static CommandTupleList ListCommand(CommandTable t) => new CommandTupleList(t);
+		
+		
+		
 
 	}
 }

@@ -1,0 +1,17 @@
+doc {
+    background-color: #ffffff;
+    width: 100%;
+}
+
+members{
+    display: block;
+}
+
+member[name]{
+    display: block;
+    font-family: Arial;
+}
+
+summary, param, returns{
+    display: table-cell;
+}

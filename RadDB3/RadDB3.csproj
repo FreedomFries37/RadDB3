@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp2.0\RadDB3.xml" />
+    <Content Include="bin\Debug\netcoreapp2.0\RADDocumentation.css" />
+  </ItemGroup>
 </Project>
