@@ -5,17 +5,17 @@ using System.IO.IsolatedStorage;
 using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace RadDB3.structure.Types {
-	public class RADFile : Element{
+	public class RADFile : Element, SpecialEquality {
 
 		public String path { private set; get; }
 
 		
 		
-		public RADFile(FileInfo f) : base(f) {
+		public RADFile(FileInfo f) : base(f.FullName) {
 			path = f.FullName;
 		}
 
-		public RADFile(string s) : this(new FileInfo(fixPath(s))) {
+		public RADFile(string s) : base(s) {
 			Console.WriteLine(path);
 		}
 		
@@ -39,5 +39,11 @@ namespace RadDB3.structure.Types {
 		private static String fixPath(String s) {
 			return s.Replace("./", Environment.CurrentDirectory + "/");
 		}
+
+		public override bool Equals(object obj) {
+			var f = obj as RADFile;
+			return f != null && f.path.Equals(path);
+		}
+
 	}
 }

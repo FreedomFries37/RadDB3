@@ -55,7 +55,8 @@ namespace RadDB3.structure {
 			if (ReferenceEquals(a, null)||
 				ReferenceEquals(b, null) ||
 				a.data.GetType() != b.data.GetType()) return false;
-			return a.Data == b.Data;
+
+			return a is SpecialEquality && a.Equals(b) || a.Data.Equals(b.Data);
 		}
 
 		public static bool operator !=(Element a, Element b) {
